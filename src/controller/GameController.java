@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.Observable;
-import java.util.Observer;
 
 import javafx.stage.Stage;
 import model.Board;

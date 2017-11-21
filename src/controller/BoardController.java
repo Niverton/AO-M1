@@ -1,9 +1,6 @@
 package controller;
 
-import java.io.FileNotFoundException;
-
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import model.Board;
 import view.ViewBoard;
 

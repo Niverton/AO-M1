@@ -3,47 +3,16 @@ package view;
 
 
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.Set;
-
-import javax.swing.event.ChangeListener;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.Multigraph;
 import org.jgrapht.traverse.BreadthFirstIterator;
 
-import javafx.scene.shape.*;
-
-
-
-import javafx.animation.FillTransition; 
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
-import javafx.stage.Stage; 
-import javafx.animation.Timeline; 
-import javafx.animation.ParallelTransition; 
-import javafx.animation.RotateTransition; 
-import javafx.animation.ScaleTransition; 
-import javafx.animation.TranslateTransition; 
-import javafx.util.Duration;
+import javafx.scene.shape.Rectangle;
 import model.Board;
 import model.Point2D; 
 /**

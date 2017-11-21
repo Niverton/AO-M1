@@ -1,23 +1,16 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Set;
 
-import org.jgrapht.graph.AsUndirectedGraph;
-import org.jgrapht.graph.DefaultDirectedGraph;
-import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.Multigraph;
-import org.jgrapht.graph.SimpleGraph;
 import org.jgrapht.traverse.BreadthFirstIterator;
-import org.jgrapht.traverse.DepthFirstIterator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-
 
 import model.Board;
 import model.Point2D;
@@ -51,11 +44,11 @@ public class BoardTest {
 			 }
 		 }
 		 
-		 // Pas besoin de tester si il existe un chemin car quand on ajoute un sommet on y ajoute une arrête vers le précédent sommet.( appel reccursif)
-		 // Si tous les sommets sont présent c'est qu'ils sont connecter avec un autre sommet.
+		 // Pas besoin de tester si il existe un chemin car quand on ajoute un sommet on y ajoute une arrï¿½te vers le prï¿½cï¿½dent sommet.( appel reccursif)
+		 // Si tous les sommets sont prï¿½sent c'est qu'ils sont connecter avec un autre sommet.
 		 
-		 // On verrifie si le graph door et corridor sont complémentaire.
-		 BreadthFirstIterator iterCor = new BreadthFirstIterator<>(g); 
+		 // On verrifie si le graph door et corridor sont complï¿½mentaire.
+		 BreadthFirstIterator<Point2D, DefaultWeightedEdge> iterCor = new BreadthFirstIterator<>(g); 
 		 Multigraph<Point2D,DefaultWeightedEdge> door = b.getDoor();
 		 while(iterCor.hasNext()){
 			 Point2D  p = (Point2D) iterCor.next();
