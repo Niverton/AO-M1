@@ -15,12 +15,24 @@ public abstract class Object {
 	public void setPosition(Point2D p){
 		position = p; 
 	}
+	/**
+	 * 
+	 * @return abscisse de l'objet.
+	 */
 	public int getPosX(){
 		return position.getX();
 	}
+	/**
+	 * 
+	 * @return l'ordonné de l'objet 
+	 */
 	public int getPosY(){
 		return position.getY();
 	}
+	/**
+	 * 
+	 * @param board le nouveau labyrinth
+	 */
 	public void setBoard(Board board){
 		this.board = board;
 	}
