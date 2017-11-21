@@ -1,8 +1,6 @@
 package main;
 
-import controller.BoardController;
 import controller.GameController;
-import controller.PlayerController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

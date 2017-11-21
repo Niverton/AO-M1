@@ -3,17 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.jgrapht.DirectedGraph;
-import org.jgrapht.EdgeFactory;
-import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultWeightedEdge;
-import org.jgrapht.graph.DirectedMultigraph;
 import org.jgrapht.graph.Multigraph;
-import org.jgrapht.graph.SimpleGraph;
-
-import com.sun.javafx.geom.Edge;
-
-import org.jgrapht.graph.AsUndirectedGraph;
 /**
  * 
  * @author laurent
@@ -53,7 +44,7 @@ public class Board {
 	}
 	/**
 	 * 
-	 * @param v position de départ du futur joueur 
+	 * @param v position de dï¿½part du futur joueur 
 	 * construction du labirynthe 
 	 */
 	private void BuildLabyrinth(Point2D v){
@@ -170,7 +161,7 @@ public class Board {
 	}
 /**
  * 
- * @return return le tableau de des références des positions 
+ * @return return le tableau de des rï¿½fï¿½rences des positions 
  */
 	public Point2D[][] getAllPosition(){
 		return tab;
