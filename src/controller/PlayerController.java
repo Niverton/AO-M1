@@ -15,19 +15,17 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	private Player player; 
 	
 	private PlayerView v;
-	
-	public PlayerController(Board board){
+	private GameController gameController; 
+	public PlayerController(Board board, GameController game){
 	
 		this.player = Player.getInstance(board);
-		
+		this.gameController = game;
 	}
 	
 	public void start(Pane pane){
 		v = new PlayerView(pane,player);
 		v.view();
 		v.setKeyPressed(this);
-		
-		
 	}
 
 	@Override
@@ -36,7 +34,7 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 		
 		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
 			player.moveLeft();
-		
+			
 			
 		}
 		if(arg0.getCode()== KeyCode.DOWN || arg0.getCode()== KeyCode.S){
@@ -59,7 +57,7 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		System.out.println("test");
-		v.uptdate();
+		//v.uptdate();
 	}
 
 	

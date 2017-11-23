@@ -14,7 +14,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import model.Board;
-import model.Point2D; 
+import model.Point2D;
+import model.RelationshipEdge; 
 /**
  * 
  * @author laurent
@@ -24,6 +25,7 @@ public class ViewBoard extends IView {
 	private static Board board;
 	private static Pane pane;
 	protected static final Paint WALLCOLOR = Color.BURLYWOOD; 
+	protected static final Paint WALLCOLOROPEN = Color.web("25154d"); 
 	public ViewBoard(Board b, Pane pane) {
 		this.board = b;
 		this.pane = pane;
@@ -56,18 +58,18 @@ public class ViewBoard extends IView {
 				pane.getChildren( ).add ( square ) ;
 			}
 		}
-		
+
 	}
 	public static void drawWall (  ){
 		int x = 0 , y = 0 , xspan = 0 , yspan = 0 ;
-		 Multigraph<Point2D,DefaultWeightedEdge> door = board.getDoor();
-		 BreadthFirstIterator<Point2D,DefaultWeightedEdge> iter = new BreadthFirstIterator<Point2D,DefaultWeightedEdge>(door); 
-		 
-		 while(iter.hasNext()){
+		Multigraph<Point2D,RelationshipEdge<Point2D>> door = board.getDoor();
+		BreadthFirstIterator<Point2D,RelationshipEdge<Point2D>> iter = new BreadthFirstIterator<Point2D,RelationshipEdge<Point2D>>(door); 
+
+		while(iter.hasNext()){
 			Point2D sommet = iter.next(); 
-			Set<DefaultWeightedEdge> children = door.edgesOf(sommet);
-			for(DefaultWeightedEdge d : children){
-				
+			Set<RelationshipEdge<Point2D>> children = door.edgesOf(sommet);
+			for(RelationshipEdge<Point2D> d : children){
+
 				Point2D source = door.getEdgeSource(d); 
 				Point2D destination = door.getEdgeTarget(d);
 				if ( source.getY()== destination.getY() ){
@@ -76,31 +78,43 @@ public class ViewBoard extends IView {
 					xspan = WALL * SPAN;
 					yspan = CELL * SPAN;
 					Rectangle square = new Rectangle ( x , y , xspan , yspan ) ;
-					square.setFill (WALLCOLOR) ;
-					pane.getChildren( ).add ( square ) ;
+					if(!d.isOpen()){
+						square.setFill (WALLCOLOR) ;
+					}else{
+						square.setFill (WALLCOLOROPEN) ;
 					}
-					else if( source.getX()== destination.getX() ){
+
+
+					pane.getChildren( ).add ( square ) ;
+				}
+				else if( source.getX()== destination.getX() ){
 					x = (WALL + source.getX() * (WALL+CELL) ) * SPAN;
 					y = ( (WALL+CELL) + (WALL+CELL) * ( ( int ) ( source.getY()+ destination.getY() ) / 2 ) ) * SPAN ; ;
 					xspan = CELL * SPAN;
 					yspan = WALL * SPAN;
 					Rectangle square = new Rectangle ( x , y , xspan , yspan ) ;
-					square.setFill (WALLCOLOR) ;
-					pane.getChildren( ).add ( square ) ;
+					if(!d.isOpen()){
+						square.setFill (WALLCOLOR) ;
+					}else{
+						square.setFill (WALLCOLOROPEN) ;
 					}
+
+					pane.getChildren( ).add ( square ) ;
+				}
 			}
-		 }
-		
+		}
 	}
+
+
 	public void view() {
-		
+
 		this.drawFrame();
 		this.drawWall();
 	}
 	@Override
 	public void uptdate() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

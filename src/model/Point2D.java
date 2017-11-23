@@ -30,7 +30,7 @@ public class Point2D {
 	public int  getY(){
 		return y; 
 	}
-	public String toString(){
+	/*public String toString(){
 		return x+ " ->" + y;
-	}
+	}*/
 }

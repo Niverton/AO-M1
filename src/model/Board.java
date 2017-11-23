@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.Multigraph;
@@ -22,8 +23,10 @@ public class Board {
 	private static int WEST = 3; 
 	private static int EAST = 4; 
 	private Multigraph<Point2D,DefaultWeightedEdge> corridor ; 
-	private Multigraph<Point2D,DefaultWeightedEdge> door ;
+	private Multigraph<Point2D,RelationshipEdge<Point2D>> door ;
 	private Point2D tab[][];
+	private Point2D test1;
+	private Point2D test2;
 	
 	/**
 	 * Instancie le labirynthe et les portes 
@@ -31,7 +34,7 @@ public class Board {
 	public Board(){
 		size = 16;
 		corridor = new Multigraph<>(DefaultWeightedEdge.class); 
-		door = new Multigraph<>(DefaultWeightedEdge.class); 
+		door = new Multigraph<>(RelationshipEdge.class); 
 		corridor.addVertex(new Point2D(1,1)); 
 		tab = new Point2D[size][size];
 		for(int i =0 ; i < size ; i++){
@@ -82,7 +85,7 @@ public class Board {
 					Point2D v_prim = tab[v.getX()+1][v.getY()];
 					if( !corridor.containsVertex(v_prim)){
 						corridor.addVertex(v_prim); 
-						DefaultWeightedEdge e = corridor.addEdge(v, v_prim); 
+						corridor.addEdge(v, v_prim); 
 						this.BuildLabyrinth(v_prim);
 					}
 				}
@@ -125,7 +128,7 @@ public class Board {
 					if(corridor.getEdge(v, target) == null){
 						door.addVertex(v); 
 						door.addVertex(target);
-						door.addEdge(v, target);
+						 door.addEdge(v, target, new RelationshipEdge<Point2D>(v,target,false));
 					}
 				}
 				// if WEST
@@ -134,7 +137,7 @@ public class Board {
 					if(corridor.getEdge(v, target) == null){
 						door.addVertex(v); 
 						door.addVertex(target);
-						door.addEdge(v, target);
+						 door.addEdge(v, target, new RelationshipEdge<Point2D>(v,target,false));
 					}
 				}
 				// if SOUTH
@@ -143,7 +146,7 @@ public class Board {
 					if(corridor.getEdge(v, target) == null){
 						door.addVertex(v); 
 						door.addVertex(target);
-						door.addEdge(v, target);
+						door.addEdge(v, target, new RelationshipEdge<Point2D>(v,target,false));
 					}
 				}
 				// if EAST
@@ -152,7 +155,7 @@ public class Board {
 					if(corridor.getEdge(v, target) == null){
 						door.addVertex(v); 
 						door.addVertex(target);
-						door.addEdge(v, target);
+						 door.addEdge(v, target, new RelationshipEdge<Point2D>(v,target,false));
 					}
 				}
 			}
@@ -184,9 +187,20 @@ public class Board {
 	 * 
 	 * @return Le graph des portes. 
 	 */
-	public Multigraph<Point2D, DefaultWeightedEdge> getDoor() {
+	public Multigraph<Point2D, RelationshipEdge<Point2D>> getDoor() {
 		// TODO Auto-generated method stub
 		return door;
+	}
+	public boolean isOpenDoor(Point2D source, Point2D destination){
+		
+		if(this.door.containsEdge(source, destination)){
+			RelationshipEdge<Point2D> edge = this.door.getEdge(source, destination);
+			
+			return edge.isOpen();
+		}else{
+			
+			return true;
+		}
 	}
 	
 }

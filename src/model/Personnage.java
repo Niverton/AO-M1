@@ -15,7 +15,7 @@ public abstract class Personnage extends Object {
 	 */
 	private boolean canLeft(){
 		if(this.getPosX() > 0)
-		return !board.getDoor().containsEdge(ref[this.getPosX()][this.getPosY()], ref[this.getPosX()-1][this.getPosY()]);
+		return board.isOpenDoor(ref[this.getPosX()][this.getPosY()], ref[this.getPosX()-1][this.getPosY()]);
 		
 		return false;
 	}
@@ -25,7 +25,7 @@ public abstract class Personnage extends Object {
 	 */
 	private boolean canRight(){
 		if(this.getPosX() < board.getSize()-1)
-		return !board.getDoor().containsEdge(ref[this.getPosX()][this.getPosY()], ref[this.getPosX()+1][this.getPosY()]);
+		return  board.isOpenDoor(ref[this.getPosX()][this.getPosY()], ref[this.getPosX()+1][this.getPosY()]);
 		
 		return false;
 	}
@@ -35,7 +35,7 @@ public abstract class Personnage extends Object {
 	 */
 	private boolean canUp(){
 		if(this.getPosY() > 0)
-		return !board.getDoor().containsEdge(ref[this.getPosX()][this.getPosY()], ref[this.getPosX()][this.getPosY()-1]);
+		return  board.isOpenDoor(ref[this.getPosX()][this.getPosY()], ref[this.getPosX()][this.getPosY()-1]);
 		
 		return false;
 	}
@@ -45,7 +45,7 @@ public abstract class Personnage extends Object {
 	 */
 	private boolean canDown(){
 		if(this.getPosY() < board.getSize()-1)
-		return !board.getDoor().containsEdge(ref[this.getPosX()][this.getPosY()], ref[this.getPosX()][this.getPosY()+1]);
+		return  board.isOpenDoor(ref[this.getPosX()][this.getPosY()], ref[this.getPosX()][this.getPosY()+1]);
 		
 		return false;
 	}
@@ -58,12 +58,18 @@ public abstract class Personnage extends Object {
 		}
 			
 	}
+	/**
+	 * deplace le personage a gauche. 
+	 */
 	public void moveLeft(){
 		if(this.canLeft()){
 			this.setPosition(new Point2D(position.getX()-1, position.getY()));
 		}
 			
 	}
+	/**
+	 * deplace le 
+	 */
 	public void moveUp(){
 		if(this.canUp()){
 			this.setPosition(new Point2D(position.getX(), position.getY()-1));
