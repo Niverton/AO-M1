@@ -16,7 +16,7 @@ public class GameController  extends Observable {
 	private GameController(){
 		this.board = new Board(); 
 		boardController = new BoardController(board);
-		playerController = new PlayerController(board, gameController);
+		playerController = new PlayerController(board, this);
 		doorController = new DoorController(board);
 		addObserver(playerController);
 	}
@@ -33,7 +33,7 @@ public class GameController  extends Observable {
 	}
 	public static GameController getInstance(){
 		if(gameController == null)
-			return new GameController();
+			gameController =  new GameController();
 		
 	return gameController;
 	}
@@ -41,8 +41,9 @@ public class GameController  extends Observable {
 	//	gameView.uptdate();
 		 setChanged();
          //notify observers for change
-         playerController.update(this, null);
-         System.out.println("dfhgg");
+		 this.notifyObservers();
+        // playerController.update(this, null);
+        
 	}
 	
 

@@ -35,29 +35,29 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
 			player.moveLeft();
 			
-			
+			this.gameController.change();
 		}
 		if(arg0.getCode()== KeyCode.DOWN || arg0.getCode()== KeyCode.S){
 			player.movedown();
 			
-			
+			this.gameController.change();
 		}
 		if(arg0.getCode()== KeyCode.RIGHT || arg0.getCode()== KeyCode.D){
 			player.moveRight();
-			
+			this.gameController.change();
 		}
 		if(arg0.getCode()== KeyCode.UP || arg0.getCode()== KeyCode.Z){
 			player.moveUp();
-			
+			this.gameController.change();
 		}
-		v.uptdate();
+		
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		System.out.println("test");
-		//v.uptdate();
+		
+		v.uptdate();
 	}
 
 	
