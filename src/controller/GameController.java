@@ -28,21 +28,20 @@ public class GameController  extends Observable {
 		boardController.start(gameView.getPane());
 		playerController.start(gameView.getPane());
 		doorController.start(gameView.getPane());
-		this.addObserver(playerController);
+		
 		
 	}
 	public static GameController getInstance(){
 		if(gameController == null)
 			gameController =  new GameController();
-		
 	return gameController;
 	}
 	public void change(){
-	//	gameView.uptdate();
+	
 		 setChanged();
          //notify observers for change
 		 this.notifyObservers();
-        // playerController.update(this, null);
+       
         
 	}
 	
