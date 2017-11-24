@@ -30,7 +30,10 @@ public class Point2D {
 	public int  getY(){
 		return y; 
 	}
-	/*public String toString(){
+	/**
+	 * affichage des coordonées de notre objet Point2D
+	 */
+	public String toString(){
 		return x+ " ->" + y;
-	}*/
+	}
 }

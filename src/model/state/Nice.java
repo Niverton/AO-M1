@@ -19,6 +19,9 @@ public class Nice implements State {
 		// TODO Auto-generated method stub
 
 	}
+	/**
+	 * @return l'état courant.
+	 */
 	public String toString(){
 		return "nice";
 	}

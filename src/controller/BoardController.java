@@ -11,7 +11,9 @@ public class BoardController implements IController{
 		this.board = board;
 	}
 	
-	@Override
+	/**
+	 * @param pane le Pane du jeux. 
+	 */
 	public void start(Pane pane) {
 		// TODO Auto-generated method stub
 		v = new ViewBoard(board, pane);

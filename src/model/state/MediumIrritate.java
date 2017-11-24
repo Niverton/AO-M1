@@ -19,6 +19,9 @@ public class MediumIrritate implements State {
 		// TODO Auto-generated method stub
 		bad.setState(new Nice());
 	}
+	/**
+	 * @return l'état corrant.
+	 */
 	public String toString(){
 		return "Medium";
 	}

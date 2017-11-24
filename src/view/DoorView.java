@@ -13,6 +13,12 @@ public class DoorView extends IView {
 	private ImageView imageView;
 	private Pane pane;
 	private Door door;
+	/**
+	 * 
+	 * @param board le labyrithn
+	 * @param pane Le pane d'affichage 
+	 * @param door la porte de sortie
+	 */
 	public DoorView(Board board, Pane pane, Door door){
 		this.board = board;
 		this.player = Player.getInstance(board);

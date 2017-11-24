@@ -7,13 +7,18 @@ import javafx.scene.layout.Pane;
 
 public class BardBoysController  implements IController, Observer{
 
-	@Override
+	/**
+	 * @param o l'observable appelant 
+	 * @param arg les arguments lancé depuis l'observable.
+	 */
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	/**
+	 *  @param pane  le Pane du jeux. 
+	 */
 	public void start(Pane pane) {
 		// TODO Auto-generated method stub
 		

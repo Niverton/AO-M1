@@ -25,8 +25,6 @@ public class Board {
 	private Multigraph<Point2D,DefaultWeightedEdge> corridor ; 
 	private Multigraph<Point2D,RelationshipEdge<Point2D>> door ;
 	private Point2D tab[][];
-	private Point2D test1;
-	private Point2D test2;
 	
 	/**
 	 * Instancie le labirynthe et les portes 
@@ -116,9 +114,10 @@ public class Board {
 
 	}
 	/**
-	 * construction du graph des portes 
+	 * Construction du graph des portes. ATTENTION instancier le labirythn avant. 
 	 */
 	private void contructDoor(){
+		if(corridor != null)
 		for(int i=0; i< size ; i++){
 			for(int j =0; j< size ; ++j){
 				Point2D v = tab[i][j];

@@ -68,7 +68,7 @@ public abstract class Personnage extends Object {
 			
 	}
 	/**
-	 * deplace le 
+	 * deplace le personnage vers le Haut si cela est possible. 
 	 */
 	public void moveUp(){
 		if(this.canUp()){
@@ -76,6 +76,9 @@ public abstract class Personnage extends Object {
 		}
 			
 	}
+	/**
+	 * Déplace le personnage vers le bas si cela est possible
+	 */
 	public void movedown(){
 		if(this.canDown()){
 			this.setPosition(new Point2D(position.getX(), position.getY()+1));

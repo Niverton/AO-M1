@@ -9,17 +9,23 @@ import model.Door;
 import view.DoorView;
 
 public class DoorController implements IController, Observer {
-
+	
 	private DoorView doorView; 
 	private Board board;
 	private Door door;
+	/**
+	 * 
+	 * @param board le labyrinth. 
+	 */
 	public DoorController(Board board){
 		
 		this.board = board;
 		this.door = Door.getInstance(board);
 	}
 	
-	@Override
+	/**
+	 * @param pane le Pane du jeux.
+	 */
 	public void start(Pane pane) {
 		// TODO Auto-generated method stub
 		
@@ -27,7 +33,10 @@ public class DoorController implements IController, Observer {
 		doorView.view();
 	}
 
-	@Override
+	/**
+	 * @param o l'observable appelant.
+	 * @param arg les arguments passser par l'observable. 
+	 */
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		doorView.uptdate();

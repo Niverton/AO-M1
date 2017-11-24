@@ -16,19 +16,29 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	
 	private PlayerView v;
 	private GameController gameController; 
+	/**
+	 * 
+	 * @param board le plateau de jeux.
+	 * @param game l'unique instance de Game controller.
+	 */
 	public PlayerController(Board board, GameController game){
 	
 		this.player = Player.getInstance(board);
 		this.gameController = game;
 	}
-	
+	/**
+	 * 
+	 * @param pane Le pane du jeux.
+	 */
 	public void start(Pane pane){
 		v = new PlayerView(pane,player);
 		v.view();
 		v.setKeyPressed(this);
 	}
 
-	@Override
+	/**
+	 * @param arg0 l'évènement clavier capturer. 
+	 */
 	public void handle(KeyEvent arg0) {
 		// TODO Auto-generated method stub
 		
@@ -53,7 +63,10 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 		
 	}
 
-	@Override
+	/**
+	 * @param o l'observable appelant
+	 * @param arg les arguments passés par l'observable.
+	 */
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		

@@ -29,6 +29,10 @@ public class GameView extends IView {
 		stage.setScene( scene ) ;
 		stage.show();
 	}
+	/**
+	 * 
+	 * @return Le pane de jeux.
+	 */
 	public Pane getPane(){
 		return pane;
 	}

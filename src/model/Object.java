@@ -9,9 +9,17 @@ public abstract class Object {
 		position = new Point2D(0,0);
 		ref =board.getAllPosition();
 	}
+	/**
+	 * 
+	 * @return la position de l'objet.
+	 */
 	public Point2D getPosition(){
 		return position; 
 	}
+	/**
+	 * 
+	 * @param p la nouvelle position de l'objet
+	 */
 	public void setPosition(Point2D p){
 		position = p; 
 	}

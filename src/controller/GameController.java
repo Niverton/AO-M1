@@ -20,7 +20,10 @@ public class GameController  extends Observable {
 		doorController = new DoorController(board);
 		addObserver(playerController);
 	}
-	
+	/**
+	 * 
+	 * @param primaryStage le stage du jeux. 
+	 */
 	public void start(Stage primaryStage){
 		gameView = new GameView(primaryStage,board.getSize(), board.getSize()); 
 		gameView.view();
@@ -31,11 +34,18 @@ public class GameController  extends Observable {
 		
 		
 	}
+	/**
+	 * 
+	 * @return l'unique instance de GameController. (on ne peut avoir qu'un seul jeux démarré par lancement) 
+	 */
 	public static GameController getInstance(){
 		if(gameController == null)
 			gameController =  new GameController();
 	return gameController;
 	}
+	/**
+	 * Appeler depuis les observer pour avertir tous les autres controller d'un changement ( changement de position d'un personnage par exemple) 
+	 */
 	public void change(){
 	
 		 setChanged();

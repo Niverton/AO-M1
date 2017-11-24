@@ -10,9 +10,14 @@ public class Player extends Personnage {
 	private Player (Board board){
 		super(board); 
 	}
+	/**
+	 * 
+	 * @param board le plateau de jeux labyrithn  couloir et mur
+	 * @return l'unique instance du joureur. 
+	 */
 	public static Player getInstance(Board board){
 		if(player == null){
-			return new Player(board); 
+			player =  new Player(board); 
 		}
 		return player;
 	}

@@ -6,16 +6,21 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 	protected static GameController gameController; 
-	
+	/**
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args){
 		 gameController = GameController.getInstance();
 		
 		 Application.launch(Main.class, args); 
 	}
-
-	@Override
+	/**
+	 * @param primaryStage la fne^tre principal. 
+	 * @exception Exception si erreur de lancement du stage.
+	 */
 	public void start(Stage primaryStage) throws Exception {
-		// TODO Auto-generated method stub
+		
 		gameController.start(primaryStage); 
 		
 		
