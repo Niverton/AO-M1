@@ -22,13 +22,13 @@ public class PlayerView extends IView {
 
 	public void setKeyPressed(PlayerController playerController) {
 		// TODO Auto-generated method stub
-		imageView.setOnKeyPressed(playerController);
+		//imageView.setOnKeyPressed(playerController);
 	}
 
 	@Override
 	public void view() {
 		// TODO Auto-generated method stub
-		Image image = new Image ( getClass( ).getResource("ressource/smyley.jpg").toExternalForm ( ) ) ;
+		/*Image image = new Image ( getClass( ).getResource("ressource/smyley.jpg").toExternalForm ( ) ) ;
 		imageView = new ImageView ( image ) ;
 		imageView.setFocusTraversable(true);
 		pane.getChildren().add( this.imageView ) ;
@@ -39,7 +39,7 @@ public class PlayerView extends IView {
 		imageView.setFitHeight(CELL*SPAN);
 
 		imageView.setX ( xt) ;
-		imageView.setY ( yt ) ;
+		imageView.setY ( yt ) ;*/
 		
 	}
 

@@ -28,7 +28,7 @@ public class DoorView extends IView {
 	@Override
 	public void view() {
 		// TODO Auto-generated method stub
-		Image image = new Image ( getClass( ).getResource("ressource/door.jpg").toExternalForm ( ) ) ;
+		/*Image image = new Image ( getClass( ).getResource("ressource/door.jpg").toExternalForm ( ) ) ;
 		imageView = new ImageView ( image ) ;
 		imageView.setFocusTraversable(false);
 		pane.getChildren().add( this.imageView ) ;
@@ -39,7 +39,7 @@ public class DoorView extends IView {
 		imageView.setFitHeight(CELL*SPAN);
 
 		imageView.setX ( xt) ;
-		imageView.setY ( yt ) ;
+		imageView.setY ( yt ) ;*/
 	}
 
 	@Override

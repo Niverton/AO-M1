@@ -12,9 +12,8 @@ public class Door  extends Object{
 	private Door(Board b) {
 		super(b);
 		// TODO Auto-generated constructor stub
-		Multigraph<Point2D,DefaultWeightedEdge> corridor = board.getCorridor();
 		
-		this.setPosition(new Point2D(board.getSize()-1,board.getSize()-1));
+		
 		}
 	/**
 	 * 

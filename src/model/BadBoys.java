@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -42,7 +43,7 @@ public class BadBoys {
 	public void addBadBoy(int many, Point2D pos){
 		for(int i=0 ; i< many ; i++){
 			BadBoy b = new BadBoy(board);
-			b.setPosition(pos);
+			//b.setPosition(pos);
 			this.lBadBoys.add(b);
 		}
 		
@@ -55,7 +56,7 @@ public class BadBoys {
 		assert(  (p.size() != this.getNumber())) : "probleme set all position liste non conforme";
 		int i =0;
 		for(Point2D pos : p){
-			this.lBadBoys.get(i).setPosition(pos);
+			//this.lBadBoys.get(i).setPosition(pos);
 		}
 	}
 	/**

@@ -1,13 +1,15 @@
 package model;
 
+import javafx.geometry.Point2D;
+
 public abstract class Object {
 	protected Point2D position; 
 	protected Board board; 
-	protected Point2D[][] ref;
+	
 	public Object( Board b){
 		board = b;
-		position = new Point2D(0,0);
-		ref =board.getAllPosition();
+		
+		
 	}
 	/**
 	 * 
@@ -28,14 +30,14 @@ public abstract class Object {
 	 * @return abscisse de l'objet.
 	 */
 	public int getPosX(){
-		return position.getX();
+		return (int) position.getX();
 	}
 	/**
 	 * 
 	 * @return l'ordonné de l'objet 
 	 */
 	public int getPosY(){
-		return position.getY();
+		return (int)position.getY();
 	}
 	/**
 	 * 

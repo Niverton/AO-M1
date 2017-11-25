@@ -13,8 +13,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.Board;
-import model.Point2D;
-import model.RelationshipEdge;
+import model.Vertex;
+import model.Edge;
 /**
  * 
  * @author laurent
