@@ -4,20 +4,20 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javafx.scene.layout.Pane;
-import model.Board;
+import model.Labyrinth;
 import model.Door;
 import view.DoorView;
 
 public class DoorController implements IController, Observer {
 	
 	private DoorView doorView; 
-	private Board board;
+	private Labyrinth board;
 	private Door door;
 	/**
 	 * 
 	 * @param board le labyrinth. 
 	 */
-	public DoorController(Board board){
+	public DoorController(Labyrinth board){
 		
 		this.board = board;
 		this.door = Door.getInstance(board);

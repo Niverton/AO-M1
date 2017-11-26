@@ -1,6 +1,7 @@
-package model;
+package model.graph;
 
-import model.Board.Directions;
+import model.Labyrinth;
+import model.Labyrinth.Directions;
 
 /**
  * 
@@ -22,6 +23,13 @@ public class Vertex   implements Comparable<Vertex>{
 		this.nbr = nbr;
 		
 	}
+	/**
+	 * 
+	 * @param min position minimum 
+	 * @param max position maximum 
+	 * @param dir la direction a tester 
+	 * @return si le sommet est bien entre min et max selon la direction donnée.
+	 */
 	public boolean inBorders(int min, int max, Directions dir){
 		switch (dir){
 		case NORTH: return this.getY() > min;
@@ -55,6 +63,9 @@ public class Vertex   implements Comparable<Vertex>{
 	public String toString(){
 		return x+ " ->" + y;
 	}
+	/**
+	 * @param arg0 le sommet à comparer.
+	 */
 	public int compareTo(Vertex arg0) {
 		// TODO Auto-generated method stub
 		if(this.getX() == arg0.getX() && this.getY() == arg0.getY())

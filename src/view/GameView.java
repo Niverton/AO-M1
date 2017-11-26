@@ -12,19 +12,19 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import model.Board;
+import model.Labyrinth;
 import model.Door;
 import model.Player;
-import model.Vertex;
+import model.graph.Vertex;
 
 public class GameView extends IView {
 	protected Pane pane;
 	private int nbrX; 
 	private int nbrY;
 	private Stage stage; 
-	private Board board;
+	private Labyrinth board;
 	protected static final Paint SCENECOLOR = Color.GREY; 
-	public GameView(Board board,Stage stage){
+	public GameView(Labyrinth board,Stage stage){
 		pane = new Pane();
 		this.nbrX = board.getSize(); 
 		this.nbrY = board.getSize(); 

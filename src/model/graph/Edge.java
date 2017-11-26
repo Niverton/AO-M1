@@ -1,4 +1,4 @@
-package model;
+package model.graph;
 
 import org.jgrapht.graph.DefaultEdge;
 
@@ -6,7 +6,11 @@ import org.jgrapht.graph.DefaultEdge;
 @SuppressWarnings("serial")
 public class Edge extends DefaultEdge implements Comparable<Edge> {
 
-
+	/**
+	 * 
+	 * @author laurent
+	 *
+	 */
 	public enum Type{
 		OPENED_DOOR, 
 		CLOSE_DOOR, 
@@ -67,8 +71,10 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 	public String toString() {
 		return super.getSource().toString() + "=> "+ super.getTarget().toString();
 	}
-
-	@Override
+	
+	/**
+	 * @param arg0 l'arrête a comparer.
+	 */
 	public int compareTo(Edge arg0) {
 		// TODO Auto-generated method stub
 		int source = this.getSource().compareTo(arg0.getSource());

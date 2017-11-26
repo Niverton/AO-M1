@@ -9,7 +9,7 @@ public class Door  extends Object{
 	 * 
 	 * @param b labyrithn
 	 */
-	private Door(Board b) {
+	private Door(Labyrinth b) {
 		super(b);
 		// TODO Auto-generated constructor stub
 		
@@ -20,7 +20,7 @@ public class Door  extends Object{
 	 * @param board le plateau de jeux. 
 	 * @return l'unique instance de la porte. Il n'existe qu'une seul porte dans le jeux d'où le singleton
 	 */
-	public static Door getInstance(Board board){
+	public static Door getInstance(Labyrinth board){
 		if(door == null){
 			return  new Door(board);
 		}

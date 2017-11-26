@@ -1,4 +1,4 @@
-package model;
+package model.graph;
 
 import java.util.Collection;
 import java.util.Set;
@@ -6,6 +6,9 @@ import java.util.Set;
 import org.jgrapht.EdgeFactory;
 import org.jgrapht.graph.Multigraph;
 import org.jgrapht.traverse.BreadthFirstIterator;
+
+import model.Labyrinth;
+import model.Labyrinth.Directions;
 
 public class Graph implements org.jgrapht.Graph<Vertex, Edge> {
 	private Multigraph<Vertex,Edge> graph ;
@@ -16,23 +19,41 @@ public class Graph implements org.jgrapht.Graph<Vertex, Edge> {
 		EAST
 	}
 	
-	public Graph(int size){
+	public Graph(){
 		graph = new Multigraph<>(Edge.class);
 	}
-	public boolean doesntExist(Vertex vertex , model.Board.Directions  dir){
+	/**
+	 * 
+	 * @param vertex le sommet source 
+	 * @param dir la direction du sommet cible 
+	 * @return Retourne vrai si le sommet cible exsist
+	 */
+	public boolean doesntExist(Vertex vertex , model.Labyrinth.Directions  dir){
 
 		
-		if(getDest(vertex, dir) != null){
+		if(getTarget(vertex, dir) != null){
 			return false;
 		}
 		return true;
 	}
-	public boolean isConnected(Vertex vertex , model.Board.Directions  dir){
-		Vertex target = this.getDest(vertex, dir);
+	/**
+	 * 
+	 * @param vertex sommet cource 
+	 * @param dir direction pour trouver le sommet cible.
+	 * @return vrai si le sommet source et le sommet cible sont connectés. 
+	 */
+	public boolean isConnected(Vertex vertex , model.Labyrinth.Directions  dir){
+		Vertex target = this.getTarget(vertex, dir);
 		
 		return graph.containsEdge(vertex, target);
 	}
-	public Vertex getDest(Vertex vertex , model.Board.Directions  dir){
+	/**
+	 * 
+	 * @param vertex sommet source 
+	 * @param dir direction ou trover le sommet destination 
+	 * @return le sommet cible.
+	 */
+	public Vertex getTarget(Vertex vertex , model.Labyrinth.Directions  dir){
 		Vertex target= null;
 		switch (dir){
 		case NORTH: target = new Vertex(vertex.getX(), vertex.getY()-1, 0);  
@@ -47,6 +68,11 @@ public class Graph implements org.jgrapht.Graph<Vertex, Edge> {
 		}
 		return  this.getRefVertex(target);
 	}
+	/**
+	 * 
+	 * @param vertex sommmet créé
+	 * @return le sommet qui correspont au sommet d graph. 
+	 */
 	public Vertex getRefVertex(Vertex vertex){
 		BreadthFirstIterator<Vertex,Edge> iter = new BreadthFirstIterator(graph); 
 		while(iter.hasNext()){

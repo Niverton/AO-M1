@@ -1,9 +1,9 @@
 package view;
 
 public abstract class IView {
-	protected static final int SPAN =4; 
-	protected static final int WALL=2; 
-	protected static final int CELL =9; 
+	protected static  int SPAN =4; 
+	protected  static int WALL=1; 
+	protected  static float CELL =9; 
 	/**
 	 * Lancer la vue et affichage des éléments.
 	 */
@@ -12,4 +12,5 @@ public abstract class IView {
 	 * Mise a jour de la vue.
 	 */
 	public abstract void uptdate();
+	
 }

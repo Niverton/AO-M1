@@ -10,12 +10,12 @@ import java.util.List;
  */
 public class BadBoys {
 	private ArrayList<BadBoy> lBadBoys; 
-	private Board board; 
+	private Labyrinth board; 
 	/**
 	 * 
 	 * @param number le nombre de méchants initial.
 	 */
-	public BadBoys(int number, Board board){
+	public BadBoys(int number, Labyrinth board){
 		lBadBoys = new ArrayList<>(number);
 		this.board = board;
 	}

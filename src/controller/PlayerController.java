@@ -7,7 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import model.Board;
+import model.Labyrinth;
 import model.Player;
 import view.PlayerView;
 
@@ -18,12 +18,12 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	private GameController gameController; 
 	/**
 	 * 
-	 * @param board le plateau de jeux.
+	 * @param labyrinth le labyrinth courant.
 	 * @param game l'unique instance de Game controller.
 	 */
-	public PlayerController(Board board, GameController game){
+	public PlayerController(Labyrinth labyrinth, GameController game){
 	
-		this.player = Player.getInstance(board);
+		this.player = Player.getInstance(labyrinth);
 		this.gameController = game;
 	}
 	/**

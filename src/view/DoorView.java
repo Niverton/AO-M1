@@ -3,12 +3,12 @@ package view;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import model.Board;
+import model.Labyrinth;
 import model.Door;
 import model.Player;
 
 public class DoorView extends IView {
-	private Board board;
+	private Labyrinth board;
 	private Player player;
 	private ImageView imageView;
 	private Pane pane;
@@ -19,7 +19,7 @@ public class DoorView extends IView {
 	 * @param pane Le pane d'affichage 
 	 * @param door la porte de sortie
 	 */
-	public DoorView(Board board, Pane pane, Door door){
+	public DoorView(Labyrinth board, Pane pane, Door door){
 		this.board = board;
 		this.player = Player.getInstance(board);
 		this.pane = pane;

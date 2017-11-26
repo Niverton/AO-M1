@@ -4,10 +4,10 @@ import javafx.geometry.Point2D;
 
 public abstract class Object {
 	protected Point2D position; 
-	protected Board board; 
+	protected Labyrinth labyrinth; 
 	
-	public Object( Board b){
-		board = b;
+	public Object( Labyrinth l){
+		labyrinth = l;
 		
 		
 	}
@@ -43,8 +43,8 @@ public abstract class Object {
 	 * 
 	 * @param board le nouveau labyrinth
 	 */
-	public void setBoard(Board board){
-		this.board = board;
+	public void setBoard(Labyrinth l){
+		this.labyrinth = l;
 	}
 	
 }

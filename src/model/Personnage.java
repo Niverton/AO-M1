@@ -9,7 +9,7 @@ import javafx.geometry.Point2D;
  */
 public abstract class Personnage extends Object {
 	
-	public Personnage(Board board){
+	public Personnage(Labyrinth board){
 		super(board);
 	}
 	/**

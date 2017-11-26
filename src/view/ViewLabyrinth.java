@@ -3,6 +3,7 @@ package view;
 
 
 
+import java.awt.Dimension;
 import java.util.Set;
 import java.util.Vector;
 
@@ -14,47 +15,55 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import model.Board;
-import model.Vertex;
-
-import model.Edge;
-import model.Graph; 
+import model.Labyrinth;
+import model.graph.Edge;
+import model.graph.Graph;
+import model.graph.Vertex; 
 /**
  * 
  * @author laurent
  *
  */
-public class ViewBoard extends IView {
-	private static Board board;
+public class ViewLabyrinth extends IView {
+	private static Labyrinth labyrinth;
 	private static Pane pane;
 	protected static final Paint WALLCOLOR = Color.BURLYWOOD; 
 	protected static final Paint WALLCOLOROPEN = Color.web("25154d"); 
-	public ViewBoard(Board b, Pane pane) {
-		this.board = b;
+	public ViewLabyrinth(Labyrinth b, Pane pane) {
+		this.labyrinth = b;
 		this.pane = pane;
+		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+		int height = (int)dimension.getHeight();
+		int width  = (int)dimension.getWidth();
+		pane.autosize();
+
+		SPAN =4;
 	}
+	/**
+	 * Dessiner la fenêtre ( le cadre). 
+	 */
 	public static void drawFrame( ){
 		Rectangle square;
 		square = new Rectangle ( 0 , 0 ,
-				SPAN * ( board.getSize()  *(CELL+WALL) + WALL) , WALL * SPAN ) ;
+				SPAN * ( labyrinth.getSize()  *(CELL+WALL) + WALL) , WALL * SPAN ) ;
 		square.setFill (WALLCOLOR) ;
 		pane.getChildren ( ) . add ( square ) ;
-		square = new Rectangle ( 0 , SPAN * (board.getSize() * (CELL+WALL) ) ,
-				SPAN * ( board.getSize() * (CELL+WALL) + WALL) , WALL * SPAN ) ;
+		square = new Rectangle ( 0 , SPAN * (labyrinth.getSize() * (CELL+WALL) ) ,
+				SPAN * ( labyrinth.getSize() * (CELL+WALL) + WALL) , WALL * SPAN ) ;
 		square.setFill(WALLCOLOR) ;
 		pane.getChildren ( ) . add ( square ) ;
 		square = new Rectangle ( 0 , 0 ,
-				WALL * SPAN, SPAN * (board.getSize() * (CELL+WALL) + WALL) ) ;
+				WALL * SPAN, SPAN * (labyrinth.getSize() * (CELL+WALL) + WALL) ) ;
 		square.setFill (WALLCOLOR) ;
 		pane.getChildren ( ) . add ( square ) ;
-		square = new Rectangle (SPAN * ( board.getSize() *(CELL+WALL) ) , 0 ,
-				WALL * SPAN, SPAN * (board.getSize() * (CELL + WALL) + WALL) ) ;
+		square = new Rectangle (SPAN * ( labyrinth.getSize() *(CELL+WALL) ) , 0 ,
+				WALL * SPAN, SPAN * (labyrinth.getSize() * (CELL + WALL) + WALL) ) ;
 		square.setFill (WALLCOLOR) ;
 		pane.getChildren( ).add (square) ;
-		for ( int x = 0 ; x < board.getSize()-1 ; ++x ){
-			int offsetX = ( (WALL+CELL) + (WALL+CELL) * x ) * SPAN;
-			for ( int y = 0 ; y <board.getSize()-1 ; ++y ){
-				int offsetY = ( (WALL+CELL) + (WALL+CELL) * y ) * SPAN;
+		for ( int x = 0 ; x < labyrinth.getSize()-1 ; ++x ){
+			float offsetX = ( (WALL+CELL) + (WALL+CELL) * x ) * SPAN;
+			for ( int y = 0 ; y <labyrinth.getSize()-1 ; ++y ){
+				float offsetY = ( (WALL+CELL) + (WALL+CELL) * y ) * SPAN;
 				square = new Rectangle ( offsetX , offsetY ,
 						WALL * SPAN, WALL * SPAN ) ;
 				square.setFill (WALLCOLOR) ;
@@ -63,21 +72,24 @@ public class ViewBoard extends IView {
 		}
 
 	}
+	/**
+	 * Dzqqinier les murs.
+	 */
 	public static void drawWalls (  ){
 		int x = 0 , y = 0 , xspan = 0 , yspan = 0 ;
-		Graph door = board.getBoard();
+		Graph door = labyrinth.getLabyrinth();
 		BreadthFirstIterator<Vertex,Edge> iter = new BreadthFirstIterator<Vertex,Edge>(door); 
-		Board.Directions direction[] = new Board.Directions[4]; 
-		Vector<Board.Directions> list = new Vector<Board.Directions >( );
+		Labyrinth.Directions direction[] = new Labyrinth.Directions[4]; 
+		Vector<Labyrinth.Directions> list = new Vector<Labyrinth.Directions >( );
 		for ( int i = 0 ; i < direction.length ; ++i )
-			list.add( Board.Directions.values( ) [ i ] ) ;
+			list.add( Labyrinth.Directions.values( ) [ i ] ) ;
 		
 		while(iter.hasNext()){
 			Vertex v = iter.next();
 			for(int i =0; i< direction.length; i++){
 			
-				Board.Directions dir = list.get(i);
-				if(v.inBorders(0, board.getSize(), dir) && board.isWall(v, dir)){
+				Labyrinth.Directions dir = list.get(i);
+				if(v.inBorders(0, labyrinth.getSize(), dir) && labyrinth.isWall(v, dir)){
 					int xs = v.getX(); 
 					int ys = v.getY();
 					int xt = xs; 
@@ -99,9 +111,16 @@ public class ViewBoard extends IView {
 			}
 		}
 	}
-
+	/**
+	 * 
+	 * @param xs abscisse source 
+	 * @param ys ordonnée source 
+	 * @param xt abscisse destination
+	 * @param yt ordnnées destination
+	 */
 	public static void drawWall(int xs, int ys, int xt, int yt){
-		int x =0, y=0, xspan =0, yspan=0; 
+		float x =0, y=0;
+		float  xspan =0, yspan=0; 
 
 		if(ys == yt){
 			x = ( (WALL+CELL) + (WALL+CELL) * ( ( int ) ( xs+ xt ) / 2 ) ) * SPAN;

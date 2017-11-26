@@ -7,17 +7,21 @@ package model;
 public class Player extends Personnage {
 	
 	public static Player player;
-	private Player (Board board){
-		super(board); 
+	/**
+	 * 
+	 * @param labirynth le labyrinth dans lequel va se déplacer le personnage.
+	 */
+	private Player (Labyrinth labyrinth){
+		super(labyrinth); 
 	}
 	/**
 	 * 
 	 * @param board le plateau de jeux labyrithn  couloir et mur
 	 * @return l'unique instance du joureur. 
 	 */
-	public static Player getInstance(Board board){
+	public static Player getInstance(Labyrinth labyrinth){
 		if(player == null){
-			player =  new Player(board); 
+			player =  new Player(labyrinth); 
 		}
 		return player;
 	}

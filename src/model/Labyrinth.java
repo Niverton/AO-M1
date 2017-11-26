@@ -8,13 +8,17 @@ import java.util.Vector;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.Multigraph;
+
+import model.graph.Edge;
+import model.graph.Graph;
+import model.graph.Vertex;
 /**
  * 
  * @author laurent
  *
  */
 
-public class Board {
+public class Labyrinth {
 	/**
 	 *  class singleton: il n'exista qu'un seul plateau de jeu. 
 	 */
@@ -34,9 +38,9 @@ public class Board {
 	/**
 	 * Instancie le labirynthe et les portes 
 	 */
-	public Board(){
+	public Labyrinth(){
 		size = 16;
-		graph = new Graph(size);
+		graph = new Graph();
 		Vertex base = new Vertex(0,0,0);
 		graph.addVertex(base);
 		this.BuildLabyrinth(base);
@@ -44,7 +48,7 @@ public class Board {
 	}
 	/**
 	 * 
-	 * @param v position de dï¿½part du futur joueur 
+	 * @param vertex position de dï¿½part du futur joueur 
 	 * construction du labirynthe 
 	 */
 	private void BuildLabyrinth(Vertex vertex){
@@ -81,6 +85,12 @@ public class Board {
 
 		}
 	}
+	/**
+	 * 
+	 * @param vertex sommet source 
+	 * @param dir la direction du target 
+	 * @return si le sommet de le sommet source et le sommet target ont un mur entre eux.
+	 */
 	public boolean isWall(Vertex vertex, Directions dir){
 		
 		return !graph.isConnected(vertex, dir); 
@@ -91,7 +101,7 @@ public class Board {
 	 * 
 	 * @return le graph contenant les couloirs. 
 	 */
-	public Graph getBoard(){
+	public Graph getLabyrinth(){
 		return graph; 
 	}
 	/**
@@ -101,7 +111,9 @@ public class Board {
 	public int getSize(){
 		return size;
 	}
-
+	/**
+	 * Ouvre des portes de façon aléatoire.
+	 */
 	public void openRandomDoor(){
 
 	}
