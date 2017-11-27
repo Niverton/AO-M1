@@ -5,15 +5,31 @@ import javafx.geometry.Point2D;
 public abstract class Object {
 	protected Point2D position; 
 	protected Labyrinth labyrinth; 
-	
-	public Object( Labyrinth l){
-		labyrinth = l;
-		
-		
-	}
+
 	/**
 	 * 
-	 * @return la position de l'objet.
+	 * @param l le labyrinthe dans lequel va se d�placer le personnage.
+	 */
+	protected Object( Labyrinth l){
+		this(l, 0, 0);
+		
+	}
+
+	/**
+	 * 
+	 * @param l le labyrinthe dans lequel va se d�placer le personnage.
+	 * @param posX l'abscisse (coordonnée X) initiale du personnage.
+	 * @param posY l'ordonnée (coordonnée Y) initiale du personnage.
+	 */
+	protected Object( Labyrinth l, int posX, int posY){
+		labyrinth = l;
+		position = new Point2D(posX, posY);
+		
+	}
+
+	/**
+	 * 
+	 * @return La position de l'objet.
 	 */
 	public Point2D getPosition(){
 		return position; 
@@ -22,28 +38,28 @@ public abstract class Object {
 	 * 
 	 * @param p la nouvelle position de l'objet
 	 */
-	public void setPosition(Point2D p){
+	protected void setPosition(Point2D p){
 		position = p; 
 	}
 	/**
 	 * 
-	 * @return abscisse de l'objet.
+	 * @return L'abscisse de l'objet.
 	 */
 	public int getPosX(){
 		return (int) position.getX();
 	}
 	/**
 	 * 
-	 * @return l'ordonn� de l'objet 
+	 * @return L'ordonn�e de l'objet 
 	 */
 	public int getPosY(){
 		return (int)position.getY();
 	}
 	/**
 	 * 
-	 * @param board le nouveau labyrinth
+	 * @param l le nouveau labyrinth
 	 */
-	public void setBoard(Labyrinth l){
+	protected void setBoard(Labyrinth l){
 		this.labyrinth = l;
 	}
 	

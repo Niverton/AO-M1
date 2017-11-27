@@ -28,18 +28,19 @@ public class PlayerView extends IView {
 	@Override
 	public void view() {
 		// TODO Auto-generated method stub
-		/*Image image = new Image ( getClass( ).getResource("ressource/smyley.jpg").toExternalForm ( ) ) ;
+		Image image = new Image ( getClass( ).getResource("ressource/smyley.jpg").toExternalForm ( ) ) ;
 		imageView = new ImageView ( image ) ;
 		imageView.setFocusTraversable(true);
 		pane.getChildren().add( this.imageView ) ;
 		
+		player.getPosX();
 		double xt = ( int ) ( ( WALL + player.getPosX()* ( WALL+CELL) )* SPAN ) ;
 		double yt = ( int ) ( ( WALL + player.getPosY() * ( WALL+CELL) )  *SPAN ) ;
 		imageView.setFitWidth(CELL*SPAN);
 		imageView.setFitHeight(CELL*SPAN);
 
 		imageView.setX ( xt) ;
-		imageView.setY ( yt ) ;*/
+		imageView.setY ( yt ) ;
 		
 	}
 

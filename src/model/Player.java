@@ -9,11 +9,22 @@ public class Player extends Personnage {
 	public static Player player;
 	/**
 	 * 
-	 * @param labirynth le labyrinth dans lequel va se d�placer le personnage.
+	 * @param labyrinth le labyrinthe dans lequel va se d�placer le personnage.
 	 */
 	private Player (Labyrinth labyrinth){
 		super(labyrinth); 
 	}
+	
+	/**
+	 * 
+	 * @param labyrinth le labyrinthe dans lequel va se d�placer le personnage.
+	 * @param posX l'abscisse (coordonnée X) initiale du personnage.
+	 * @param posY l'ordonnée (coordonnée Y) initiale du personnage.
+	 */
+	private Player (Labyrinth labyrinth, int posX, int posY){
+		super(labyrinth, posX, posY); 
+	}
+	
 	/**
 	 * 
 	 * @param board le plateau de jeux labyrithn  couloir et mur

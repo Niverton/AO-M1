@@ -8,13 +8,29 @@ import javafx.geometry.Point2D;
  *
  */
 public abstract class Personnage extends Object {
-	
-	public Personnage(Labyrinth board){
-		super(board);
-	}
+
 	/**
 	 * 
-	 * @return test si le personnage peu aller sur la gauche
+	 * @param labyrinth le labyrinthe dans lequel va se dï¿½placer le personnage.
+	 */
+	protected Personnage(Labyrinth labyrinth){
+		super(labyrinth);
+	}
+	
+	/**
+	 * 
+	 * @param labyrinth le labyrinthe dans lequel va se dï¿½placer le personnage.
+	 * @param posX l'abscisse (coordonnÃ©e X) initiale du personnage.
+	 * @param posY l'ordonnÃ©e (coordonnÃ©e Y) initiale du personnage.
+	 */
+	protected Personnage (Labyrinth labyrinth, int posX, int posY){
+		super(labyrinth, posX, posY); 
+	}
+	
+	
+	/**
+	 * 
+	 * @return Teste si le personnage peut aller a gauche.
 	 */
 	private boolean canLeft(){
 		
@@ -23,7 +39,7 @@ public abstract class Personnage extends Object {
 	}
 	/**
 	 * 
-	 * @return test si le personnage peu se déplacer a droite. 
+	 * @return Teste si le personnage peut aller a droite. 
 	 */
 	private boolean canRight(){
 		
@@ -32,7 +48,7 @@ public abstract class Personnage extends Object {
 	}
 	/**
 	 * 
-	 * @return test si le personnage peut aller en haut
+	 * @return Teste si le personnage peut aller en haut.
 	 */
 	private boolean canUp(){
 		
@@ -41,46 +57,48 @@ public abstract class Personnage extends Object {
 	}
 	/**
 	 * 
-	 * @return test si le personnage peu aller en bas.
+	 * @return Teste si le personnage peut aller en bas.
 	 */
 	private boolean canDown(){
 		
 		
 		return false;
 	}
+	
+	
 	/**
-	 * deplacement a droite du personnage 
+	 * Deplacement du personnage vers la droite si c'est possible.
 	 */
 	public void moveRight(){
 		if(this.canRight()){
-			this.setPosition(new Point2D(position.getX()+1, position.getY()));
+			this.setPosition(new Point2D(this.getPosX()+1, this.getPosY()));
 		}
 			
 	}
 	/**
-	 * deplace le personage a gauche. 
+	 * Deplacement du personnage vers la gauche si c'est possible.
 	 */
 	public void moveLeft(){
 		if(this.canLeft()){
-			this.setPosition(new Point2D(position.getX()-1, position.getY()));
+			this.setPosition(new Point2D(this.getPosX()-1, this.getPosY()));
 		}
 			
 	}
 	/**
-	 * deplace le personnage vers le Haut si cela est possible. 
+	 * Deplacement du personnage vers le haut si c'est possible.
 	 */
 	public void moveUp(){
 		if(this.canUp()){
-			this.setPosition(new Point2D(position.getX(), position.getY()-1));
+			this.setPosition(new Point2D(this.getPosX(), this.getPosY()-1));
 		}
 			
 	}
 	/**
-	 * Déplace le personnage vers le bas si cela est possible
+	 * Deplacement du personnage vers le bas si c'est possible.
 	 */
-	public void movedown(){
+	public void moveDown(){
 		if(this.canDown()){
-			this.setPosition(new Point2D(position.getX(), position.getY()+1));
+			this.setPosition(new Point2D(this.getPosX(), this.getPosY()+1));
 		}
 			
 	}

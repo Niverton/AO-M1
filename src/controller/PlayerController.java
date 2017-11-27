@@ -37,7 +37,7 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	}
 
 	/**
-	 * @param arg0 l'évènement clavier capturer. 
+	 * @param arg0 l'ï¿½vï¿½nement clavier capturer. 
 	 */
 	public void handle(KeyEvent arg0) {
 		// TODO Auto-generated method stub
@@ -48,7 +48,7 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 			this.gameController.change();
 		}
 		if(arg0.getCode()== KeyCode.DOWN || arg0.getCode()== KeyCode.S){
-			player.movedown();
+			player.moveDown();
 			
 			this.gameController.change();
 		}
@@ -65,7 +65,7 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 
 	/**
 	 * @param o l'observable appelant
-	 * @param arg les arguments passés par l'observable.
+	 * @param arg les arguments passï¿½s par l'observable.
 	 */
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
