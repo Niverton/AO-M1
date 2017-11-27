@@ -128,11 +128,12 @@ public class ViewLabyrinth extends IView {
 
 		if(ys == yt){
 			x = ( (WALL+CELL) + (WALL+CELL) * ( ( int ) ( xs+ xt ) / 2 ) ) * SPAN;
-			y = (WALL +ys * (WALL+CELL) ) * SPAN;
+			y = ((WALL +ys * (WALL+CELL) ) * SPAN);
 			xspan = WALL * SPAN;
 			yspan = CELL * SPAN;
 			Rectangle square = new Rectangle ( x , y , xspan , yspan ) ;
 			if(isDoor){
+				square.setRotate((CELL*SPAN));
 				square.setFill (DOORCOLOR) ;
 			}
 			else{
@@ -149,6 +150,7 @@ public class ViewLabyrinth extends IView {
 			Rectangle square = new Rectangle ( x , y , xspan , yspan ) ;
 
 			if(isDoor){
+				square.setRotate((CELL*SPAN));
 				square.setFill (DOORCOLOR) ;
 			}
 			else{
