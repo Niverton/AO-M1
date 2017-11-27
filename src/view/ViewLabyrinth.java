@@ -4,11 +4,9 @@ package view;
 
 
 import java.awt.Dimension;
-import java.util.Set;
+
 import java.util.Vector;
 
-import org.jgrapht.graph.DefaultWeightedEdge;
-import org.jgrapht.graph.Multigraph;
 import org.jgrapht.traverse.BreadthFirstIterator;
 
 import javafx.scene.layout.Pane;
@@ -26,9 +24,9 @@ import model.graph.Vertex;
  */
 public class ViewLabyrinth extends IView {
 	private static Labyrinth labyrinth;
-	private static Pane pane;
+	private  static Pane pane;
 	protected static final Paint WALLCOLOR = Color.BURLYWOOD; 
-	protected static final Paint WALLCOLOROPEN = Color.web("25154d"); 
+	protected static final Paint DOORCOLOR = Color.web("25154d"); 
 	public ViewLabyrinth(Labyrinth b, Pane pane) {
 		this.labyrinth = b;
 		this.pane = pane;
@@ -75,7 +73,7 @@ public class ViewLabyrinth extends IView {
 	/**
 	 * Dzqqinier les murs.
 	 */
-	public static void drawWalls (  ){
+	public static void drawWallsAndDoor (  ){
 		int x = 0 , y = 0 , xspan = 0 , yspan = 0 ;
 		Graph door = labyrinth.getLabyrinth();
 		BreadthFirstIterator<Vertex,Edge> iter = new BreadthFirstIterator<Vertex,Edge>(door); 
@@ -89,7 +87,10 @@ public class ViewLabyrinth extends IView {
 			for(int i =0; i< direction.length; i++){
 			
 				Labyrinth.Directions dir = list.get(i);
-				if(v.inBorders(0, labyrinth.getSize(), dir) && labyrinth.isWall(v, dir)){
+				boolean isOpenDoor = labyrinth.isOpenDoor(v, dir);
+				if(v.inBorders(0, labyrinth.getSize(), dir) && (labyrinth.isWall(v, dir) || isOpenDoor)){
+					
+						
 					int xs = v.getX(); 
 					int ys = v.getY();
 					int xt = xs; 
@@ -104,10 +105,13 @@ public class ViewLabyrinth extends IView {
 					case WEST: xt--;
 					break;
 					}
-					
-					drawWall(xs,ys,xt,yt);
+					if(isOpenDoor)
+					drawWall(xs,ys,xt,yt, true);
+					else
+					drawWall(xs,ys,xt,yt, false);
 
 				}
+				
 			}
 		}
 	}
@@ -118,7 +122,7 @@ public class ViewLabyrinth extends IView {
 	 * @param xt abscisse destination
 	 * @param yt ordnnées destination
 	 */
-	public static void drawWall(int xs, int ys, int xt, int yt){
+	public static void drawWall(int xs, int ys, int xt, int yt, boolean isDoor){
 		float x =0, y=0;
 		float  xspan =0, yspan=0; 
 
@@ -128,8 +132,12 @@ public class ViewLabyrinth extends IView {
 			xspan = WALL * SPAN;
 			yspan = CELL * SPAN;
 			Rectangle square = new Rectangle ( x , y , xspan , yspan ) ;
-
-			square.setFill (WALLCOLOR) ;
+			if(isDoor){
+				square.setFill (DOORCOLOR) ;
+			}
+			else{
+				square.setFill (WALLCOLOR) ;
+			}
 
 			pane.getChildren( ).add ( square ) ;
 		}
@@ -140,7 +148,12 @@ public class ViewLabyrinth extends IView {
 			yspan = WALL * SPAN;
 			Rectangle square = new Rectangle ( x , y , xspan , yspan ) ;
 
-			square.setFill (WALLCOLOR) ;
+			if(isDoor){
+				square.setFill (DOORCOLOR) ;
+			}
+			else{
+				square.setFill (WALLCOLOR) ;
+			}
 			pane.getChildren( ).add ( square ) ;
 		}
 	}
@@ -149,7 +162,7 @@ public class ViewLabyrinth extends IView {
 	public void view() {
 
 		this.drawFrame();
-		this.drawWalls();
+		this.drawWallsAndDoor();
 	}
 	@Override
 	public void uptdate() {

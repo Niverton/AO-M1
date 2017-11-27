@@ -10,6 +10,7 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.Multigraph;
 
 import model.graph.Edge;
+import model.graph.Edge.Type;
 import model.graph.Graph;
 import model.graph.Vertex;
 /**
@@ -29,7 +30,6 @@ public class Labyrinth {
 		SOUTH, 
 		WEST, 
 		EAST
-		
 	}
 	private Graph graph ; 
 
@@ -44,6 +44,7 @@ public class Labyrinth {
 		Vertex base = new Vertex(0,0,0);
 		graph.addVertex(base);
 		this.BuildLabyrinth(base);
+		this.openRandomDoor(16);
 
 	}
 	/**
@@ -64,7 +65,7 @@ public class Labyrinth {
 			list.remove(index); 
 
 		}
-		System.out.println("\n\n");
+		
 		for(int i=0 ; i < direction.length ; i++){
 			Directions dir = direction[i];
 			if(vertex.inBorders(0, size, dir) && graph.doesntExist(vertex, dir) ){
@@ -95,7 +96,9 @@ public class Labyrinth {
 		
 		return !graph.isConnected(vertex, dir); 
 	}
-
+	public boolean isOpenDoor(Vertex vertex, Directions dir){
+		return graph.isOpenDoor(vertex, dir);
+	}
 	
 	/**
 	 * 
@@ -114,8 +117,32 @@ public class Labyrinth {
 	/**
 	 * Ouvre des portes de façon aléatoire.
 	 */
-	public void openRandomDoor(){
-
+	public void openRandomDoor(int nb){
+		for(int j=0 ; j< nb ; j++){
+			
+		
+		for(int i=0; i< 1000 ; ++i){
+			Vertex v = graph.randomVertex();
+			if(v != null){
+				Random random = new Random();
+				Directions directions[] = Directions.values();
+				Directions dir  = directions[random.nextInt(directions.length)];
+				if( this.isWall(v, dir)){
+					Vertex vertex2 = graph.getTarget(v, dir);
+					if(vertex2 != null){
+						Edge edge = graph.getEdge ( v , vertex2 ) ;
+						if(edge == null){
+							graph.addEdge(v, vertex2, new Edge(Type.OPENED_DOOR));
+							
+							break; 
+						}
+					}
+				}
+				
+			}
+		}
+		
+		}
 	}
 
 

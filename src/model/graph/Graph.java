@@ -1,14 +1,18 @@
 package model.graph;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import org.jgrapht.EdgeFactory;
 import org.jgrapht.graph.Multigraph;
 import org.jgrapht.traverse.BreadthFirstIterator;
 
-import model.Labyrinth;
-import model.Labyrinth.Directions;
+
 
 public class Graph implements org.jgrapht.Graph<Vertex, Edge> {
 	private Multigraph<Vertex,Edge> graph ;
@@ -45,7 +49,7 @@ public class Graph implements org.jgrapht.Graph<Vertex, Edge> {
 	public boolean isConnected(Vertex vertex , model.Labyrinth.Directions  dir){
 		Vertex target = this.getTarget(vertex, dir);
 		
-		return graph.containsEdge(vertex, target);
+		return graph.containsEdge(vertex, target) || graph.containsEdge(target, vertex);
 	}
 	/**
 	 * 
@@ -68,13 +72,14 @@ public class Graph implements org.jgrapht.Graph<Vertex, Edge> {
 		}
 		return  this.getRefVertex(target);
 	}
+
 	/**
 	 * 
 	 * @param vertex sommmet créé
 	 * @return le sommet qui correspont au sommet d graph. 
 	 */
 	public Vertex getRefVertex(Vertex vertex){
-		BreadthFirstIterator<Vertex,Edge> iter = new BreadthFirstIterator(graph); 
+		BreadthFirstIterator<Vertex,Edge> iter = new BreadthFirstIterator<Vertex, Edge>(graph); 
 		while(iter.hasNext()){
 			Vertex v = iter.next();
 			if(v.compareTo(vertex) ==0){
@@ -83,7 +88,21 @@ public class Graph implements org.jgrapht.Graph<Vertex, Edge> {
 		}
 		return null;
 	}
-
+	public Vertex randomVertex(){
+	Set<Vertex> list =   graph.vertexSet();
+		Random r = new Random(); 
+		int t = r.nextInt(list.size()); 
+		Iterator<Vertex> t1 = list.iterator();
+		Vertex vertex = t1.next();
+		for(int i =1; i< t ; ++i)
+			vertex = t1.next();
+		return vertex;
+	}
+	public boolean isOpenDoor(Vertex vertex , model.Labyrinth.Directions dir){
+		Vertex target = this.getTarget(vertex, dir); 
+		Edge e = this.getEdge(vertex, target); 
+		return (e != null &&( e.getType() == Edge.Type.OPENED_DOOR));
+	}
 	@Override
 	public Edge addEdge(Vertex arg0, Vertex arg1) {
 		// TODO Auto-generated method stub
