@@ -2,7 +2,7 @@ package model;
 
 
 
-public class NonMoveableObject extends Object {
+public class NonMoveableObject extends ObjectGame {
 	private String name; 
 	/**
 	 * 

@@ -1,14 +1,8 @@
 package view;
 
 
-
-
-import java.awt.Dimension;
-
 import java.util.Vector;
-
 import org.jgrapht.traverse.BreadthFirstIterator;
-
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -43,7 +37,7 @@ public class ViewLabyrinth extends IView {
 	/**
 	 * Dessiner la fenêtre ( le cadre). 
 	 */
-	public static void drawFrame( ){
+	public void drawFrame( ){
 		Rectangle square;
 		square = new Rectangle ( 0 , 0 ,
 				SPAN * ( labyrinth.getSize()  *(CELL+WALL) + WALL) , WALL * SPAN ) ;
@@ -76,8 +70,8 @@ public class ViewLabyrinth extends IView {
 	/**
 	 * Dzqqinier les murs.
 	 */
-	public static void drawWallsAndDoor (  ){
-		int x = 0 , y = 0 , xspan = 0 , yspan = 0 ;
+	public  void drawWallsAndDoor (  ){
+		
 		Graph door = labyrinth.getLabyrinth();
 		BreadthFirstIterator<Vertex,Edge> iter = new BreadthFirstIterator<Vertex,Edge>(door); 
 		
@@ -125,7 +119,7 @@ public class ViewLabyrinth extends IView {
 	 * @param xt abscisse destination
 	 * @param yt ordnnées destination
 	 */
-	public static void drawWall(int xs, int ys, int xt, int yt, boolean isDoor){
+	public void drawWall(int xs, int ys, int xt, int yt, boolean isDoor){
 		float x =0, y=0;
 		float  xspan =0, yspan=0; 
 
@@ -164,6 +158,7 @@ public class ViewLabyrinth extends IView {
 	}
 
 
+	
 	public void view() {
 
 		this.drawFrame();

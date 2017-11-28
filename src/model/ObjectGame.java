@@ -2,7 +2,7 @@ package model;
 
 import javafx.geometry.Point2D;
 
-public abstract class Object {
+public abstract class ObjectGame {
 	protected Point2D position; 
 	
 
@@ -10,7 +10,7 @@ public abstract class Object {
 	 * 
 	 * @param l le labyrinthe dans lequel va se d�placer le personnage.
 	 */
-	protected Object( ){
+	protected ObjectGame( ){
 	position = new Point2D(0,0);
 		
 	}
@@ -21,7 +21,7 @@ public abstract class Object {
 	 * @param posX l'abscisse (coordonnée X) initiale du personnage.
 	 * @param posY l'ordonnée (coordonnée Y) initiale du personnage.
 	 */
-	protected Object( int posX, int posY){
+	protected ObjectGame( int posX, int posY){
 	
 		position = new Point2D(posX, posY);
 		

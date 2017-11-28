@@ -10,7 +10,7 @@ import model.directions.Directions;
  * @author laurent
  *
  */
-public abstract class Personnage extends Object {
+public abstract class Personnage extends ObjectGame {
 	
 	/**
 	 * 
