@@ -1,7 +1,6 @@
 package model;
 
 
-import model.directions.Directions;
 import model.graph.Vertex;
 
 

@@ -1,7 +1,6 @@
 package model;
 
 import javafx.geometry.Point2D;
-import model.directions.Directions;
 
 
 
@@ -32,20 +31,20 @@ public abstract class Personnage extends Object {
 	
 	/**
 	 * 
-	 * @param dir direction pour déplacer le personnage.
+	 * @param dir direction pour dï¿½placer le personnage.
 	 */
 	public void move(Directions dir){
-		switch(dir.getName()){
-		case "NORTH": 
+		switch(dir){
+		case North: 
 			this.setPosition(new Point2D(this.getPosX(), this.getPosY()-1));
 			break; 
-		case "SOUTH":
+		case South:
 			this.setPosition(new Point2D(this.getPosX(), this.getPosY()+1));
 			break; 
-		case "WEST": 
+		case West: 
 			this.setPosition(new Point2D(this.getPosX()-1, this.getPosY()));
 			break; 
-		case "EAST":
+		case East:
 			this.setPosition(new Point2D(this.getPosX()+1, this.getPosY()));
 			break;
 		}
