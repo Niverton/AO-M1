@@ -3,21 +3,20 @@ package controller;
 import java.util.Observable;
 
 import javafx.stage.Stage;
-import model.Labyrinth;
+import model.Game;
 import view.GameView;
 
 public class GameController  extends Observable {
 	private static GameController gameController;
-	private Labyrinth labyrinth; 
 	private GameView gameView;
 	private LabyrinthController labyrinthController;
 	private PlayerController playerController;
-	private DoorController doorController;
+	private Game game; 
 	private GameController(){
-		this.labyrinth = new Labyrinth(); 
-		labyrinthController = new LabyrinthController(labyrinth);
-		playerController = new PlayerController(labyrinth, this);
-		doorController = new DoorController(labyrinth);
+		game = Game.getInstance();
+		labyrinthController = new LabyrinthController(game.getLabyrinth());
+		playerController = new PlayerController(this);
+		
 		addObserver(playerController);
 	}
 	/**
@@ -25,12 +24,12 @@ public class GameController  extends Observable {
 	 * @param primaryStage le stage du jeux. 
 	 */
 	public void start(Stage primaryStage){
-		gameView = new GameView(labyrinth,primaryStage); 
+		gameView = new GameView(primaryStage); 
 		gameView.view();
 		
 		labyrinthController.start(gameView.getPane());
 		playerController.start(gameView.getPane());
-		doorController.start(gameView.getPane());
+		
 		
 		
 	}

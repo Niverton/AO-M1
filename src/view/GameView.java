@@ -1,35 +1,32 @@
 package view;
 
-import java.awt.Button;
-import java.util.Optional;
 
-import controller.GameController;
+
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
+
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-import model.Labyrinth;
-import model.Door;
-import model.Player;
-import model.graph.Vertex;
+
+
+import model.Game;
+
 
 public class GameView extends IView {
 	protected Pane pane;
 	private int nbrX; 
 	private int nbrY;
 	private Stage stage; 
-	private Labyrinth board;
+	private Game game;
 	protected static final Paint SCENECOLOR = Color.GREY; 
-	public GameView(Labyrinth board,Stage stage){
+	public GameView(Stage stage){
 		pane = new Pane();
-		this.nbrX = board.getSize(); 
-		this.nbrY = board.getSize(); 
+		game = Game.getInstance();
+		this.nbrX = game.getSizeLabyrinth();
+		this.nbrY = game.getSizeLabyrinth();
 		this.stage = stage;
-		this.board = board;
+		
 	}
 	public void view() {
 		// TODO Auto-generated method stub

@@ -4,6 +4,7 @@ import controller.PlayerController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import model.Game;
 import model.Player;
 
 public class PlayerView extends IView {
@@ -13,9 +14,9 @@ public class PlayerView extends IView {
 	private Player player;
 	
 
-	public PlayerView( Pane pane, Player player){
+	public PlayerView( Pane pane){
 		this.pane = pane;
-		this.player = player;
+		this.player = Game.getInstance().getPlayer();
 	
 	}
 
@@ -38,7 +39,6 @@ public class PlayerView extends IView {
 		double yt = ( int ) ( ( WALL + player.getPosY() * ( WALL+CELL) )  *SPAN ) ;
 		imageView.setFitWidth(CELL*SPAN);
 		imageView.setFitHeight(CELL*SPAN);
-
 		imageView.setX ( xt) ;
 		imageView.setY ( yt ) ;
 		

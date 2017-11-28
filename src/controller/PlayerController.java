@@ -7,31 +7,31 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
-import model.Labyrinth;
-import model.Player;
+import model.Game;
+import model.Personnage;
 import view.PlayerView;
 
 public class PlayerController  implements EventHandler<KeyEvent>, Observer {
-	private Player player; 
 	
 	private PlayerView v;
 	private GameController gameController; 
+	private Game game;
 	/**
 	 * 
 	 * @param labyrinth le labyrinth courant.
 	 * @param game l'unique instance de Game controller.
 	 */
-	public PlayerController(Labyrinth labyrinth, GameController game){
+	public PlayerController( GameController gameController){
 	
-		this.player = Player.getInstance(labyrinth);
-		this.gameController = game;
+		this.game = Game.getInstance();
+		this.gameController = gameController;
 	}
 	/**
 	 * 
 	 * @param pane Le pane du jeux.
 	 */
 	public void start(Pane pane){
-		v = new PlayerView(pane,player);
+		v = new PlayerView(pane);
 		v.view();
 		v.setKeyPressed(this);
 	}
@@ -43,21 +43,21 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 		// TODO Auto-generated method stub
 		
 		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
-			player.moveLeft();
+			game.movePlayer(Personnage.Directions.WEST);
 			
 			this.gameController.change();
 		}
 		if(arg0.getCode()== KeyCode.DOWN || arg0.getCode()== KeyCode.S){
-			player.moveDown();
+			game.movePlayer(Personnage.Directions.SOUTH);
 			
 			this.gameController.change();
 		}
 		if(arg0.getCode()== KeyCode.RIGHT || arg0.getCode()== KeyCode.D){
-			player.moveRight();
+			game.movePlayer(Personnage.Directions.EAST);
 			this.gameController.change();
 		}
 		if(arg0.getCode()== KeyCode.UP || arg0.getCode()== KeyCode.Z){
-			player.moveUp();
+			game.movePlayer(Personnage.Directions.NORTH);
 			this.gameController.change();
 		}
 		

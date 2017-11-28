@@ -10,14 +10,18 @@ import java.util.List;
  */
 public class BadBoys {
 	private ArrayList<BadBoy> lBadBoys; 
-	private Labyrinth board; 
+	
 	/**
 	 * 
 	 * @param number le nombre de méchants initial.
 	 */
-	public BadBoys(int number, Labyrinth board){
+	public BadBoys(int number){
 		lBadBoys = new ArrayList<>(number);
-		this.board = board;
+		
+	}
+	public BadBoys() {
+		// TODO Auto-generated constructor stub
+		lBadBoys = new ArrayList<>();
 	}
 	/**
 	 * 
@@ -42,7 +46,7 @@ public class BadBoys {
 	 */
 	public void addBadBoy(int many, Point2D pos){
 		for(int i=0 ; i< many ; i++){
-			BadBoy b = new BadBoy(board);
+			BadBoy b = new BadBoy();
 			//b.setPosition(pos);
 			this.lBadBoys.add(b);
 		}

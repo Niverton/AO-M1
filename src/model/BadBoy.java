@@ -12,8 +12,8 @@ public class BadBoy extends Personnage {
 	 * 
 	 * @param board le labyrinth 
 	 */
-	public BadBoy( Labyrinth labyrinth) {
-		super(labyrinth);
+	public BadBoy( ) {
+		super();
 		// TODO Auto-generated constructor stub
 		
 	}
