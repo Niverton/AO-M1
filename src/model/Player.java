@@ -6,11 +6,6 @@ package model;
  */
 public class Player extends Personnage {
 	
-	
-	/**
-	 * 
-	 * 
-	 */
 	public Player (){
 		super(); 
 	}

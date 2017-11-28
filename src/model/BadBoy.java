@@ -1,5 +1,6 @@
 package model;
 
+import model.state.Nice;
 import model.state.State;
 /**
  * 
@@ -14,6 +15,7 @@ public class BadBoy extends Personnage {
 	 */
 	public BadBoy( ) {
 		super();
+		state = new Nice();
 		// TODO Auto-generated constructor stub
 		
 	}
@@ -28,7 +30,7 @@ public class BadBoy extends Personnage {
 	 * 
 	 * @return la chaine de carractère correspondant à l'état.
 	 */
-	public String getSate(){
+	public String getSateName(){
 		return state.toString();
 	}
 	/**

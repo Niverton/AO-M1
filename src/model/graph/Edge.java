@@ -17,8 +17,8 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 		CORRIDOR
 	}
 	private Type type;
-	
-	
+
+
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 		super(); 
 		this.type = Type.CORRIDOR;
 	}
-	
+
 	/**
 	 * @return la source de l'arrête
 	 */
@@ -63,15 +63,15 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 	public void setType(Type type){
 		this.type = type;
 	}
-	
-	
+
+
 	/**
 	 * Affiche les informations lié a notre arrête.
 	 */
 	public String toString() {
 		return super.getSource().toString() + "=> "+ super.getTarget().toString();
 	}
-	
+
 	/**
 	 * @param arg0 l'arrête a comparer.
 	 */
@@ -83,6 +83,6 @@ public class Edge extends DefaultEdge implements Comparable<Edge> {
 		}else{
 			return this.getTarget().compareTo(arg0.getTarget());
 		}
-		
+
 	}
 }

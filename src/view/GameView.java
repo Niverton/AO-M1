@@ -23,8 +23,8 @@ public class GameView extends IView {
 	public GameView(Stage stage){
 		pane = new Pane();
 		game = Game.getInstance();
-		this.nbrX = game.getSizeLabyrinth();
-		this.nbrY = game.getSizeLabyrinth();
+		this.nbrX = game.getLabyrinth().getSize();
+		this.nbrY =  game.getLabyrinth().getSize();
 		this.stage = stage;
 		
 	}

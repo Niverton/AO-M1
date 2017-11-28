@@ -1,6 +1,7 @@
 package model;
 
 import javafx.geometry.Point2D;
+import model.graph.Graph.Directions;
 
 
 /**
@@ -9,12 +10,7 @@ import javafx.geometry.Point2D;
  *
  */
 public abstract class Personnage extends Object {
-	public enum Directions{
-		NORTH, 
-		EAST, 
-		SOUTH, 
-		WEST
-	}
+	
 	/**
 	 * 
 	 *
@@ -37,7 +33,7 @@ public abstract class Personnage extends Object {
 	 * 
 	 * @param dir direction pour déplacer le personnage.
 	 */
-	public void move(Directions dir){
+	public void move(model.Labyrinth.Directions dir){
 		switch(dir){
 		case NORTH: 
 			this.setPosition(new Point2D(this.getPosX(), this.getPosY()-1));

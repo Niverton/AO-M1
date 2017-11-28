@@ -1,6 +1,6 @@
 package model.graph;
 
-import model.Labyrinth;
+
 import model.Labyrinth.Directions;
 
 /**
@@ -21,7 +21,7 @@ public class Vertex   implements Comparable<Vertex>{
 		this.x = x; 
 		this.y = y; 
 		this.nbr = nbr;
-		
+
 	}
 	/**
 	 * 
@@ -36,7 +36,7 @@ public class Vertex   implements Comparable<Vertex>{
 		case WEST: return this.getX() > min;
 		case SOUTH: return this.getY() < max-1;
 		case EAST: return this.getX() < max-1;
-		
+
 		}
 		return false;
 	}
@@ -69,9 +69,9 @@ public class Vertex   implements Comparable<Vertex>{
 	public int compareTo(Vertex arg0) {
 		// TODO Auto-generated method stub
 		if(this.getX() == arg0.getX() && this.getY() == arg0.getY())
-		return 0;
-		
+			return 0;
+
 		return 1;
 	}
-	
+
 }
