@@ -7,12 +7,8 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
+import model.Directions;
 import model.Game;
-import model.Personnage;
-import model.directions.East;
-import model.directions.North;
-import model.directions.South;
-import model.directions.West;
 import view.PlayerView;
 
 public class PlayerController  implements EventHandler<KeyEvent>, Observer {
@@ -47,21 +43,21 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 		// TODO Auto-generated method stub
 		
 		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
-			game.movePlayer(new West());
+			game.movePlayer(Directions.West);
 			
 			this.gameController.change();
 		}
 		if(arg0.getCode()== KeyCode.DOWN || arg0.getCode()== KeyCode.S){
-			game.movePlayer(new South());
+			game.movePlayer(Directions.South);
 			
 			this.gameController.change();
 		}
 		if(arg0.getCode()== KeyCode.RIGHT || arg0.getCode()== KeyCode.D){
-			game.movePlayer(new East());
+			game.movePlayer(Directions.East);
 			this.gameController.change();
 		}
 		if(arg0.getCode()== KeyCode.UP || arg0.getCode()== KeyCode.Z){
-			game.movePlayer(new North());
+			game.movePlayer(Directions.North);
 			this.gameController.change();
 		}
 		

@@ -1,18 +1,15 @@
 package view;
 
 
-import java.util.Vector;
+
 import org.jgrapht.traverse.BreadthFirstIterator;
+
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import model.Directions;
 import model.Labyrinth;
-import model.directions.Directions;
-import model.directions.East;
-import model.directions.North;
-import model.directions.South;
-import model.directions.West;
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Vertex; 
@@ -35,7 +32,7 @@ public class ViewLabyrinth extends IView {
 		SPAN =4;
 	}
 	/**
-	 * Dessiner la fenêtre ( le cadre). 
+	 * Dessiner la fenï¿½tre ( le cadre). 
 	 */
 	public void drawFrame( ){
 		Rectangle square;
@@ -74,17 +71,10 @@ public class ViewLabyrinth extends IView {
 		
 		Graph door = labyrinth.getLabyrinth();
 		BreadthFirstIterator<Vertex,Edge> iter = new BreadthFirstIterator<Vertex,Edge>(door); 
-		
-		Vector<Directions> list = new Vector<Directions >( );
-		list.add(new East()); 
-		list.add(new West()); 
-		list.add(new North()); 
-		list.add(new South());
+
 		while(iter.hasNext()){
 			Vertex v = iter.next();
-			for(int i =0; i< list.size(); i++){
-			
-				Directions dir = list.get(i);
+			for (Directions dir : Directions.values()) {
 				boolean isOpenDoor = labyrinth.isOpenDoor(v, dir);
 				if(v.inBorders(0, labyrinth.getSize(), dir) && (labyrinth.isWall(v, dir) || isOpenDoor)){
 					
@@ -93,14 +83,14 @@ public class ViewLabyrinth extends IView {
 					int ys = v.getY();
 					int xt = xs; 
 					int yt = ys; 
-					switch(dir.getName()){
-					case "NORTH": yt --; 
+					switch(dir){
+					case North: yt --; 
 					break; 
-					case "SOUTH": yt++; 
+					case South: yt++; 
 					break; 
-					case "EAST": xt++; 
+					case East: xt++; 
 					break; 
-					case "WEST": xt--;
+					case West: xt--;
 					break;
 					}
 					if(isOpenDoor)
@@ -115,9 +105,9 @@ public class ViewLabyrinth extends IView {
 	/**
 	 * 
 	 * @param xs abscisse source 
-	 * @param ys ordonnée source 
+	 * @param ys ordonnï¿½e source 
 	 * @param xt abscisse destination
-	 * @param yt ordnnées destination
+	 * @param yt ordnnï¿½es destination
 	 */
 	public void drawWall(int xs, int ys, int xt, int yt, boolean isDoor){
 		float x =0, y=0;
