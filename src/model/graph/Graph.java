@@ -9,17 +9,14 @@ import java.util.Set;
 import org.jgrapht.graph.Multigraph;
 import org.jgrapht.traverse.BreadthFirstIterator;
 
+import model.directions.Directions;
+
 
 
 @SuppressWarnings("serial")
 public class Graph extends Multigraph<Vertex, Edge>{
 
-	public enum Directions{
-		NORTH, 
-		SOUTH, 
-		WEST, 
-		EAST
-	}
+	
 
 	public Graph(){
 		super(Edge.class);
@@ -27,11 +24,11 @@ public class Graph extends Multigraph<Vertex, Edge>{
 	}
 	/**
 	 * 
-	 * @param vertex le sommet source 
+	 * @param vertex le sommet source.
 	 * @param dir la direction du sommet cible 
 	 * @return Retourne vrai si le sommet cible exsist
 	 */
-	public boolean doesntExist(Vertex vertex , model.Labyrinth.Directions  dir){
+	public boolean doesntExist(Vertex vertex , Directions  dir){
 
 
 		if(getTarget(vertex, dir) != null){
@@ -45,10 +42,10 @@ public class Graph extends Multigraph<Vertex, Edge>{
 	 * @param dir direction pour trouver le sommet cible.
 	 * @return vrai si le sommet source et le sommet cible sont connectés. 
 	 */
-	public boolean isConnected(Vertex vertex , model.Labyrinth.Directions  dir){
+	public boolean isConnected(Vertex vertex , Directions  dir){
 		Vertex target = this.getTarget(vertex, dir);
-
-		return this.containsEdge(vertex, target) || this.containsEdge(target, vertex);
+		Vertex sourceRef = this.getRefVertex(vertex);
+		return this.containsEdge(sourceRef, target) || this.containsEdge(target, sourceRef);
 	}
 	/**
 	 * 
@@ -56,16 +53,16 @@ public class Graph extends Multigraph<Vertex, Edge>{
 	 * @param dir direction ou trover le sommet destination 
 	 * @return le sommet cible.
 	 */
-	public Vertex getTarget(Vertex vertex , model.Labyrinth.Directions  dir){
+	public Vertex getTarget(Vertex vertex , Directions  dir){
 		Vertex target= null;
-		switch (dir){
-		case NORTH: target = new Vertex(vertex.getX(), vertex.getY()-1, 0);  
+		switch (dir.getName()){
+		case "NORTH": target = new Vertex(vertex.getX(), vertex.getY()-1, 0);  
 		break; 
-		case SOUTH:  target = new Vertex(vertex.getX(), vertex.getY()+1, 0); 
+		case "SOUTH":  target = new Vertex(vertex.getX(), vertex.getY()+1, 0); 
 		break; 
-		case EAST:  target = new Vertex(vertex.getX()+1, vertex.getY(), 0); 
+		case "EAST":  target = new Vertex(vertex.getX()+1, vertex.getY(), 0); 
 		break; 
-		case WEST:  target = new Vertex(vertex.getX()-1, vertex.getY(), 0); 
+		case "WEST":  target = new Vertex(vertex.getX()-1, vertex.getY(), 0); 
 		break;
 
 		}
@@ -97,7 +94,7 @@ public class Graph extends Multigraph<Vertex, Edge>{
 			vertex = t1.next();
 		return vertex;
 	}
-	public boolean isOpenDoor(Vertex vertex , model.Labyrinth.Directions dir){
+	public boolean isOpenDoor(Vertex vertex , Directions dir){
 		Vertex target = this.getTarget(vertex, dir); 
 		Edge e = this.getEdge(vertex, target); 
 		return (e != null &&( e.getType() == Edge.Type.OPENED_DOOR));

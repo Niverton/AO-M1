@@ -2,6 +2,12 @@ package model;
 
 import java.util.Random;
 import java.util.Vector;
+
+import model.directions.Directions;
+import model.directions.East;
+import model.directions.North;
+import model.directions.South;
+import model.directions.West;
 import model.graph.Edge;
 import model.graph.Edge.Type;
 import model.graph.Graph;
@@ -18,12 +24,6 @@ public class Labyrinth {
 	 */
 
 	public int size; 
-	public enum Directions{
-		NORTH, 
-		SOUTH, 
-		WEST, 
-		EAST
-	}
 	private Graph graph ; 
 
 
@@ -49,8 +49,10 @@ public class Labyrinth {
 
 		Directions direction[] = new Directions[4]; 
 		Vector<Directions> list = new Vector<Directions >( );
-		for ( int i = 0 ; i < direction.length ; ++i )
-			list.add( Directions.values( ) [ i ] ) ;
+		list.add(new North());
+		list.add(new East());
+		list.add(new South());
+		list.add(new West());
 		Random random = new Random();
 		for(int i=0; i< direction.length; ++i){
 			int index = random.nextInt(list.size());
@@ -65,11 +67,11 @@ public class Labyrinth {
 				int x = vertex.getX(); 
 				int y = vertex.getY();
 				int xt =x, yt= y; 
-				switch (dir){
-				case NORTH: yt --; break; 
-				case SOUTH: yt++; break; 
-				case EAST: xt++; break; 
-				case WEST: xt--; break;
+				switch (dir.getName()){
+				case "NORTH": yt --; break; 
+				case "SOUTH": yt++; break; 
+				case "EAST": xt++; break; 
+				case "WEST": xt--; break;
 				}
 				Vertex next = new Vertex(xt, yt, vertex.getNbr()+1);
 				graph.addVertex(next);
@@ -111,12 +113,17 @@ public class Labyrinth {
 	 * Ouvre des portes de façon aléatoire.
 	 */
 	public void openRandomDoor(int nb){
+		Directions directions[] = new Directions[4]; 
+		directions[0] = new East(); 
+		directions[1] = new North(); 
+		directions[2] = new South(); 
+		directions[3] = new West();
 		for(int j=0 ; j< nb ; j++){
 			for(int i=0; i< 1000 ; ++i){
 				Vertex v = graph.randomVertex();
 				if(v != null){
 					Random random = new Random();
-					Directions directions[] = Directions.values();
+					
 					Directions dir  = directions[random.nextInt(directions.length)];
 					if( this.isWall(v, dir)){
 						Vertex vertex2 = graph.getTarget(v, dir);

@@ -1,7 +1,6 @@
 package model.graph;
 
-
-import model.Labyrinth.Directions;
+import model.directions.Directions;
 
 /**
  * 
@@ -31,11 +30,11 @@ public class Vertex   implements Comparable<Vertex>{
 	 * @return si le sommet est bien entre min et max selon la direction donnée.
 	 */
 	public boolean inBorders(int min, int max, Directions dir){
-		switch (dir){
-		case NORTH: return this.getY() > min;
-		case WEST: return this.getX() > min;
-		case SOUTH: return this.getY() < max-1;
-		case EAST: return this.getX() < max-1;
+		switch (dir.getName()){
+		case "NORTH": return this.getY() > min;
+		case "WEST": return this.getX() > min;
+		case "SOUTH": return this.getY() < max-1;
+		case "EAST": return this.getX() < max-1;
 
 		}
 		return false;

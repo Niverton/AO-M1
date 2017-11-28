@@ -1,7 +1,8 @@
 package model;
 
 import javafx.geometry.Point2D;
-import model.graph.Graph.Directions;
+import model.directions.Directions;
+
 
 
 /**
@@ -33,18 +34,18 @@ public abstract class Personnage extends Object {
 	 * 
 	 * @param dir direction pour déplacer le personnage.
 	 */
-	public void move(model.Labyrinth.Directions dir){
-		switch(dir){
-		case NORTH: 
+	public void move(Directions dir){
+		switch(dir.getName()){
+		case "NORTH": 
 			this.setPosition(new Point2D(this.getPosX(), this.getPosY()-1));
 			break; 
-		case SOUTH:
+		case "SOUTH":
 			this.setPosition(new Point2D(this.getPosX(), this.getPosY()+1));
 			break; 
-		case WEST: 
+		case "WEST": 
 			this.setPosition(new Point2D(this.getPosX()-1, this.getPosY()));
 			break; 
-		case EAST:
+		case "EAST":
 			this.setPosition(new Point2D(this.getPosX()+1, this.getPosY()));
 			break;
 		}

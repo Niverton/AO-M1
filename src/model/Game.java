@@ -1,6 +1,7 @@
 package model;
 
 
+import model.directions.Directions;
 import model.graph.Vertex;
 
 
@@ -37,7 +38,7 @@ public class Game {
 	 * 
 	 * @param dir la direction dans lequel deplacer le joueur.
 	 */
-	public void movePlayer(model.Labyrinth.Directions dir) {
+	public void movePlayer(Directions dir) {
 		// TODO Auto-generated method stub
 		Vertex v = new Vertex(player.getPosX(), player.getPosY(),0);
 		if(!labyrinth.isWall(v, dir))

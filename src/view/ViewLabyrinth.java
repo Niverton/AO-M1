@@ -14,6 +14,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import model.Labyrinth;
+import model.directions.Directions;
+import model.directions.East;
+import model.directions.North;
+import model.directions.South;
+import model.directions.West;
 import model.graph.Edge;
 import model.graph.Graph;
 import model.graph.Vertex; 
@@ -77,16 +82,17 @@ public class ViewLabyrinth extends IView {
 		int x = 0 , y = 0 , xspan = 0 , yspan = 0 ;
 		Graph door = labyrinth.getLabyrinth();
 		BreadthFirstIterator<Vertex,Edge> iter = new BreadthFirstIterator<Vertex,Edge>(door); 
-		Labyrinth.Directions direction[] = new Labyrinth.Directions[4]; 
-		Vector<Labyrinth.Directions> list = new Vector<Labyrinth.Directions >( );
-		for ( int i = 0 ; i < direction.length ; ++i )
-			list.add( Labyrinth.Directions.values( ) [ i ] ) ;
 		
+		Vector<Directions> list = new Vector<Directions >( );
+		list.add(new East()); 
+		list.add(new West()); 
+		list.add(new North()); 
+		list.add(new South());
 		while(iter.hasNext()){
 			Vertex v = iter.next();
-			for(int i =0; i< direction.length; i++){
+			for(int i =0; i< list.size(); i++){
 			
-				Labyrinth.Directions dir = list.get(i);
+				Directions dir = list.get(i);
 				boolean isOpenDoor = labyrinth.isOpenDoor(v, dir);
 				if(v.inBorders(0, labyrinth.getSize(), dir) && (labyrinth.isWall(v, dir) || isOpenDoor)){
 					
@@ -95,21 +101,20 @@ public class ViewLabyrinth extends IView {
 					int ys = v.getY();
 					int xt = xs; 
 					int yt = ys; 
-					switch(dir){
-					case NORTH: yt --; 
+					switch(dir.getName()){
+					case "NORTH": yt --; 
 					break; 
-					case SOUTH: yt++; 
+					case "SOUTH": yt++; 
 					break; 
-					case EAST: xt++; 
+					case "EAST": xt++; 
 					break; 
-					case WEST: xt--;
+					case "WEST": xt--;
 					break;
 					}
 					if(isOpenDoor)
-					drawWall(xs,ys,xt,yt, true);
+						drawWall(xs,ys,xt,yt, true);
 					else
-					drawWall(xs,ys,xt,yt, false);
-
+						drawWall(xs,ys,xt,yt, false);
 				}
 				
 			}
