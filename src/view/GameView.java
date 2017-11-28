@@ -2,6 +2,8 @@ package view;
 
 
 
+import java.awt.Dimension;
+
 import javafx.scene.Scene;
 
 import javafx.scene.layout.Pane;
@@ -19,7 +21,7 @@ public class GameView extends IView {
 	private int nbrY;
 	private Stage stage; 
 	private Game game;
-	protected static final Paint SCENECOLOR = Color.GREY; 
+	protected static final Paint SCENECOLOR = Color.web("ecffff"); 
 	public GameView(Stage stage){
 		pane = new Pane();
 		game = Game.getInstance();
@@ -30,13 +32,15 @@ public class GameView extends IView {
 	}
 	public void view() {
 		// TODO Auto-generated method stub
+		
 		stage.setTitle("labyrinth");
 		Scene scene = new Scene ( pane ,
 				( (WALL + CELL) *nbrX + WALL) *SPAN,
 				( (WALL + CELL) *nbrY + WALL) *SPAN ) ;
 		scene.setFill (SCENECOLOR ) ;
-		
 		stage.setScene( scene ) ;
+		//stage.setFullScreen(true);
+		stage.setFullScreenExitHint("");
 		stage.show();
 	}
 	/**

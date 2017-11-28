@@ -16,8 +16,6 @@ import model.directions.Directions;
 @SuppressWarnings("serial")
 public class Graph extends Multigraph<Vertex, Edge>{
 
-	
-
 	public Graph(){
 		super(Edge.class);
 

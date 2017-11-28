@@ -35,9 +35,7 @@ public class ViewLabyrinth extends IView {
 	public ViewLabyrinth(Labyrinth b, Pane pane) {
 		this.labyrinth = b;
 		this.pane = pane;
-		Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int height = (int)dimension.getHeight();
-		int width  = (int)dimension.getWidth();
+		
 		pane.autosize();
 
 		SPAN =4;
@@ -155,7 +153,7 @@ public class ViewLabyrinth extends IView {
 			Rectangle square = new Rectangle ( x , y , xspan , yspan ) ;
 
 			if(isDoor){
-				square.setRotate((CELL*SPAN));
+				square.setRotate((CELL*SPAN)/2);
 				square.setFill (DOORCOLOR) ;
 			}
 			else{

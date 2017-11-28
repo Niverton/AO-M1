@@ -17,7 +17,7 @@ public abstract class Object {
 
 	/**
 	 * 
-	 * @param l le labyrinthe dans lequel va se d�placer le personnage.
+	 * 
 	 * @param posX l'abscisse (coordonnée X) initiale du personnage.
 	 * @param posY l'ordonnée (coordonnée Y) initiale du personnage.
 	 */

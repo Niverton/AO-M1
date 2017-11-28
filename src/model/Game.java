@@ -11,6 +11,7 @@ public class Game {
 	private BadBoys badBoys; 
 	private static Game instance; 
 	private ListObject listObject;
+	private boolean finish; 
 	private Game(){
 		labyrinth = new Labyrinth(); 
 		player = new Player(); 
