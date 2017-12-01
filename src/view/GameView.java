@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 import model.Game;
 
 
-public class GameView extends IView {
+public class GameView extends BaseView {
 	protected Pane pane;
 	private int nbrX; 
 	private int nbrY;

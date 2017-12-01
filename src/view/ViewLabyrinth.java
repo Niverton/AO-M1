@@ -18,7 +18,7 @@ import model.graph.Vertex;
  * @author laurent
  *
  */
-public class ViewLabyrinth extends IView {
+public class ViewLabyrinth extends BaseView {
 	private static Labyrinth labyrinth;
 	private  static Pane pane;
 	protected static final Paint WALLCOLOR = Color.BURLYWOOD; 

@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import model.Game;
 import model.Player;
 
-public class PlayerView extends IView {
+public class PlayerView extends BaseView {
 
 	private Pane pane;
 	private ImageView imageView;
