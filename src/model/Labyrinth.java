@@ -20,7 +20,7 @@ public class Labyrinth {
 	 *  class singleton: il n'exista qu'un seul plateau de jeu. 
 	 */
 
-	public int size; 
+	public static final int size = 16; 
 	private Graph graph ; 
 
 
@@ -29,7 +29,6 @@ public class Labyrinth {
 	 * Instancie le labirynthe et les portes 
 	 */
 	public Labyrinth(){
-		size = 16;
 		graph = new Graph();
 		Vertex base = new Vertex(0,0,0);
 		graph.addVertex(base);
