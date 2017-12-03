@@ -40,8 +40,6 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	 * @param arg0 l'�v�nement clavier capturer. 
 	 */
 	public void handle(KeyEvent arg0) {
-		System.out.println("test");
-		
 		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
 			game.movePlayer(Directions.West);
 			
