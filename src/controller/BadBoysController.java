@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import javafx.scene.layout.Pane;
 
-public class BardBoysController  implements IController, Observer{
+public class BadBoysController  implements IController, Observer{
 
 	/**
 	 * @param o l'observable appelant 
