@@ -4,30 +4,26 @@ import controller.PlayerController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import model.BadBoys;
 import model.Game;
-import model.Player;
 
-public class PlayerView extends BaseView {
+public class BadBoysView extends BaseView {
 
 	private Pane pane;
 	private ImageView imageView;
-	private Player player;
+	private BadBoys badboys;
 	
 
-	public PlayerView( Pane pane){
+	public BadBoysView( Pane pane){
 		this.pane = pane;
-		this.player = Game.getInstance().getPlayer();
+		this.badboys = Game.getInstance().getBadBoys();
 	
-	}
-
-
-	public void setKeyPressed(PlayerController playerController) {
-		imageView.setOnKeyPressed(playerController);
 	}
 
 	@Override
 	public void view() {
-		Image image = new Image ( getClass( ).getResource("ressource/smiley.jpg").toExternalForm ( ) ) ;
+		// TODO Adapter le code de PlayerView aux BadBoys
+		Image image = new Image ( getClass( ).getResource("ressource/bad.jpg").toExternalForm ( ) ) ;
 		imageView = new ImageView ( image ) ;
 		imageView.setFocusTraversable(true);
 		pane.getChildren().add( this.imageView ) ;
@@ -45,7 +41,7 @@ public class PlayerView extends BaseView {
 
 	@Override
 	public void uptdate() {
-		// TODO Auto-generated method stub
+		// TODO Adapter le code de PlayerView aux BadBoys
 		double xt = ( int ) ( ( WALL + player.getPosX()* ( WALL+CELL) )* SPAN ) ;
 		double yt = ( int ) ( ( WALL + player.getPosY() * ( WALL+CELL) )  *SPAN ) ;
 

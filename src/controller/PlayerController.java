@@ -40,7 +40,6 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	 * @param arg0 l'�v�nement clavier capturer. 
 	 */
 	public void handle(KeyEvent arg0) {
-		// TODO Auto-generated method stub
 		System.out.println("test");
 		
 		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
@@ -69,8 +68,6 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	 * @param arg les arguments pass�s par l'observable.
 	 */
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
 		v.uptdate();
 	}
 
