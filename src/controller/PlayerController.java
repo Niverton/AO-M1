@@ -41,6 +41,7 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	 */
 	public void handle(KeyEvent arg0) {
 		// TODO Auto-generated method stub
+		System.out.println("test");
 		
 		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
 			game.movePlayer(Directions.West);

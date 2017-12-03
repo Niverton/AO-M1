@@ -80,7 +80,7 @@ public class Labyrinth {
 	 */
 	public boolean isWall(Vertex vertex, Directions dir){
 
-		return   (vertex.inBorders(0, size, dir)) && !graph.isConnected(vertex, dir) ; 
+		return !graph.isConnected(vertex, dir) ; 
 	}
 	public boolean isOpenDoor(Vertex vertex, Directions dir){
 		return graph.isOpenDoor(vertex, dir);

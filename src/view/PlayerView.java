@@ -23,7 +23,7 @@ public class PlayerView extends BaseView {
 
 	public void setKeyPressed(PlayerController playerController) {
 		// TODO Auto-generated method stub
-		//imageView.setOnKeyPressed(playerController);
+		imageView.setOnKeyPressed(playerController);
 	}
 
 	@Override
