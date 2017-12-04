@@ -1,11 +1,10 @@
 package model;
 
 import javafx.geometry.Point2D;
+import model.interfaces.Position;
 
-public abstract class ObjectGame {
+public abstract class ObjectGame implements Position {
 	protected Point2D position; 
-	
-
 	/**
 	 * 
 	 * @param l le labyrinthe dans lequel va se d�placer le personnage.
@@ -38,22 +37,14 @@ public abstract class ObjectGame {
 	 * 
 	 * @param p la nouvelle position de l'objet
 	 */
-	protected void setPosition(Point2D p){
+	public void setPosition(Point2D p){
 		position = p; 
 	}
-	/**
-	 * 
-	 * @return L'abscisse de l'objet.
-	 */
 	public int getPosX(){
-		return (int) position.getX();
+		return (int)this.position.getX();
 	}
-	/**
-	 * 
-	 * @return L'ordonn�e de l'objet 
-	 */
 	public int getPosY(){
-		return (int)position.getY();
+	return (int)this.position.getY();	
 	}
 	
 	

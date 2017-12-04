@@ -31,4 +31,5 @@ public class Candy extends ObjectGame {
 		view.destroy();
 		return type.value();
 	}
+
 }

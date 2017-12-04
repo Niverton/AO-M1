@@ -29,4 +29,5 @@ public class NonMoveableObject extends ObjectGame {
 	public String  getName(){
 		return name;
 	}
+	
 }

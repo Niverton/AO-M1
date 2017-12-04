@@ -19,6 +19,8 @@ public class Player extends Personnage {
 	public Player (int posX, int posY){
 		super( posX, posY); 
 	}
+
+
 	
 	
 	

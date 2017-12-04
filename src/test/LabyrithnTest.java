@@ -10,17 +10,11 @@ import model.Labyrinth;
 
 public class LabyrithnTest {
 
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+	
 
 	@Test
 	public void test() {
-		Labyrinth l = new Labyrinth(); 
+		Labyrinth l = new Labyrinth(10); 
 		
 	}
 
