@@ -20,15 +20,15 @@ public class Candies {
 	private List<Candy> list;
 	private Random rand;
 	
-	public Candies(Pane pane) {
-		this.pane = pane;
+	public Candies() {
+		
 		list = new ArrayList<>();
 		rand = new Random();
 	}
 	
-	public void add() {
-		int x = rand.nextInt(Labyrinth.size);
-		int y = rand.nextInt(Labyrinth.size);
+	public void add(int min, int max) {
+		int x = rand.nextInt(min);
+		int y = rand.nextInt(max);
 		//TODO Plus grosse probabilité pour les scores plus faibles ? 
 		CandyType t[] = CandyType.values();
 		int type = rand.nextInt(t.length);

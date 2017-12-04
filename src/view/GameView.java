@@ -39,8 +39,8 @@ public class GameView extends BaseView {
 				( (WALL + CELL) *nbrY + WALL) *SPAN ) ;
 		scene.setFill (SCENECOLOR ) ;
 		stage.setScene( scene ) ;
-		stage.setFullScreen(true);
-		stage.setFullScreenExitHint("");
+		//stage.setFullScreen(true);
+		//stage.setFullScreenExitHint("");
 		stage.show();
 	}
 	/**

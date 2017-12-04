@@ -18,9 +18,10 @@ public class CandyController implements IController, Observer {
 	
 	@Override
 	public void start(Pane pane) {
-		candies = new Candies(pane);
+		candies = new Candies();
 		//TODO remove me
-		candies.add();
+		// A CHANGER Pas le faire ici ajouter une methode dans ae qui le fait 
+		//candies.add(0,10);
 	}
 	
 	@Override
@@ -35,6 +36,7 @@ public class CandyController implements IController, Observer {
 		 */
 
 		// TODO Récupèrer le score
+		//A CHANGER on ne retourne pas d'entier juste  et pas de param�tre p passe le directrment en meme temps que la vue. 
 		int score = candies.maybeEatenBy(p);
 	}
 }

@@ -10,12 +10,16 @@ public class Game {
 	private BadBoys badBoys; 
 	private static Game instance; 
 	private ListObject listObject;
+	private Candies candies; 
 	private boolean finish; 
+	private int score; 
 	private Game(){
-		labyrinth = new Labyrinth(); 
+		labyrinth = new Labyrinth(16); 
 		player = new Player(); 
 		badBoys = new BadBoys();
 		listObject = new ListObject();
+		candies = new Candies(); 
+		score =0 ;
 	}
 	/**
 	 * 
@@ -41,8 +45,18 @@ public class Game {
 	public void movePlayer(Directions dir) {
 		// TODO Auto-generated method stub
 		Vertex v = new Vertex(player.getPosX(), player.getPosY(),0);
+		
 		if(!labyrinth.isWall(v, dir))
 			player.move(dir);
+		
+		///////////////////// POUR CANDY ////////.
+		/****
+		 * 
+		 *  test si quand il se deplace est ce quil y a colision avec un des candy   avec player.getPosX(), player.getPosY()
+		 *  	Si tel est le cas remove Candy.  et score ++ 
+		 * 
+		 * 
+		 */
 	}
 	/**
 	 * 
@@ -65,5 +79,22 @@ public class Game {
 	 */
 	public ListObject getListObject(){
 		return listObject;
+	}
+	/**
+	 * 
+	 * @return la liste des bombons 
+	 */
+	public Candies getCandies(){
+		return this.candies;
+	}
+	public void removeCandies(){
+		//this.candies.removeAll(); 
+	}
+	/**
+	 * 
+	 * @return le score de la partie.
+	 */
+	public int  getSCore(){
+		return this.score;
 	}
 }
