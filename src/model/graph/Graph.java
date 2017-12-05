@@ -7,14 +7,16 @@ import java.util.Random;
 import java.util.Set;
 
 import org.jgrapht.graph.Multigraph;
+import org.jgrapht.graph.SimpleGraph;
 import org.jgrapht.traverse.BreadthFirstIterator;
 
-import model.directions.Directions;
+import model.Directions;
+import model.interfaces.JGraph;
 
 
 
 @SuppressWarnings("serial")
-public class Graph extends Multigraph<Vertex, Edge>{
+public class Graph extends SimpleGraph<Vertex, Edge> implements JGraph{
 
 	public Graph(){
 		super(Edge.class);
@@ -38,7 +40,7 @@ public class Graph extends Multigraph<Vertex, Edge>{
 	 * 
 	 * @param vertex sommet cource 
 	 * @param dir direction pour trouver le sommet cible.
-	 * @return vrai si le sommet source et le sommet cible sont connectés. 
+	 * @return vrai si le sommet source et le sommet cible sont connectï¿½s. 
 	 */
 	public boolean isConnected(Vertex vertex , Directions  dir){
 		Vertex target = this.getTarget(vertex, dir);
@@ -53,14 +55,14 @@ public class Graph extends Multigraph<Vertex, Edge>{
 	 */
 	public Vertex getTarget(Vertex vertex , Directions  dir){
 		Vertex target= null;
-		switch (dir.getName()){
-		case "NORTH": target = new Vertex(vertex.getX(), vertex.getY()-1, 0);  
+		switch (dir){
+		case North: target = new Vertex(vertex.getX(), vertex.getY()-1, 0);  
 		break; 
-		case "SOUTH":  target = new Vertex(vertex.getX(), vertex.getY()+1, 0); 
+		case South:  target = new Vertex(vertex.getX(), vertex.getY()+1, 0); 
 		break; 
-		case "EAST":  target = new Vertex(vertex.getX()+1, vertex.getY(), 0); 
+		case East:  target = new Vertex(vertex.getX()+1, vertex.getY(), 0); 
 		break; 
-		case "WEST":  target = new Vertex(vertex.getX()-1, vertex.getY(), 0); 
+		case West:  target = new Vertex(vertex.getX()-1, vertex.getY(), 0); 
 		break;
 
 		}
@@ -69,7 +71,7 @@ public class Graph extends Multigraph<Vertex, Edge>{
 
 	/**
 	 * 
-	 * @param vertex sommmet créé
+	 * @param vertex sommmet crï¿½ï¿½
 	 * @return le sommet qui correspont au sommet d graph. 
 	 */
 	public Vertex getRefVertex(Vertex vertex){

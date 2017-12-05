@@ -1,6 +1,6 @@
 package model.graph;
 
-import model.directions.Directions;
+import model.Directions;
 
 /**
  * 
@@ -27,14 +27,14 @@ public class Vertex   implements Comparable<Vertex>{
 	 * @param min position minimum 
 	 * @param max position maximum 
 	 * @param dir la direction a tester 
-	 * @return si le sommet est bien entre min et max selon la direction donnée.
+	 * @return si le sommet est bien entre min et max selon la direction donnï¿½e.
 	 */
 	public boolean inBorders(int min, int max, Directions dir){
-		switch (dir.getName()){
-		case "NORTH": return this.getY() > min;
-		case "WEST": return this.getX() > min;
-		case "SOUTH": return this.getY() < max-1;
-		case "EAST": return this.getX() < max-1;
+		switch (dir){
+		case North: return this.getY() > min;
+		case West: return this.getX() > min;
+		case South: return this.getY() < max-1;
+		case East: return this.getX() < max-1;
 
 		}
 		return false;
@@ -57,13 +57,13 @@ public class Vertex   implements Comparable<Vertex>{
 		return this.nbr;
 	}
 	/**
-	 * affichage des coordonées de notre objet Point2D
+	 * affichage des coordonï¿½es de notre objet Point2D
 	 */
 	public String toString(){
 		return x+ " ->" + y;
 	}
 	/**
-	 * @param arg0 le sommet à comparer.
+	 * @param arg0 le sommet ï¿½ comparer.
 	 */
 	public int compareTo(Vertex arg0) {
 		// TODO Auto-generated method stub

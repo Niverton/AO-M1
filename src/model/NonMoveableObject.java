@@ -2,7 +2,7 @@ package model;
 
 
 
-public class NonMoveableObject extends Object {
+public class NonMoveableObject extends ObjectGame {
 	private String name; 
 	/**
 	 * 
@@ -29,4 +29,5 @@ public class NonMoveableObject extends Object {
 	public String  getName(){
 		return name;
 	}
+	
 }

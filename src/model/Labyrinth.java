@@ -1,13 +1,10 @@
 package model;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
-import model.directions.Directions;
-import model.directions.East;
-import model.directions.North;
-import model.directions.South;
-import model.directions.West;
 import model.graph.Edge;
 import model.graph.Edge.Type;
 import model.graph.Graph;
@@ -23,7 +20,7 @@ public class Labyrinth {
 	 *  class singleton: il n'exista qu'un seul plateau de jeu. 
 	 */
 
-	public int size; 
+	private int size = 16; 
 	private Graph graph ; 
 
 
@@ -31,14 +28,14 @@ public class Labyrinth {
 	/**
 	 * Instancie le labirynthe et les portes 
 	 */
-	public Labyrinth(){
-		size = 16;
+	public Labyrinth(int size){
 		graph = new Graph();
 		Vertex base = new Vertex(0,0,0);
 		graph.addVertex(base);
 		this.BuildLabyrinth(base);
-		this.openRandomDoor(16);
-
+		this.size = size; 
+		this.openRandomDoor(size);
+		
 	}
 	/**
 	 * 
@@ -48,30 +45,25 @@ public class Labyrinth {
 	private void BuildLabyrinth(Vertex vertex){
 
 		Directions direction[] = new Directions[4]; 
-		Vector<Directions> list = new Vector<Directions >( );
-		list.add(new North());
-		list.add(new East());
-		list.add(new South());
-		list.add(new West());
+		Vector<Directions> list = new Vector<Directions>( );
+		list.addAll(Arrays.asList(Directions.values()));
 		Random random = new Random();
 		for(int i=0; i< direction.length; ++i){
 			int index = random.nextInt(list.size());
 			direction[i] = list.get(index); 
-			list.remove(index); 
-
+			list.remove(index);
 		}
 
-		for(int i=0 ; i < direction.length ; i++){
-			Directions dir = direction[i];
+		for(Directions dir : direction){
 			if(vertex.inBorders(0, size, dir) && graph.doesntExist(vertex, dir) ){
 				int x = vertex.getX(); 
 				int y = vertex.getY();
 				int xt =x, yt= y; 
-				switch (dir.getName()){
-				case "NORTH": yt --; break; 
-				case "SOUTH": yt++; break; 
-				case "EAST": xt++; break; 
-				case "WEST": xt--; break;
+				switch (dir){
+				case North: yt --; break; 
+				case South: yt++; break; 
+				case East: xt++; break; 
+				case West: xt--; break;
 				}
 				Vertex next = new Vertex(xt, yt, vertex.getNbr()+1);
 				graph.addVertex(next);
@@ -89,7 +81,7 @@ public class Labyrinth {
 	 */
 	public boolean isWall(Vertex vertex, Directions dir){
 
-		return   (vertex.inBorders(0, size, dir)) && !graph.isConnected(vertex, dir) ; 
+		return !graph.isConnected(vertex, dir) ; 
 	}
 	public boolean isOpenDoor(Vertex vertex, Directions dir){
 		return graph.isOpenDoor(vertex, dir);
@@ -110,14 +102,10 @@ public class Labyrinth {
 		return size;
 	}
 	/**
-	 * Ouvre des portes de façon aléatoire.
+	 * Ouvre des portes de faï¿½on alï¿½atoire.
 	 */
 	public void openRandomDoor(int nb){
-		Directions directions[] = new Directions[4]; 
-		directions[0] = new East(); 
-		directions[1] = new North(); 
-		directions[2] = new South(); 
-		directions[3] = new West();
+		Directions directions[] = Directions.values();
 		for(int j=0 ; j< nb ; j++){
 			for(int i=0; i< 1000 ; ++i){
 				Vertex v = graph.randomVertex();

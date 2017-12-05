@@ -45,5 +45,6 @@ public class BadBoy extends Personnage {
 	public void lowerIrritate(){
 		state.lowerIrritate(this);
 	}
+	
 
 }

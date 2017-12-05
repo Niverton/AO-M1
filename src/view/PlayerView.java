@@ -7,7 +7,7 @@ import javafx.scene.layout.Pane;
 import model.Game;
 import model.Player;
 
-public class PlayerView extends IView {
+public class PlayerView extends BaseView {
 
 	private Pane pane;
 	private ImageView imageView;
@@ -22,14 +22,13 @@ public class PlayerView extends IView {
 
 
 	public void setKeyPressed(PlayerController playerController) {
-		// TODO Auto-generated method stub
+
 		imageView.setOnKeyPressed(playerController);
 	}
 
 	@Override
 	public void view() {
-		// TODO Auto-generated method stub
-		Image image = new Image ( getClass( ).getResource("ressource/smyley.jpg").toExternalForm ( ) ) ;
+		Image image = new Image ( getClass( ).getResource("ressource/smiley.jpg").toExternalForm ( ) ) ;
 		imageView = new ImageView ( image ) ;
 		imageView.setFocusTraversable(true);
 		pane.getChildren().add( this.imageView ) ;

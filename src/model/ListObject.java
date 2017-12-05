@@ -2,7 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-public class ListObject {
+import model.interfaces.ListO;
+
+public class ListObject implements ListO {
 	ArrayList<NonMoveableObject> listObject; 
 	
 	public ListObject(){

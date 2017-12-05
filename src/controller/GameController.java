@@ -11,13 +11,17 @@ public class GameController  extends Observable {
 	private GameView gameView;
 	private LabyrinthController labyrinthController;
 	private PlayerController playerController;
-	private Game game; 
+	private CandyController candyController;
+	private Game game;
+	
 	private GameController(){
 		game = Game.getInstance();
 		labyrinthController = new LabyrinthController(game.getLabyrinth());
 		playerController = new PlayerController(this);
+		candyController = new CandyController();
 		
 		addObserver(playerController);
+		addObserver(candyController);
 	}
 	/**
 	 * 
@@ -29,13 +33,13 @@ public class GameController  extends Observable {
 		
 		labyrinthController.start(gameView.getPane());
 		playerController.start(gameView.getPane());
-		
+		candyController.start(gameView.getPane());
 		
 		
 	}
 	/**
 	 * 
-	 * @return l'unique instance de GameController. (on ne peut avoir qu'un seul jeux démarré par lancement) 
+	 * @return l'unique instance de GameController. (on ne peut avoir qu'un seul jeux dï¿½marrï¿½ par lancement) 
 	 */
 	public static GameController getInstance(){
 		if(gameController == null)
