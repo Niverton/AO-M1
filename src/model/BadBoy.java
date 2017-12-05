@@ -31,7 +31,7 @@ public class BadBoy extends Personnage {
 	 * 
 	 * @return la chaine de carract�re correspondant � l'�tat.
 	 */
-	public String getSateName(){
+	public String getStateName(){
 		return state.toString();
 	}
 	/**
