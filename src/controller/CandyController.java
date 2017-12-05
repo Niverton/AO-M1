@@ -37,6 +37,6 @@ public class CandyController implements IController, Observer {
 
 		// TODO Récupèrer le score
 		//A CHANGER on ne retourne pas d'entier juste  et pas de param�tre p passe le directrment en meme temps que la vue. 
-		int score = candies.maybeEatenBy(p);
+		//int score = candies.maybeEatenBy(p);
 	}
 }

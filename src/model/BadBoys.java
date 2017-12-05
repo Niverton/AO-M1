@@ -58,10 +58,10 @@ public class BadBoys {
 	 */
 	public void setAllInitialPos(List<Point2D> p ){
 		assert(  (p.size() != this.getNumber())) : "probleme set all position liste non conforme";
-		int i =0;
-		for(Point2D pos : p){
+		//int i =0;
+		//for(Point2D pos : p){
 			//this.lBadBoys.get(i).setPosition(pos);
-		}
+		//}
 	}
 	/**
 	 * 

@@ -1,6 +1,6 @@
 package view;
 
-import controller.PlayerController;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -12,7 +12,6 @@ public class BadBoysView extends BaseView {
 	private Pane pane;
 	private ImageView imageView;
 	private BadBoys badboys;
-	
 
 	public BadBoysView( Pane pane){
 		this.pane = pane;
