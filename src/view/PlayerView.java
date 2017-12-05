@@ -23,7 +23,7 @@ public class PlayerView extends IView {
 
 	public void setKeyPressed(PlayerController playerController) {
 		// TODO Auto-generated method stub
-		//imageView.setOnKeyPressed(playerController);
+		imageView.setOnKeyPressed(playerController);
 	}
 
 	@Override
@@ -35,6 +35,8 @@ public class PlayerView extends IView {
 		pane.getChildren().add( this.imageView ) ;
 		
 		player.getPosX();
+		System.out.print(player.getPosX());
+		System.out.print(player.getPosY());
 		double xt = ( int ) ( ( WALL + player.getPosX()* ( WALL+CELL) )* SPAN ) ;
 		double yt = ( int ) ( ( WALL + player.getPosY() * ( WALL+CELL) )  *SPAN ) ;
 		imageView.setFitWidth(CELL*SPAN);

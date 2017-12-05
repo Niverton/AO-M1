@@ -5,7 +5,7 @@ public abstract class IView {
 	protected static  int WALL=1; 
 	protected  static float CELL =9; 
 	/**
-	 * Lancer la vue et affichage des éléments.
+	 * Lancer la vue et affichage des ï¿½lï¿½ments.
 	 */
 	public abstract void view();
 	/**
