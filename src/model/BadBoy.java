@@ -9,6 +9,7 @@ import model.state.State;
  */
 public class BadBoy extends Personnage {
 	private State state; 
+	
 	/**
 	 * 
 	 * @param board le labyrinth 
@@ -21,26 +22,26 @@ public class BadBoy extends Personnage {
 	}
 	/**
 	 * 
-	 * @param t l'état dans lequel on veut mettre un méchant
+	 * @param t l'ï¿½tat dans lequel on veut mettre un mï¿½chant
 	 */
 	public void setState(State t){
 		state = t;
 	}
 	/**
 	 * 
-	 * @return la chaine de carractère correspondant à l'état.
+	 * @return la chaine de carractï¿½re correspondant ï¿½ l'ï¿½tat.
 	 */
 	public String getSateName(){
 		return state.toString();
 	}
 	/**
-	 * changement d'état. Rendre plus aggressif le méchant. 
+	 * changement d'ï¿½tat. Rendre plus aggressif le mï¿½chant. 
 	 */
 	public void moreIrritate(){
 		state.moreIrritate(this);
 	}
 	/**
-	 * Changement d'état. Rendre moins agressif le méchant.
+	 * Changement d'ï¿½tat. Rendre moins agressif le mï¿½chant.
 	 */
 	public void lowerIrritate(){
 		state.lowerIrritate(this);
