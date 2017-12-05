@@ -1,6 +1,11 @@
 package model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import javafx.geometry.Point2D;
 import model.graph.Vertex;
 
 
@@ -16,8 +21,19 @@ public class Game {
 	private Door door;
 	private Game(){
 		labyrinth = new Labyrinth(16); 
-		player = new Player(); 
-		badBoys = new BadBoys(0,16);
+
+		player = new Player();
+		
+		int nbBadBoys = 3;
+		badBoys = new BadBoys(nbBadBoys);
+		Random r = new Random();
+		List<Point2D> lp = new ArrayList<Point2D>();
+		for (int i = 0 ; i < nbBadBoys ; i++) {
+			Point2D p = new Point2D(r.nextInt(16), r.nextInt(16));
+			lp.add(p);
+		}
+		badBoys.setAllInitialPos(lp);
+	
 		listObject = new ListObject();
 		candies = new Candies(); 
 		door = new Door("door");

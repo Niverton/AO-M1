@@ -1,6 +1,6 @@
 package model;
 
-import java.awt.geom.Point2D;
+import javafx.geometry.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -13,16 +13,20 @@ public class BadBoys {
 	
 	/**
 	 * 
-	 * @param number le nombre de méchants initial.
+	 * @param number le nombre de mï¿½chants initial.
 	 */
 	public BadBoys(int number){
 		lBadBoys = new ArrayList<>(number);
+		for (int i = 0 ; i < number ; i++) {
+			lBadBoys.add(new BadBoy());
+		}
 		
 		
 		
 	}
-	public BadBoys(int min, int max ) {
-		// TODO Auto-generated constructor stub
+
+	public BadBoys() {
+
 		lBadBoys = new ArrayList<>();
 		this.lBadBoys.add(new BadBoy(5,5));
 	}
@@ -36,7 +40,7 @@ public class BadBoys {
 	}
 	/**
 	 * 
-	 * @param many nombre de mechant a supprimer
+	 * @param many nombre de mechants a supprimer
 	 */
 	public void removeBadBoys(int many){
 		for(int i=0 ; i< many ; i++){
@@ -45,39 +49,37 @@ public class BadBoys {
 	}
 	/**
 	 * 
-	 * @param many le nombre de mechant a ajouter 
-	 * @param pos la position a laquelle ils seront ajoutés.
+	 * @param pos la position a laquelle ils seront ajoutï¿½s.
 	 */
-	public void addBadBoy(int many, Point2D pos){
-		for(int i=0 ; i< many ; i++){
-			BadBoy b = new BadBoy();
-			//b.setPosition(pos);
-			this.lBadBoys.add(b);
-		}
+	public void addBadBoy(Point2D pos){
+		BadBoy b = new BadBoy();
+		b.setPosition(pos);
+		this.lBadBoys.add(b);
 		
 	}
 	/**
 	 * 
-	 * @param p liste de positions des mechants a l'état initial. 
+	 * @param p liste de positions des mechants a l'ï¿½tat initial. 
 	 */
 	public void setAllInitialPos(List<Point2D> p ){
 		assert(  (p.size() != this.getNumber())) : "probleme set all position liste non conforme";
-		//int i =0;
-		//for(Point2D pos : p){
-			//this.lBadBoys.get(i).setPosition(pos);
-		//}
+
+		int i =0;
+		for(Point2D pos : p){
+			this.lBadBoys.get(i++).setPosition(pos);
+		}
+
 	}
 	/**
 	 * 
-	 * @return le nombre de méchants.
+	 * @return le nombre de mï¿½chants.
 	 */
 	private int getNumber() {
-		// TODO Auto-generated method stub
 		return this.lBadBoys.size();
 	}
 	/**
 	 * 
-	 * @return la liste des méchants.
+	 * @return la liste des mï¿½chants.
 	 */
 	public ArrayList<BadBoy> getList(){
 		return this.lBadBoys;

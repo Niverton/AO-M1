@@ -14,6 +14,10 @@ public class PlayerView extends BaseView {
 	private Player player;
 	
 
+	/**
+	 * 
+	 * @param pane Le pane du jeu.
+	 */
 	public PlayerView( Pane pane){
 		this.pane = pane;
 		this.player = Game.getInstance().getPlayer();
@@ -21,11 +25,19 @@ public class PlayerView extends BaseView {
 	}
 
 
+	/**
+	 * 
+	 * @param playerController le controller du joueur.
+	 */
 	public void setKeyPressed(PlayerController playerController) {
 
 		imageView.setOnKeyPressed(playerController);
 	}
 
+	/**
+	 * 
+	 * Initialise l'affichage du joueur sur l'écran et l'affiche une premiere fois.
+	 */
 	@Override
 	public void view() {
 		Image image = new Image ( getClass( ).getResource("ressource/smiley.jpg").toExternalForm ( ) ) ;
@@ -46,6 +58,10 @@ public class PlayerView extends BaseView {
 	}
 
 
+	/**
+	 * 
+	 * Actualise l'affichage du joueur.
+	 */
 	@Override
 	public void uptdate() {
 		// TODO Auto-generated method stub
