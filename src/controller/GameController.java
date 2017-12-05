@@ -12,6 +12,7 @@ public class GameController  extends Observable {
 	private LabyrinthController labyrinthController;
 	private PlayerController playerController;
 	private CandyController candyController;
+	private DoorController doorController;
 	private Game game;
 	
 	private GameController(){
@@ -19,7 +20,7 @@ public class GameController  extends Observable {
 		labyrinthController = new LabyrinthController(game.getLabyrinth());
 		playerController = new PlayerController(this);
 		candyController = new CandyController();
-		
+		doorController = new DoorController();
 		addObserver(playerController);
 		addObserver(candyController);
 	}
@@ -34,7 +35,7 @@ public class GameController  extends Observable {
 		labyrinthController.start(gameView.getPane());
 		playerController.start(gameView.getPane());
 		candyController.start(gameView.getPane());
-		
+		doorController.start(gameView.getPane());
 		
 	}
 	/**

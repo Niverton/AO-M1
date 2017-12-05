@@ -13,12 +13,15 @@ public class Game {
 	private Candies candies; 
 	//private boolean finish; 
 	private int score; 
+	private Door door;
 	private Game(){
 		labyrinth = new Labyrinth(16); 
 		player = new Player(); 
 		badBoys = new BadBoys();
 		listObject = new ListObject();
 		candies = new Candies(); 
+		door = new Door("door");
+		
 		score =0 ;
 	}
 	/**
@@ -96,5 +99,9 @@ public class Game {
 	 */
 	public int  getSCore(){
 		return this.score;
+	}
+	public Door getDoor() {
+		// TODO Auto-generated method stub
+		return this.door;
 	}
 }
