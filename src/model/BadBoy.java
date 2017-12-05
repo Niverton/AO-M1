@@ -9,6 +9,7 @@ import model.state.State;
  */
 public class BadBoy extends Personnage {
 	private State state; 
+	
 	/**
 	 * 
 	 * @param board le labyrinth 
