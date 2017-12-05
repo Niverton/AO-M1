@@ -11,17 +11,17 @@ public class Game {
 	private static Game instance; 
 	private ListObject listObject;
 	private Candies candies; 
-	//private boolean finish; 
+	private boolean end; 
 	private int score; 
 	private Door door;
 	private Game(){
 		labyrinth = new Labyrinth(16); 
 		player = new Player(); 
-		badBoys = new BadBoys();
+		badBoys = new BadBoys(0,16);
 		listObject = new ListObject();
 		candies = new Candies(); 
 		door = new Door("door");
-		
+		end = false;
 		score =0 ;
 	}
 	/**
@@ -49,9 +49,13 @@ public class Game {
 		// TODO Auto-generated method stub
 		Vertex v = new Vertex(player.getPosX(), player.getPosY(),0);
 		
-		if(!labyrinth.isWall(v, dir))
+		if(!labyrinth.isWall(v, dir)){
 			player.move(dir);
-		
+			if(player.getPosition().equals(door.getPosition()))
+				end = true;
+		}
+			
+		System.out.println(player.getPosition() + " -------> "+ door.getPosition());
 		///////////////////// POUR CANDY ////////.
 		/****
 		 * 
@@ -103,5 +107,8 @@ public class Game {
 	public Door getDoor() {
 		// TODO Auto-generated method stub
 		return this.door;
+	}
+	public boolean isEnd(){
+		return this.end;
 	}
 }

@@ -18,11 +18,15 @@ public class BadBoys {
 	public BadBoys(int number){
 		lBadBoys = new ArrayList<>(number);
 		
+		
+		
 	}
-	public BadBoys() {
+	public BadBoys(int min, int max ) {
 		// TODO Auto-generated constructor stub
 		lBadBoys = new ArrayList<>();
+		this.lBadBoys.add(new BadBoy(5,5));
 	}
+	
 	/**
 	 * 
 	 * @param bad le mechant a suprimer.

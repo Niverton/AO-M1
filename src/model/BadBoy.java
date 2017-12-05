@@ -19,6 +19,13 @@ public class BadBoy extends Personnage {
 		// TODO Auto-generated constructor stub
 		
 	}
+	
+	public BadBoy( int x, int y) {
+		super(x,y);
+		state = new Nice();
+		// TODO Auto-generated constructor stub
+		
+	}
 	/**
 	 * 
 	 * @param t l'état dans lequel on veut mettre un méchant
