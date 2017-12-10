@@ -58,9 +58,9 @@ public class GameController  extends Observable {
 	 */
 	public void change(){
 		gameView.update();
-		 setChanged();
-         //notify observers for change
-		 this.notifyObservers();
+		setChanged();
+        //notify observers for change
+		this.notifyObservers();
        
         
 	}

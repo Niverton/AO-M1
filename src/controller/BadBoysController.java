@@ -14,7 +14,7 @@ public class BadBoysController  implements IController, Observer{
 	private Game game;
 	/**
 	 * 
-	 * @param game l'unique instance de Game controller.
+	 * @param gameController l'unique instance de Game controller.
 	 */
 	public BadBoysController( GameController gameController){
 	
