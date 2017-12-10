@@ -2,11 +2,9 @@ package model.graph;
 
 
 import java.util.Iterator;
-
 import java.util.Random;
 import java.util.Set;
 
-import org.jgrapht.graph.Multigraph;
 import org.jgrapht.graph.SimpleGraph;
 import org.jgrapht.traverse.BreadthFirstIterator;
 

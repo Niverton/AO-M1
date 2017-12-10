@@ -1,6 +1,7 @@
 package model;
 
 
+import javafx.geometry.Point2D;
 import model.graph.Vertex;
 
 
@@ -13,12 +14,15 @@ public class Game {
 	private Candies candies; 
 	private boolean finish; 
 	private int score; 
+	
 	private Game(){
 		labyrinth = new Labyrinth(16); 
 		player = new Player(); 
 		badBoys = new BadBoys();
 		listObject = new ListObject();
 		candies = new Candies(); 
+		candies.add();
+		candies.add();
 		score =0 ;
 	}
 	/**
@@ -35,7 +39,6 @@ public class Game {
 	 * @return l labyrinth
 	 */
 	public Labyrinth getLabyrinth() {
-		// TODO Auto-generated method stub
 		return labyrinth;
 	}
 	/**
@@ -43,20 +46,13 @@ public class Game {
 	 * @param dir la direction dans lequel deplacer le joueur.
 	 */
 	public void movePlayer(Directions dir) {
-		// TODO Auto-generated method stub
 		Vertex v = new Vertex(player.getPosX(), player.getPosY(),0);
 		
 		if(!labyrinth.isWall(v, dir))
 			player.move(dir);
 		
-		///////////////////// POUR CANDY ////////.
-		/****
-		 * 
-		 *  test si quand il se deplace est ce quil y a colision avec un des candy   avec player.getPosX(), player.getPosY()
-		 *  	Si tel est le cas remove Candy.  et score ++ 
-		 * 
-		 * 
-		 */
+		Point2D p_pos = player.getPosition();
+		score += candies.maybeEaten(p_pos);
 	}
 	/**
 	 * 
@@ -70,7 +66,6 @@ public class Game {
 	 * @return le joueur.
 	 */
 	public Player getPlayer() {
-		// TODO Auto-generated method stub
 		return player;
 	}
 	/**
@@ -82,19 +77,21 @@ public class Game {
 	}
 	/**
 	 * 
-	 * @return la liste des bombons 
+	 * @return la liste des bonbons 
 	 */
 	public Candies getCandies(){
 		return this.candies;
 	}
-	public void removeCandies(){
-		//this.candies.removeAll(); 
-	}
+
 	/**
 	 * 
 	 * @return le score de la partie.
 	 */
-	public int  getSCore(){
+	public int getScore(){
 		return this.score;
+	}
+	
+	public void setScore(int s) {
+		this.score = s;
 	}
 }

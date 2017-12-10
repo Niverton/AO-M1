@@ -2,16 +2,11 @@ package view;
 
 
 
-import java.awt.Dimension;
-
 import javafx.scene.Scene;
-
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
-
-
 import model.Game;
 
 
@@ -51,7 +46,7 @@ public class GameView extends BaseView {
 		return pane;
 	}
 	@Override
-	public void uptdate() {
+	public void update() {
 		// TODO Auto-generated method stub
 		/*Player p = Player.getInstance(board); 
 		Door d = Door.getInstance(board);

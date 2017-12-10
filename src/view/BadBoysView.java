@@ -1,6 +1,5 @@
 package view;
 
-import controller.PlayerController;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -40,7 +39,7 @@ public class BadBoysView extends BaseView {
 
 
 	@Override
-	public void uptdate() {
+	public void update() {
 		// TODO Adapter le code de PlayerView aux BadBoys
 		/*double xt = ( int ) ( ( WALL + player.getPosX()* ( WALL+CELL) )* SPAN ) ;
 		double yt = ( int ) ( ( WALL + player.getPosY() * ( WALL+CELL) )  *SPAN ) ;
