@@ -1,6 +1,10 @@
 package model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import javafx.geometry.Point2D;
 import model.graph.Vertex;
 
@@ -12,17 +16,31 @@ public class Game {
 	private static Game instance; 
 	private ListObject listObject;
 	private Candies candies; 
-	private boolean finish; 
+	private boolean end; 
 	private int score; 
+	private Door door;
 	
 	private Game(){
 		labyrinth = new Labyrinth(16); 
-		player = new Player(); 
-		badBoys = new BadBoys();
+
+		player = new Player();
+		
+		int nbBadBoys = 3;
+		badBoys = new BadBoys(nbBadBoys);
+		Random r = new Random();
+		List<Point2D> lp = new ArrayList<Point2D>();
+		for (int i = 0 ; i < nbBadBoys ; i++) {
+			Point2D p = new Point2D(r.nextInt(16), r.nextInt(16));
+			lp.add(p);
+		}
+		badBoys.setAllInitialPos(lp);
+	
 		listObject = new ListObject();
 		candies = new Candies(); 
 		candies.add();
 		candies.add();
+		door = new Door("door");
+		end = false;
 		score =0 ;
 	}
 	/**
@@ -48,11 +66,17 @@ public class Game {
 	public void movePlayer(Directions dir) {
 		Vertex v = new Vertex(player.getPosX(), player.getPosY(),0);
 		
-		if(!labyrinth.isWall(v, dir))
+		if(!labyrinth.isWall(v, dir)){
 			player.move(dir);
-		
-		Point2D p_pos = player.getPosition();
-		score += candies.maybeEaten(p_pos);
+			if(player.getPosition().equals(door.getPosition())) {
+				end = true;
+			}
+			
+			Point2D p_pos = player.getPosition();
+			score += candies.maybeEaten(p_pos);
+		}
+			
+		System.out.println(player.getPosition() + " -------> "+ door.getPosition());
 	}
 	/**
 	 * 
@@ -93,5 +117,13 @@ public class Game {
 	
 	public void setScore(int s) {
 		this.score = s;
+	}
+	public Door getDoor() {
+		// TODO Auto-generated method stub
+		return this.door;
+	}
+	
+	public boolean isEnd(){
+		return this.end;
 	}
 }

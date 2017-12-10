@@ -18,7 +18,6 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	private Game game;
 	/**
 	 * 
-	 * @param labyrinth le labyrinth courant.
 	 * @param game l'unique instance de Game controller.
 	 */
 	public PlayerController( GameController gameController){
@@ -28,7 +27,7 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	}
 	/**
 	 * 
-	 * @param pane Le pane du jeux.
+	 * @param pane Le pane du jeu.
 	 */
 	public void start(Pane pane){
 		v = new PlayerView(pane);

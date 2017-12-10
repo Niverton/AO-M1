@@ -4,24 +4,39 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javafx.scene.layout.Pane;
+import model.Game;
+import view.BadBoysView;
 
 public class BadBoysController  implements IController, Observer{
-
+	
+	private BadBoysView v;
+	private GameController gameController; 
+	private Game game;
 	/**
-	 * @param o l'observable appelant 
-	 * @param arg les arguments lancé depuis l'observable.
+	 * 
+	 * @param game l'unique instance de Game controller.
 	 */
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
+	public BadBoysController( GameController gameController){
+	
+		this.game = Game.getInstance();
+		this.gameController = gameController;
+	}
+	/**
+	 * 
+	 * @param pane Le pane du jeu.
+	 */
+	public void start(Pane pane){
+		v = new BadBoysView(pane);
+		v.view();
 	}
 
 	/**
-	 *  @param pane  le Pane du jeux. 
+	 * @param o l'observable appelant 
+	 * @param arg les arguments lancï¿½ depuis l'observable.
 	 */
-	public void start(Pane pane) {
+	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		
+		v.update();
 	}
 
 }

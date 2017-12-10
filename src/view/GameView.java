@@ -2,7 +2,12 @@ package view;
 
 
 
+import java.util.Optional;
+
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -48,9 +53,9 @@ public class GameView extends BaseView {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		/*Player p = Player.getInstance(board); 
-		Door d = Door.getInstance(board);
-		if(p.getPosition().compareTo(d.getPosition()) == 1){
+		 System.out.println("rentre");
+	
+		if(Game.getInstance().isEnd()){
 			ButtonType next = new ButtonType("Next level");
 			ButtonType quit = new ButtonType("Quit");
 		
@@ -66,15 +71,11 @@ public class GameView extends BaseView {
 			if (b.get().equals(next)){
 				
 				alert.close();
-				board = new Board(); 
-				p.setPosition(new Vertex(0,0));
-				GameController.getInstance().change();
 			}
 			if(b.get().equals(quit))
 				System.exit(1);
 			
 		}
-		*/	
 	}
 	
 }

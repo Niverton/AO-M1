@@ -19,7 +19,7 @@ public class Labyrinth {
 	 *  class singleton: il n'exista qu'un seul plateau de jeu. 
 	 */
 
-	private int size = 16; 
+	private int size; 
 	private Graph graph ; 
 
 
@@ -28,11 +28,12 @@ public class Labyrinth {
 	 * Instancie le labirynthe et les portes 
 	 */
 	public Labyrinth(int size){
+		this.size = size; 
 		graph = new Graph();
 		Vertex base = new Vertex(0,0,0);
 		graph.addVertex(base);
 		this.BuildLabyrinth(base);
-		this.size = size; 
+		
 		this.openRandomDoor(size);
 		
 	}
@@ -82,6 +83,13 @@ public class Labyrinth {
 
 		return !graph.isConnected(vertex, dir) ; 
 	}
+	
+	/**
+	 * 
+	 * @param vertex sommet a tester
+	 * @param dir la direction a chercher
+	 * @return s'il s'agit d'un porteouverte ou fermé. 
+	 */
 	public boolean isOpenDoor(Vertex vertex, Directions dir){
 		return graph.isOpenDoor(vertex, dir);
 	}
