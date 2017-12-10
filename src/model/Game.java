@@ -37,8 +37,7 @@ public class Game {
 	
 		listObject = new ListObject();
 		candies = new Candies(); 
-		candies.add();
-		candies.add();
+		
 		door = new Door("door");
 		end = false;
 		score =0 ;

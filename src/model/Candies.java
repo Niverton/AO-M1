@@ -15,9 +15,12 @@ public class Candies {
 	 * Le temps avant qu'un bonbon expire (en s);
 	 */
 	private final static int duration = 30;
+	/*
+	 * Le Nombre max de bonbons simultanés
+	 */
+	private final static int MAX = 5;
 	
 	
-	//TODO
 	private static final int X_MIN = 0;
 	private static final int X_MAX = 10;
 	
@@ -33,6 +36,9 @@ public class Candies {
 	}
 	
 	public void add() {
+		if (list.size() == MAX) {
+			return;
+		}
 		int x = rand.nextInt(X_MAX - X_MIN) + X_MIN; // Entre MIN et MAX
 		int y = rand.nextInt(Y_MAX - Y_MIN) + Y_MIN;
 		//TODO Plus grosse probabilité pour les scores plus faibles ?
