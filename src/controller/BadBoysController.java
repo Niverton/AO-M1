@@ -36,7 +36,7 @@ public class BadBoysController  implements IController, Observer{
 	 */
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		v.uptdate();
+		v.update();
 	}
 
 }

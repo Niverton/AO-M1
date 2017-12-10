@@ -1,6 +1,5 @@
 package view;
 
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -58,7 +57,7 @@ public class BadBoysView extends BaseView {
 	 * Actualise l'affichage du mechant sur l'écran.
 	 */
 	@Override
-	public void uptdate() {
+	public void update() {
 		this.badboys = Game.getInstance().getBadBoys(); // update
 		int index = 0;
 		for (BadBoy bb : badboys.getList()) {
@@ -70,6 +69,5 @@ public class BadBoysView extends BaseView {
 			
 			index++;
 		}
-		
 	}
 }

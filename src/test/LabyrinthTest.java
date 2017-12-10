@@ -1,9 +1,8 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.jgrapht.traverse.BreadthFirstIterator;
-
 import org.junit.Test;
 
 import model.Directions;
@@ -11,7 +10,7 @@ import model.Labyrinth;
 import model.graph.Edge;
 import model.graph.Vertex;
 
-public class LabyrithnTest {
+public class LabyrinthTest {
 
 	
 
@@ -21,7 +20,7 @@ public class LabyrithnTest {
 		/****
 		 *  Test  de la taille du labyrithn
 		 */
-		assertTrue("test size Labyrithn echoué", l.getSize() == 10); 
+		assertTrue("test size Labyrithn echouï¿½", l.getSize() == 10); 
 		
 		/****
 		 * Test de isOpenDoor.  Et que tout les sommets sont accassible.
@@ -41,10 +40,10 @@ public class LabyrithnTest {
 			
 				
 		}
-		// on doit en avoir 20 car on test chaque sommet et une arrête à 2 sommets.
+		// on doit en avoir 20 car on test chaque sommet et une arrï¿½te ï¿½ 2 sommets.
 		assertTrue(" nombre incorrect de porte ouverte", nbOpenDoor == 20);
 		// 10*10 sommet  BreadthFirstIterator est un parcours en profondeur 
-		//donc cela prouve que notre graph est connexe et q'uil existe un chemin de a à b pour a€V et b€V
+		//donc cela prouve que notre graph est connexe et q'uil existe un chemin de a ï¿½ b pour aï¿½V et bï¿½V
 		//
 		assertTrue(" Manque des sommets dans le graph construit", nbSommet == 100);
 		

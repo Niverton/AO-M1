@@ -19,6 +19,7 @@ public class Game {
 	private boolean end; 
 	private int score; 
 	private Door door;
+	
 	private Game(){
 		labyrinth = new Labyrinth(16); 
 
@@ -36,6 +37,8 @@ public class Game {
 	
 		listObject = new ListObject();
 		candies = new Candies(); 
+		candies.add();
+		candies.add();
 		door = new Door("door");
 		end = false;
 		score =0 ;
@@ -54,7 +57,6 @@ public class Game {
 	 * @return l labyrinth
 	 */
 	public Labyrinth getLabyrinth() {
-		// TODO Auto-generated method stub
 		return labyrinth;
 	}
 	/**
@@ -62,24 +64,19 @@ public class Game {
 	 * @param dir la direction dans lequel deplacer le joueur.
 	 */
 	public void movePlayer(Directions dir) {
-		// TODO Auto-generated method stub
 		Vertex v = new Vertex(player.getPosX(), player.getPosY(),0);
 		
 		if(!labyrinth.isWall(v, dir)){
 			player.move(dir);
-			if(player.getPosition().equals(door.getPosition()))
+			if(player.getPosition().equals(door.getPosition())) {
 				end = true;
+			}
+			
+			Point2D p_pos = player.getPosition();
+			score += candies.maybeEaten(p_pos);
 		}
 			
 		System.out.println(player.getPosition() + " -------> "+ door.getPosition());
-		///////////////////// POUR CANDY ////////.
-		/****
-		 * 
-		 *  test si quand il se deplace est ce quil y a colision avec un des candy   avec player.getPosX(), player.getPosY()
-		 *  	Si tel est le cas remove Candy.  et score ++ 
-		 * 
-		 * 
-		 */
 	}
 	/**
 	 * 
@@ -122,7 +119,6 @@ public class Game {
 	 * @return le joueur.
 	 */
 	public Player getPlayer() {
-		// TODO Auto-generated method stub
 		return player;
 	}
 	/**
@@ -134,25 +130,28 @@ public class Game {
 	}
 	/**
 	 * 
-	 * @return la liste des bombons 
+	 * @return la liste des bonbons 
 	 */
 	public Candies getCandies(){
 		return this.candies;
 	}
-	public void removeCandies(){
-		//this.candies.removeAll(); 
-	}
+
 	/**
 	 * 
 	 * @return le score de la partie.
 	 */
-	public int  getSCore(){
+	public int getScore(){
 		return this.score;
+	}
+	
+	public void setScore(int s) {
+		this.score = s;
 	}
 	public Door getDoor() {
 		// TODO Auto-generated method stub
 		return this.door;
 	}
+	
 	public boolean isEnd(){
 		return this.end;
 	}

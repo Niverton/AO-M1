@@ -72,7 +72,7 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	 * @param arg les arguments pass�s par l'observable.
 	 */
 	public void update(Observable o, Object arg) {
-		v.uptdate();
+		v.update();
 	}
 
 	

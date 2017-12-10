@@ -6,7 +6,7 @@ import java.util.Random;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.layout.Pane;
+import javafx.geometry.Point2D;
 import javafx.util.Duration;
 import view.CandyType;
 
@@ -16,23 +16,29 @@ public class Candies {
 	 */
 	private final static int duration = 30;
 	
-	private Pane pane;
+	
+	//TODO
+	private static final int X_MIN = 0;
+	private static final int X_MAX = 10;
+	
+	private static final int Y_MIN = 0;
+	private static final int Y_MAX = 10;
+	
 	private List<Candy> list;
 	private Random rand;
 	
 	public Candies() {
-		
 		list = new ArrayList<>();
 		rand = new Random();
 	}
 	
-	public void add(int min, int max) {
-		int x = rand.nextInt(min);
-		int y = rand.nextInt(max);
-		//TODO Plus grosse probabilité pour les scores plus faibles ? 
+	public void add() {
+		int x = rand.nextInt(X_MAX - X_MIN) + X_MIN; // Entre MIN et MAX
+		int y = rand.nextInt(Y_MAX - Y_MIN) + Y_MIN;
+		//TODO Plus grosse probabilité pour les scores plus faibles ?
 		CandyType t[] = CandyType.values();
 		int type = rand.nextInt(t.length);
-		Candy c = new Candy(pane, t[type], x, y);
+		Candy c = new Candy(t[type], x, y);
 		list.add(c);
 		c.setTimeout(new Timeline(new KeyFrame(
 				        Duration.seconds(duration),
@@ -40,19 +46,21 @@ public class Candies {
 				        	c.getEaten();
 				        	list.remove(c);
 				        })));
+		System.out.println("Added candy " + c);
 	}
 	
-	/*
-	 * Vérifie si le joueur mange un bonbon, si oui le détruit et retourne la valeur du bonbon
-	 * Sinon lance NullPointerException >:D
-	 * (ou retourne 0)
-	 */
-	public int maybeEatenBy(Player p) {
+	public List<Candy> getCandies() {
+		return list;
+	}
+	
+	public int maybeEaten(Point2D p_pos) {
 		for (int i = 0; i < list.size(); i++) {
 			Candy c = list.get(i);
-			if (c.getPosition().equals(p.getPosition())) {
+			if (c.getPosition().equals(p_pos)) {
+				int s = c.getEaten();
+				System.out.println("Eating " + c + " for " + s + " points.");
 				list.remove(i);
-				return c.getEaten();
+				return s;
 			}
 		}
 		return 0;

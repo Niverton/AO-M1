@@ -1,36 +1,47 @@
 package view;
 
-import javafx.geometry.Point2D;
-import javafx.scene.image.Image;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import model.Candy;
+import model.Game;
 
 public class CandyView extends BaseView {
+	private Pane pane;
+	private List<ImageView> sprites;
+	private Game g;
 	
-	public CandyView(Pane pane, Image im, Point2D pos) {
+	public CandyView(Pane pane) {
 		this.pane = pane;
-		sprite = new ImageView(im);
-		sprite.setFitWidth(CELL*SPAN);
-		sprite.setFitHeight(CELL*SPAN);
-		sprite.setX((WALL + pos.getX() * (WALL+CELL)) * SPAN);
-		sprite.setY((WALL + pos.getY() * (WALL+CELL)) * SPAN);
+		g = Game.getInstance();
+		sprites = new ArrayList<ImageView>();
 	}
 
 	@Override
 	public void view() {
-		pane.getChildren().add(sprite);
+		update();
 	}
 
 	@Override
-	public void uptdate() {
-		//Nothing to do
+	public void update() {
+		//Les performances c'est pas grave on est en Java :D
+		pane.getChildren().removeAll(sprites);
+		sprites.clear();
+		
+		List<Candy> candies = g.getCandies().getCandies();
+		for (Candy c : candies) {
+			ImageView v = new ImageView(c.getSprite()); 
+			double xt = ( int ) ( ( WALL + c.getPosX() * ( WALL+CELL) )* SPAN ) ;
+			double yt = ( int ) ( ( WALL + c.getPosY() * ( WALL+CELL) )  *SPAN ) ;
+			v.setFitWidth(CELL*SPAN);
+			v.setFitHeight(CELL*SPAN);
+			v.setX(xt);
+			v.setY(yt);
+			sprites.add(v);
+			pane.getChildren().add(v);
+		}
+		//System.out.println("Drawing " + candies.size() + " candies.");
 	}
-	
-	public void destroy() {
-		pane.getChildren().remove(sprite);
-	}
-	
-	private Pane pane;
-	private ImageView sprite;
-
 }

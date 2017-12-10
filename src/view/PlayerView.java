@@ -63,7 +63,7 @@ public class PlayerView extends BaseView {
 	 * Actualise l'affichage du joueur.
 	 */
 	@Override
-	public void uptdate() {
+	public void update() {
 		// TODO Auto-generated method stub
 		double xt = ( int ) ( ( WALL + player.getPosX()* ( WALL+CELL) )* SPAN ) ;
 		double yt = ( int ) ( ( WALL + player.getPosY() * ( WALL+CELL) )  *SPAN ) ;

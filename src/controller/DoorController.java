@@ -1,7 +1,6 @@
 package controller;
 
 import javafx.scene.layout.Pane;
-
 import view.DoorView;
 public class DoorController  {
 		
@@ -9,10 +8,9 @@ public class DoorController  {
 		
 		public DoorController( ){
 		
-		
 		}
+		
 		/**
-		 * 
 		 * @param pane Le pane du jeux.
 		 */
 		public void start(Pane pane){
@@ -21,9 +19,7 @@ public class DoorController  {
 		}
 
 		public void update() {
-			// TODO Auto-generated method stub
-			
-			d.uptdate();
+			d.update();
 		}
 
 }
