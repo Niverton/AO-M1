@@ -83,6 +83,35 @@ public class Game {
 	}
 	/**
 	 * 
+	 * @param dir la direction dans lequel deplacer le joueur.
+	 * Pour le moment le déplacement est aléatoire :
+	 * TODO - Améliorer ça avec l'algorithme de Manhattan
+	 */
+	public void moveBadBoys() {
+		// On traite chaque BadBoy séparément
+		for (BadBoy bb : badBoys.getList()) {
+			Vertex v = new Vertex(bb.getPosX(), bb.getPosY(),0);
+			
+			Directions dir;
+			
+			// On récupère aléatoirement une direction valide pour qu'il se déplace
+			do {
+				Random r = new Random();
+				int dir_int = r.nextInt(4);
+				
+				if (dir_int == 0) dir = Directions.North;
+				else if (dir_int == 1) dir = Directions.East;
+				else if (dir_int == 2) dir = Directions.South;
+				else dir = Directions.West;
+			
+			} while (labyrinth.isWall(v, dir) || labyrinth.isOpenDoor(v, dir));
+			
+			// Puis on l'y déplace
+			bb.move(dir);
+		}
+	}
+	/**
+	 * 
 	 * @return les mechants 
 	 */
 	public BadBoys getBadBoys(){
