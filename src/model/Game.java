@@ -19,6 +19,7 @@ public class Game {
 	private boolean end; 
 	private int score; 
 	private Door door;
+	
 	private Game(){
 		labyrinth = new Labyrinth(16); 
 
@@ -36,6 +37,7 @@ public class Game {
 	
 		listObject = new ListObject();
 		candies = new Candies(); 
+		
 		door = new Door("door");
 		end = false;
 		score =0 ;
@@ -54,7 +56,6 @@ public class Game {
 	 * @return l labyrinth
 	 */
 	public Labyrinth getLabyrinth() {
-		// TODO Auto-generated method stub
 		return labyrinth;
 	}
 	/**
@@ -62,24 +63,48 @@ public class Game {
 	 * @param dir la direction dans lequel deplacer le joueur.
 	 */
 	public void movePlayer(Directions dir) {
-		// TODO Auto-generated method stub
 		Vertex v = new Vertex(player.getPosX(), player.getPosY(),0);
 		
 		if(!labyrinth.isWall(v, dir)){
 			player.move(dir);
-			if(player.getPosition().equals(door.getPosition()))
+			if(player.getPosition().equals(door.getPosition())) {
 				end = true;
+			}
+			
+			Point2D p_pos = player.getPosition();
+			score += candies.maybeEaten(p_pos);
 		}
 			
 		System.out.println(player.getPosition() + " -------> "+ door.getPosition());
-		///////////////////// POUR CANDY ////////.
-		/****
-		 * 
-		 *  test si quand il se deplace est ce quil y a colision avec un des candy   avec player.getPosX(), player.getPosY()
-		 *  	Si tel est le cas remove Candy.  et score ++ 
-		 * 
-		 * 
-		 */
+	}
+	/**
+	 * 
+	 * @param dir la direction dans lequel deplacer le joueur.
+	 * Pour le moment le déplacement est aléatoire :
+	 * TODO - Améliorer ça avec l'algorithme de Manhattan
+	 */
+	public void moveBadBoys() {
+		// On traite chaque BadBoy séparément
+		for (BadBoy bb : badBoys.getList()) {
+			Vertex v = new Vertex(bb.getPosX(), bb.getPosY(),0);
+			
+			Directions dir;
+			
+			// On récupère aléatoirement une direction valide pour qu'il se déplace
+			do {
+				Random r = new Random();
+				int dir_int = r.nextInt(4);
+				
+				if (dir_int == 0) dir = Directions.North;
+				else if (dir_int == 1) dir = Directions.East;
+				else if (dir_int == 2) dir = Directions.South;
+				else dir = Directions.West;
+			
+			} while (labyrinth.isWall(v, dir) || labyrinth.isOpenDoor(v, dir));
+			
+			// Puis on l'y déplace
+			bb.move(dir);
+		}
 	}
 	/**
 	 * 
@@ -93,7 +118,6 @@ public class Game {
 	 * @return le joueur.
 	 */
 	public Player getPlayer() {
-		// TODO Auto-generated method stub
 		return player;
 	}
 	/**
@@ -105,25 +129,28 @@ public class Game {
 	}
 	/**
 	 * 
-	 * @return la liste des bombons 
+	 * @return la liste des bonbons 
 	 */
 	public Candies getCandies(){
 		return this.candies;
 	}
-	public void removeCandies(){
-		//this.candies.removeAll(); 
-	}
+
 	/**
 	 * 
 	 * @return le score de la partie.
 	 */
-	public int  getSCore(){
+	public int getScore(){
 		return this.score;
+	}
+	
+	public void setScore(int s) {
+		this.score = s;
 	}
 	public Door getDoor() {
 		// TODO Auto-generated method stub
 		return this.door;
 	}
+	
 	public boolean isEnd(){
 		return this.end;
 	}

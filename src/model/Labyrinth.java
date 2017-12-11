@@ -124,11 +124,11 @@ public class Labyrinth {
 						Vertex vertex2 = graph.getTarget(v, dir);
 						if(vertex2 != null){
 							Edge edge = graph.getEdge ( v , vertex2 ) ;
-							if(edge == null){
-								graph.addEdge(v, vertex2, new Edge(Type.OPENED_DOOR));
+							graph.removeEdge(edge);
+							
+							graph.addEdge(v, vertex2, new Edge(Type.OPENED_DOOR));
 
-								break; 
-							}
+							break; 
 						}
 					}
 

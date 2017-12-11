@@ -11,6 +11,6 @@ public abstract class BaseView {
 	/**
 	 * Mise a jour de la vue.
 	 */
-	public abstract void uptdate();
+	public abstract void update();
 	
 }

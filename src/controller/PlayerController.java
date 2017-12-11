@@ -39,25 +39,32 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	 * @param arg0 l'�v�nement clavier capturer. 
 	 */
 	public void handle(KeyEvent arg0) {
+		int moved = 0;
 		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
 			game.movePlayer(Directions.West);
-			
-			this.gameController.change();
+			moved = 1;
+			//this.gameController.change();
 		}
-		if(arg0.getCode()== KeyCode.DOWN || arg0.getCode()== KeyCode.S){
+		else if(arg0.getCode()== KeyCode.DOWN || arg0.getCode()== KeyCode.S){
 			game.movePlayer(Directions.South);
-			
-			this.gameController.change();
+			moved = 1;
+			//this.gameController.change();
 		}
-		if(arg0.getCode()== KeyCode.RIGHT || arg0.getCode()== KeyCode.D){
+		else if(arg0.getCode()== KeyCode.RIGHT || arg0.getCode()== KeyCode.D){
 			game.movePlayer(Directions.East);
-			this.gameController.change();
+			moved = 1;
+			//this.gameController.change();
 		}
-		if(arg0.getCode()== KeyCode.UP || arg0.getCode()== KeyCode.Z){
+		else if(arg0.getCode()== KeyCode.UP || arg0.getCode()== KeyCode.Z){
 			game.movePlayer(Directions.North);
-			this.gameController.change();
+			moved = 1;
+			//this.gameController.change();
 		}
 		
+		if (moved == 1) {
+			game.moveBadBoys();
+			this.gameController.change();
+		}
 	}
 
 	/**
@@ -65,7 +72,7 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	 * @param arg les arguments pass�s par l'observable.
 	 */
 	public void update(Observable o, Object arg) {
-		v.uptdate();
+		v.update();
 	}
 
 	

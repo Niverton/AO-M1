@@ -2,11 +2,9 @@ package model.graph;
 
 
 import java.util.Iterator;
-
 import java.util.Random;
 import java.util.Set;
 
-import org.jgrapht.graph.Multigraph;
 import org.jgrapht.graph.SimpleGraph;
 import org.jgrapht.traverse.BreadthFirstIterator;
 
@@ -95,9 +93,10 @@ public class Graph extends SimpleGraph<Vertex, Edge> implements JGraph{
 		return vertex;
 	}
 	public boolean isOpenDoor(Vertex vertex , Directions dir){
-		Vertex target = this.getTarget(vertex, dir); 
-		Edge e = this.getEdge(vertex, target); 
-		return (e != null &&( e.getType() == Edge.Type.OPENED_DOOR));
+		Vertex source = this.getRefVertex(vertex);
+		Vertex target = this.getTarget(source, dir); 
+		Edge e1 = this.getEdge(source, target); 
+		return (e1 != null &&( e1.getType() == Edge.Type.OPENED_DOOR));
 	}
 
 

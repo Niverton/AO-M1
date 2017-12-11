@@ -1,6 +1,5 @@
 package view;
 
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -11,7 +10,7 @@ import model.Game;
 public class BadBoysView extends BaseView {
 
 	private Pane pane;
-	private ImageView imageView;
+	private ImageView[] imagesView;
 	private BadBoys badboys;
 
 	/**
@@ -32,9 +31,12 @@ public class BadBoysView extends BaseView {
 	public void view() {
 		Image image = new Image ( getClass( ).getResource("ressource/bad.png").toExternalForm ( ) ) ;
 		
+		imagesView = new ImageView[badboys.getList().size()];
+		int index = 0;
 		for (BadBoy bb:badboys.getList()) {
-			imageView = new ImageView ( image ) ;
-			pane.getChildren().add( this.imageView ) ;
+			this.imagesView[index] = new ImageView ( image ) ;
+			ImageView imageView = this.imagesView[index];
+			pane.getChildren().add( imageView ) ;
 			
 			bb.getPosX();
 			double xt = ( int ) ( ( WALL + bb.getPosX()* ( WALL+CELL) )* SPAN ) ;
@@ -43,6 +45,8 @@ public class BadBoysView extends BaseView {
 			imageView.setFitHeight(CELL*SPAN);
 			imageView.setX ( xt) ;
 			imageView.setY ( yt ) ;
+			
+			index++;
 		}
 		
 	}
@@ -53,14 +57,17 @@ public class BadBoysView extends BaseView {
 	 * Actualise l'affichage du mechant sur l'écran.
 	 */
 	@Override
-	public void uptdate() {
-		for (BadBoy bb:badboys.getList()) {
+	public void update() {
+		this.badboys = Game.getInstance().getBadBoys(); // update
+		int index = 0;
+		for (BadBoy bb : badboys.getList()) {
 			double xt = ( int ) ( ( WALL + bb.getPosX()* ( WALL+CELL) )* SPAN ) ;
 			double yt = ( int ) ( ( WALL + bb.getPosY() * ( WALL+CELL) )  *SPAN ) ;
 	
-			imageView.setX ( xt) ;
-			imageView.setY ( yt ) ;
+			imagesView[index].setX ( xt) ;
+			imagesView[index].setY ( yt );
+			
+			index++;
 		}
-		
 	}
 }

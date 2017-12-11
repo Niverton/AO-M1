@@ -155,7 +155,7 @@ public class ViewLabyrinth extends BaseView {
 		this.drawWallsAndDoor();
 	}
 	@Override
-	public void uptdate() {
+	public void update() {
 		// TODO Auto-generated method stub
 
 	}

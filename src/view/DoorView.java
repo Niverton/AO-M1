@@ -40,7 +40,7 @@ public class DoorView extends BaseView {
 		}
 
 			@Override
-			public void uptdate() {
+			public void update() {
 			   
 			}
 
