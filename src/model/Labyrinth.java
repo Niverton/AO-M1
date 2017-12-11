@@ -6,6 +6,7 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.Vector;
 
+import javafx.geometry.Point2D;
 import model.graph.Edge;
 import model.graph.Edge.Type;
 import model.graph.Graph;
@@ -35,7 +36,6 @@ public class Labyrinth {
 		Vertex base = new Vertex(0,0,0);
 		graph.addVertex(base);
 		this.BuildLabyrinth(base);
-		
 		this.openRandomDoor(size);
 		
 	}
@@ -182,9 +182,7 @@ public class Labyrinth {
 		Vertex sourceReal = graph.getRefVertex(source); 
 		Vertex targetReal = graph.getRefVertex(target);
 		this.launchManathan(sourceReal, targetReal);
-		for(Vertex vertex : graph.vertexSet()){
-			//System.out.println(vertex.toString() + " /  " + vertex.getNbr()) ;
-		}
+		
 		for(Directions dir : Directions.values()){
 			Vertex v = graph.getTarget(sourceReal, dir); 
 			if(v != null && v.getNbr() == sourceReal.getNbr()-1){
@@ -192,6 +190,23 @@ public class Labyrinth {
 			}
 		}
 		return null; 
+	}
+	public Point2D getfurther(Vertex source){
+		 source = graph.getRefVertex(source);
+		 Point2D pos = new Point2D(0,0);
+		 int temp =0;
+		for(Vertex target : graph.vertexSet() ){
+			this.launchManathan(source, target);
+			for(Vertex vertex : graph.vertexSet()){
+				if(temp < vertex.getNbr()){
+					temp = vertex.getNbr(); 
+					pos = new Point2D(target.getX(), target.getY());
+				}
+				//System.out.println(vertex.toString() + " /  " + vertex.getNbr()) ;
+			}
+		}
+		return pos;
+		
 	}
 
 

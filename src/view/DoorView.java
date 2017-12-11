@@ -30,8 +30,8 @@ public class DoorView extends BaseView {
 			//imageView.setFocusTraversable(true);
 			pane.getChildren().add( this.imageView ) ;
 			
-			double xt = ( int ) ( ( WALL + 15* ( WALL+CELL) )* SPAN ) ;
-			double yt = ( int ) ( ( WALL + 15* ( WALL+CELL) )  *SPAN ) ;
+			double xt = ( int ) ( ( WALL + door.getPosX()* ( WALL+CELL) )* SPAN ) ;
+			double yt = ( int ) ( ( WALL + door.getPosY()* ( WALL+CELL) )  *SPAN ) ;
 			imageView.setFitWidth(CELL*SPAN);
 			imageView.setFitHeight(CELL*SPAN);
 			imageView.setX ( xt) ;

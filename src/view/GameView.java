@@ -4,6 +4,7 @@ package view;
 
 import java.util.Optional;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -53,26 +54,45 @@ public class GameView extends BaseView {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		 
+		
 		if(Game.getInstance().isEnd()){
+			Game.getInstance().setEnd(false);
 			ButtonType next = new ButtonType("Next level");
 			ButtonType quit = new ButtonType("Quit");
-		
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.getButtonTypes().setAll(next, quit);
-			alert.setTitle("Win");
-			alert.setHeaderText(null);
-			//alert.setHeaderText("Change");
-			alert.setContentText("You win");
-			
-			Optional<ButtonType> b = alert.showAndWait();
+			ButtonType retry = new ButtonType("Retry");
+			Platform.runLater(new Runnable(){
+				public void run(){
+					Alert alert = new Alert(AlertType.INFORMATION);
+					
+					//alert.setHeaderText("Change");
+					if(Game.getInstance().getLoose()){
+						alert.getButtonTypes().setAll(retry);
+						alert.setTitle("You loose");
+						alert.setHeaderText(null);
+						alert.setContentText("You loose");
+					}else{
+						alert.getButtonTypes().setAll(next, quit);
+						alert.setTitle("Win");
+						alert.setHeaderText(null);
+						alert.setContentText("You win");
+					}
+					
+					
+					Optional<ButtonType> b = alert.showAndWait();
+						
+					if (b.get().equals(next)){
+						
+						alert.close();
+					}
+					if(b.get().equals(retry))
+						System.exit(1);
+					
 				
-			if (b.get().equals(next)){
-				
-				alert.close();
-			}
-			if(b.get().equals(quit))
-				System.exit(1);
+					if(b.get().equals(quit))
+						System.exit(1);
+					
+				}
+			});
 			
 		}
 	}

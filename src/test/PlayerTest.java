@@ -12,7 +12,7 @@ public class PlayerTest {
 
 	@Test
 	public void testPlayer() {
-		Player player = new Player();
+		Player player = new Player(5);
 		assertTrue(player.getPosX() ==0); 
 		assertTrue(player.getPosY() ==0); 
 	}

@@ -5,9 +5,10 @@ package model;
  *
  */
 public class Player extends Personnage {
-	
-	public Player (){
+	private int life; 
+	public Player (int nb){
 		super(); 
+		this.life = nb;
 	}
 	
 	/**
@@ -18,6 +19,17 @@ public class Player extends Personnage {
 	 */
 	public Player (int posX, int posY){
 		super( posX, posY); 
+	}
+	/**
+	 * decremente la vie de notre player. 
+	 */
+	public void looseLife(){
+		life --; 
+	}
+
+	public int getLife() {
+		// TODO Auto-generated method stub
+		return this.life;
 	}
 
 

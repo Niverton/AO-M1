@@ -28,7 +28,13 @@ public class CandyView extends BaseView {
 	@Override
 	public void update() {
 		//Les performances c'est pas grave on est en Java :D
-		///pane.getChildren().removeAll(sprites);
+		///
+		Platform.runLater(new Runnable(){
+			public void run(){
+		pane.getChildren().removeAll(sprites);
+			}
+		});
+		
 		sprites.clear();
 
 		List<Candy> candies = g.getCandies().getCandies();

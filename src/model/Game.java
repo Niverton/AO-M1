@@ -16,21 +16,22 @@ public class Game {
 	private static Game instance; 
 	private ListObject listObject;
 	private Candies candies; 
-	private boolean end; 
+	private boolean end;
+	private boolean loose;
 	private int score; 
 	private Door door;
 	
 	private Game(){
 		labyrinth = new Labyrinth(16); 
 
-		player = new Player();
+		player = new Player(4);
 		
 		int nbBadBoys = 3;
 		badBoys = new BadBoys(nbBadBoys);
 		Random r = new Random();
 		List<Point2D> lp = new ArrayList<Point2D>();
 		for (int i = 0 ; i < nbBadBoys ; i++) {
-			Point2D p = new Point2D(5, 5);
+			Point2D p = new Point2D(r.nextInt(this.labyrinth.getSize()), r.nextInt(this.labyrinth.getSize()));
 			lp.add(p);
 		}
 		badBoys.setAllInitialPos(lp);
@@ -38,8 +39,9 @@ public class Game {
 		listObject = new ListObject();
 		candies = new Candies(); 
 		
-		door = new Door("door");
+		door = new Door("door", this.labyrinth.getSize()-1, this.labyrinth.getSize()-1);
 		end = false;
+		loose = false;
 		score =0 ;
 	}
 	/**
@@ -69,6 +71,7 @@ public class Game {
 			player.move(dir);
 			if(player.getPosition().equals(door.getPosition())) {
 				end = true;
+				 
 			}
 			
 			Point2D p_pos = player.getPosition();
@@ -93,6 +96,13 @@ public class Game {
 			
 			if(dir != null){
 				bb.move(dir);
+				if(player.getPosition().equals(bb.getPosition())){
+					player.looseLife(); 
+					if(player.getLife() == 0){
+						this.end = true;
+						loose = true;
+					}
+				}
 			}
 			
 		}
@@ -141,8 +151,18 @@ public class Game {
 		// TODO Auto-generated method stub
 		return this.door;
 	}
-	
+	/**
+	 * 
+	 * @return si le jeu est terminé
+	 */
 	public boolean isEnd(){
 		return this.end;
+	}
+	public void setEnd(boolean b) {
+		// TODO Auto-generated method stub
+		this.end = b;
+	}
+	public boolean getLoose(){
+		return this.loose;
 	}
 }

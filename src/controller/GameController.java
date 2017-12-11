@@ -12,6 +12,7 @@ public class GameController  extends Observable {
 	private LabyrinthController labyrinthController;
 	private PlayerController playerController;
 	private BadBoysController badBoysController;
+	private Thread badBoysMove;
 	private CandyController candyController;
 	private DoorController doorController;
 	private Game game;
@@ -19,9 +20,10 @@ public class GameController  extends Observable {
 	private GameController(){
 		game = Game.getInstance();
 		labyrinthController = new LabyrinthController(game.getLabyrinth());
+		candyController = new CandyController();
 		playerController = new PlayerController(this);
 		badBoysController = new BadBoysController(this);
-		candyController = new CandyController();
+		
 		doorController = new DoorController();
 
 		addObserver(playerController);
@@ -36,13 +38,11 @@ public class GameController  extends Observable {
 		
 		gameView = new GameView(primaryStage); 
 		gameView.view();
-		
+		candyController.start(gameView.getPane());
 		labyrinthController.start(gameView.getPane());
 		playerController.start(gameView.getPane());
 		badBoysController.start(gameView.getPane());
-		Thread badBoysMove = new Thread(badBoysController); 
-		badBoysMove.start();
-		candyController.start(gameView.getPane());
+		
 		doorController.start(gameView.getPane());
 		
 	}
@@ -61,6 +61,7 @@ public class GameController  extends Observable {
 	public synchronized void change(){
 		gameView.update();
 		setChanged();
+		
         //notify observers for change
 		this.notifyObservers();
        
