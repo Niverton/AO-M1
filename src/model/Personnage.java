@@ -1,6 +1,7 @@
 package model;
 
 import javafx.geometry.Point2D;
+import model.interfaces.IPersonnage;
 
 
 
@@ -9,7 +10,7 @@ import javafx.geometry.Point2D;
  * @author laurent
  *
  */
-public abstract class Personnage extends ObjectGame {
+public abstract class Personnage extends ObjectGame implements IPersonnage {
 	
 	/**
 	 * 

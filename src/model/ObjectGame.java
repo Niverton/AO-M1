@@ -1,9 +1,10 @@
 package model;
 
 import javafx.geometry.Point2D;
-import model.interfaces.Position;
+import model.interfaces.IPosition;
 
-public abstract class ObjectGame implements Position {
+
+public abstract class ObjectGame implements IPosition {
 	protected Point2D position; 
 	/**
 	 * 

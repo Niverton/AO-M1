@@ -5,7 +5,7 @@ package model.interfaces;
 import javafx.geometry.Point2D;
 import model.Directions;
 
-public interface Position {
+public interface IPosition {
 	public Point2D getPosition(); 
 	public int getPosX(); 
 	public int getPosY(); 

@@ -2,9 +2,9 @@ package model;
 
 import java.util.ArrayList;
 
-import model.interfaces.ListO;
+import model.interfaces.IList;
 
-public class ListObject implements ListO {
+public class ListObject implements IList<NonMoveableObject> {
 	ArrayList<NonMoveableObject> listObject; 
 	
 	public ListObject(){
@@ -38,4 +38,6 @@ public class ListObject implements ListO {
 		}
 		return null;
 	}
+	
+	
 }
