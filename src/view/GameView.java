@@ -53,8 +53,7 @@ public class GameView extends BaseView {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		 System.out.println("rentre");
-	
+		 
 		if(Game.getInstance().isEnd()){
 			ButtonType next = new ButtonType("Next level");
 			ButtonType quit = new ButtonType("Quit");

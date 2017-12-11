@@ -33,13 +33,15 @@ public class GameController  extends Observable {
 	 * @param primaryStage le stage du jeux. 
 	 */
 	public void start(Stage primaryStage){
-		System.out.println("GameController.start");
+		
 		gameView = new GameView(primaryStage); 
 		gameView.view();
 		
 		labyrinthController.start(gameView.getPane());
 		playerController.start(gameView.getPane());
 		badBoysController.start(gameView.getPane());
+		Thread badBoysMove = new Thread(badBoysController); 
+		badBoysMove.start();
 		candyController.start(gameView.getPane());
 		doorController.start(gameView.getPane());
 		
@@ -56,7 +58,7 @@ public class GameController  extends Observable {
 	/**
 	 * Appeler depuis les observer pour avertir tous les autres controller d'un changement ( changement de position d'un personnage par exemple) 
 	 */
-	public void change(){
+	public synchronized void change(){
 		gameView.update();
 		setChanged();
         //notify observers for change

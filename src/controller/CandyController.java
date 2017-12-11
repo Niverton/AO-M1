@@ -32,7 +32,7 @@ public class CandyController implements IController, Observer {
 	
 	@Override
 	public void start(Pane pane) {
-		System.out.println("CandyController.start");
+	
 		view = new CandyView(pane);
 		
 		setTimer();
@@ -41,8 +41,8 @@ public class CandyController implements IController, Observer {
 	
 	
 	@Override
-	public void update(Observable gc, Object arg) {
-		//System.out.println("CandyController update");
+	public synchronized void update(Observable gc, Object arg) {
+		
 		
 		if (candyTimer.getStatus() == Animation.Status.STOPPED) {
 			setTimer();
@@ -54,7 +54,7 @@ public class CandyController implements IController, Observer {
 	private void setTimer() {
 		Random rand = new Random();
 		int timer = rand.nextInt(MAX_T - MIN_T) + MIN_T;
-		System.out.println("Prochain bonbon dans " + timer + " secondes.");
+		//System.out.println("Prochain bonbon dans " + timer + " secondes.");
 		candyTimer = new Timeline(new KeyFrame(
 		        Duration.seconds(timer),
 		        ae -> { //Les lambdas c'est délicieux

@@ -1,6 +1,8 @@
 package model;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Queue;
 import java.util.Random;
 import java.util.Vector;
 
@@ -136,6 +138,60 @@ public class Labyrinth {
 			}
 
 		}
+	}
+	
+	
+
+	/**
+	 * 
+	 * @param source la cource de l'élément a deplacer
+	 * @param target la destionation de l'objet a atteindre.
+	 */
+	private void calculateManhattanDistance(Vertex source, Vertex target){
+		Queue<Vertex> fifo = new ArrayDeque<Vertex>();
+		target.setNbr(1);
+		fifo.add(target); 
+		while(!fifo.isEmpty()){
+			Vertex actual = fifo.remove(); 
+			for(Directions dir : Directions.values()){
+				if(!this.isWall(actual, dir) && !this.isOpenDoor(actual, dir)){
+					
+					Vertex next = graph.getTarget(actual, dir); 
+					if(next.getNbr() ==0){
+						next.setNbr(actual.getNbr()+1);
+						if(next!=source)
+							fifo.add(next);
+					}
+				}
+				
+			}
+		}
+	}
+	/**
+	 * 
+	 * @param source source la cource de l'élément a deplacer
+	 * @param target target la destionation de l'objet a atteindre.
+	 */
+	private void launchManathan(Vertex source, Vertex target){
+		for(Vertex vertex : graph.vertexSet()){
+			vertex.setNbr(0);
+		}
+		this.calculateManhattanDistance(source, target);
+	}
+	public Directions getNextDir(Vertex source, Vertex target){
+		Vertex sourceReal = graph.getRefVertex(source); 
+		Vertex targetReal = graph.getRefVertex(target);
+		this.launchManathan(sourceReal, targetReal);
+		for(Vertex vertex : graph.vertexSet()){
+			//System.out.println(vertex.toString() + " /  " + vertex.getNbr()) ;
+		}
+		for(Directions dir : Directions.values()){
+			Vertex v = graph.getTarget(sourceReal, dir); 
+			if(v != null && v.getNbr() == sourceReal.getNbr()-1){
+				return dir;
+			}
+		}
+		return null; 
 	}
 
 

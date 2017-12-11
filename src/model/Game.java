@@ -30,7 +30,7 @@ public class Game {
 		Random r = new Random();
 		List<Point2D> lp = new ArrayList<Point2D>();
 		for (int i = 0 ; i < nbBadBoys ; i++) {
-			Point2D p = new Point2D(r.nextInt(16), r.nextInt(16));
+			Point2D p = new Point2D(5, 5);
 			lp.add(p);
 		}
 		badBoys.setAllInitialPos(lp);
@@ -75,7 +75,7 @@ public class Game {
 			score += candies.maybeEaten(p_pos);
 		}
 			
-		System.out.println(player.getPosition() + " -------> "+ door.getPosition());
+		
 	}
 	/**
 	 * 
@@ -83,27 +83,18 @@ public class Game {
 	 * Pour le moment le déplacement est aléatoire :
 	 * TODO - Améliorer ça avec l'algorithme de Manhattan
 	 */
-	public void moveBadBoys() {
+	public synchronized void moveBadBoys() {
 		// On traite chaque BadBoy séparément
 		for (BadBoy bb : badBoys.getList()) {
-			Vertex v = new Vertex(bb.getPosX(), bb.getPosY(),0);
+			Vertex source = new Vertex(bb.getPosX(), bb.getPosY(),0);
+			Vertex target = new Vertex(player.getPosX(), player.getPosY(), 0 );
 			
-			Directions dir;
+			Directions dir = this.labyrinth.getNextDir(source, target); 
 			
-			// On récupère aléatoirement une direction valide pour qu'il se déplace
-			do {
-				Random r = new Random();
-				int dir_int = r.nextInt(4);
-				
-				if (dir_int == 0) dir = Directions.North;
-				else if (dir_int == 1) dir = Directions.East;
-				else if (dir_int == 2) dir = Directions.South;
-				else dir = Directions.West;
+			if(dir != null){
+				bb.move(dir);
+			}
 			
-			} while (labyrinth.isWall(v, dir) || labyrinth.isOpenDoor(v, dir));
-			
-			// Puis on l'y déplace
-			bb.move(dir);
 		}
 	}
 	/**

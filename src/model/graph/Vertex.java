@@ -72,5 +72,9 @@ public class Vertex   implements Comparable<Vertex>{
 
 		return 1;
 	}
+	public void setNbr(int i) {
+		// TODO Auto-generated method stub
+		this.nbr = i;
+	}
 
 }

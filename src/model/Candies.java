@@ -52,7 +52,7 @@ public class Candies {
 				        	c.getEaten();
 				        	list.remove(c);
 				        })));
-		System.out.println("Added candy " + c);
+		//System.out.println("Added candy " + c);
 	}
 	
 	public List<Candy> getCandies() {
@@ -64,7 +64,7 @@ public class Candies {
 			Candy c = list.get(i);
 			if (c.getPosition().equals(p_pos)) {
 				int s = c.getEaten();
-				System.out.println("Eating " + c + " for " + s + " points.");
+				//System.out.println("Eating " + c + " for " + s + " points.");
 				list.remove(i);
 				return s;
 			}

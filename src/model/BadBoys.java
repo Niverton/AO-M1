@@ -85,4 +85,5 @@ public class BadBoys {
 	public ArrayList<BadBoy> getList(){
 		return this.lBadBoys;
 	}
+	
 }

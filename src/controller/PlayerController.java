@@ -39,30 +39,25 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	 * @param arg0 l'�v�nement clavier capturer. 
 	 */
 	public void handle(KeyEvent arg0) {
-		int moved = 0;
+		
 		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
 			game.movePlayer(Directions.West);
-			moved = 1;
-			//this.gameController.change();
+			
+			this.gameController.change();
 		}
 		else if(arg0.getCode()== KeyCode.DOWN || arg0.getCode()== KeyCode.S){
 			game.movePlayer(Directions.South);
-			moved = 1;
-			//this.gameController.change();
+			
+			this.gameController.change();
 		}
 		else if(arg0.getCode()== KeyCode.RIGHT || arg0.getCode()== KeyCode.D){
 			game.movePlayer(Directions.East);
-			moved = 1;
-			//this.gameController.change();
+			
+			this.gameController.change();
 		}
 		else if(arg0.getCode()== KeyCode.UP || arg0.getCode()== KeyCode.Z){
 			game.movePlayer(Directions.North);
-			moved = 1;
-			//this.gameController.change();
-		}
-		
-		if (moved == 1) {
-			game.moveBadBoys();
+			
 			this.gameController.change();
 		}
 	}

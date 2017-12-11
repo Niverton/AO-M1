@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.Candy;
@@ -12,7 +13,7 @@ public class CandyView extends BaseView {
 	private Pane pane;
 	private List<ImageView> sprites;
 	private Game g;
-	
+
 	public CandyView(Pane pane) {
 		this.pane = pane;
 		g = Game.getInstance();
@@ -27,9 +28,9 @@ public class CandyView extends BaseView {
 	@Override
 	public void update() {
 		//Les performances c'est pas grave on est en Java :D
-		pane.getChildren().removeAll(sprites);
+		///pane.getChildren().removeAll(sprites);
 		sprites.clear();
-		
+
 		List<Candy> candies = g.getCandies().getCandies();
 		for (Candy c : candies) {
 			ImageView v = new ImageView(c.getSprite()); 
@@ -40,8 +41,14 @@ public class CandyView extends BaseView {
 			v.setX(xt);
 			v.setY(yt);
 			sprites.add(v);
-			pane.getChildren().add(v);
+			Platform.runLater(new Runnable(){
+				public void run(){
+
+					pane.getChildren().add(v);
+				}
+			});
 		}
-		//System.out.println("Drawing " + candies.size() + " candies.");
 	}
+
 }
+
