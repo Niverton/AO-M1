@@ -54,7 +54,7 @@ public class CandyController implements IController, Observer {
 	private void setTimer() {
 		Random rand = new Random();
 		int timer = rand.nextInt(MAX_T - MIN_T) + MIN_T;
-		//System.out.println("Prochain bonbon dans " + timer + " secondes.");
+		System.out.println("Prochain bonbon dans " + timer + " secondes.");
 		candyTimer = new Timeline(new KeyFrame(
 		        Duration.seconds(timer),
 		        ae -> { //Les lambdas c'est délicieux

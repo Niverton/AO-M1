@@ -13,7 +13,7 @@ public class Game {
 	private  Labyrinth labyrinth; 
 	private Player player; 
 	private BadBoys badBoys; 
-	private static Game instance; 
+	private   static Game instance; 
 	private ListObject listObject;
 	private Candies candies; 
 	private boolean end;
@@ -100,6 +100,7 @@ public class Game {
 					player.looseLife(); 
 					if(player.getLife() == 0){
 						this.end = true;
+						
 						loose = true;
 					}
 				}

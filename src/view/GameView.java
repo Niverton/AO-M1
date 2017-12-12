@@ -76,22 +76,21 @@ public class GameView extends BaseView {
 						alert.setHeaderText(null);
 						alert.setContentText("You win");
 					}
-					
-					
 					Optional<ButtonType> b = alert.showAndWait();
+						if (b != null){
+							if (b.get().equals(next)){
+								alert.close();
+							}
+							if(b.get().equals(retry))
+								System.exit(1);
+							
 						
-					if (b.get().equals(next)){
-						
-						alert.close();
-					}
-					if(b.get().equals(retry))
-						System.exit(1);
-					
+							if(b.get().equals(quit))
+								System.exit(1);
+							
+						}
+						}
 				
-					if(b.get().equals(quit))
-						System.exit(1);
-					
-				}
 			});
 			
 		}

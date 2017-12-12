@@ -41,6 +41,11 @@ public class BadBoysController  implements IController, Observer{
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						if(game.isEnd()){
+							System.out.println("stop");
+							this.cancel(true);
+						}
+							
 						Thread.yield();
 						return null; 
 					}                             
@@ -64,13 +69,10 @@ public class BadBoysController  implements IController, Observer{
 	 */
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		
 		v.update();
 	}
 
-	public void run(Game game) {
-		// TODO Auto-generated method stub
-
-	}
 	
 
 

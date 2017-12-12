@@ -41,8 +41,8 @@ public class Candies {
 		}
 		int x = rand.nextInt(X_MAX - X_MIN) + X_MIN; // Entre MIN et MAX
 		int y = rand.nextInt(Y_MAX - Y_MIN) + Y_MIN;
-		//TODO Plus grosse probabilité pour les scores plus faibles ?
-		CandyType t[] = CandyType.values();
+		
+		CandyType[] t = CandyType.values();
 		int type = rand.nextInt(t.length);
 		Candy c = new Candy(t[type], x, y);
 		list.add(c);
@@ -51,8 +51,9 @@ public class Candies {
 				        ae -> { //Les lambdas c'est délicieux
 				        	c.getEaten();
 				        	list.remove(c);
+				        	System.out.println("est supprimer"+c );
 				        })));
-		//System.out.println("Added candy " + c);
+		
 	}
 	
 	public List<Candy> getCandies() {

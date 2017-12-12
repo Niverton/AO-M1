@@ -2,6 +2,7 @@ package model;
 
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 import view.CandyType;
 
 public class Candy extends ObjectGame {
@@ -16,6 +17,9 @@ public class Candy extends ObjectGame {
 	public void setTimeout(Timeline t) {
 		die = t;
 		die.play();
+	}
+	public double getTimeout(){
+		return die.getTotalDuration().toSeconds();
 	}
 	
 	public Image getSprite() {
