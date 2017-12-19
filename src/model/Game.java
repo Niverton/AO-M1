@@ -3,13 +3,17 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 import java.util.Random;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
+import javafx.util.Duration;
 import model.graph.Vertex;
 
 
-public class Game {
+public class Game  extends Observable{
 	private  Labyrinth labyrinth; 
 	private Player player; 
 	private BadBoys badBoys; 
@@ -19,7 +23,7 @@ public class Game {
 	private boolean end;
 	private boolean loose;
 	private int score; 
-	private Door door;
+	private  Door door;
 	
 	private Game(){
 		labyrinth = new Labyrinth(16); 
@@ -48,7 +52,7 @@ public class Game {
 	 * 
 	 * @return l'unique instance du jeux.
 	 */
-	public static Game getInstance(){
+	public synchronized static Game getInstance(){
 		if(instance == null)
 			instance = new Game(); 
 		return instance;
@@ -67,13 +71,14 @@ public class Game {
 	public void movePlayer(Directions dir) {
 		Vertex v = new Vertex(player.getPosX(), player.getPosY(),0);
 		
-		if(!labyrinth.isWall(v, dir)){
+		if(!labyrinth.isWall(v, dir) && !this.end){
 			player.move(dir);
+			this.setChanged(); 
+			this.notifyObservers();
 			if(player.getPosition().equals(door.getPosition())) {
 				end = true;
-				 
+				
 			}
-			
 			Point2D p_pos = player.getPosition();
 			score += candies.maybeEaten(p_pos);
 		}
@@ -94,19 +99,31 @@ public class Game {
 			
 			Directions dir = this.labyrinth.getNextDir(source, target); 
 			
-			if(dir != null){
+			if(dir != null && !this.end){
 				bb.move(dir);
+				
 				if(player.getPosition().equals(bb.getPosition())){
+					// on replace le mÈchants a une position alÈatoire. 
+					Timeline t = new Timeline(new KeyFrame(
+					        Duration.seconds(1),
+					        ae -> { //Les lambdas c'est d√©licieux
+					        	Random r = new Random(); 
+					        	bb.setPosition(new Point2D(r.nextInt(this.labyrinth.getSize()),r.nextInt(this.labyrinth.getSize())));
+					        	
+					        }));
+					t.play();
+					
 					player.looseLife(); 
-					if(player.getLife() == 0){
+					if(player.getLife() <= 0){
 						this.end = true;
-						
 						loose = true;
 					}
 				}
 			}
 			
 		}
+		this.setChanged();
+		this.notifyObservers();
 	}
 	/**
 	 * 
@@ -159,10 +176,7 @@ public class Game {
 	public boolean isEnd(){
 		return this.end;
 	}
-	public void setEnd(boolean b) {
-		// TODO Auto-generated method stub
-		this.end = b;
-	}
+	
 	public boolean getLoose(){
 		return this.loose;
 	}

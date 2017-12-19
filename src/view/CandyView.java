@@ -35,13 +35,8 @@ public class CandyView extends BaseView {
 
 	@Override
 	public void update() {
-		//Les performances c'est pas grave on est en Java :D
-		///
-		 Platform.runLater(new Runnable() {
-	            @Override public void run() {
+		
 		group.getChildren().clear();
-	            }
-		 });
 		sprites.clear();
 
 		
@@ -57,12 +52,7 @@ public class CandyView extends BaseView {
 			v.setY(yt);
 			
 			sprites.add(v);
-			
-			 Platform.runLater(new Runnable() {
-		            @Override public void run() {
-		            	group.getChildren().add(v);
-		            }
-			 });
+			group.getChildren().add(v);
 		}
 	}
 

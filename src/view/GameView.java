@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -56,7 +57,7 @@ public class GameView extends BaseView {
 		// TODO Auto-generated method stub
 		
 		if(Game.getInstance().isEnd()){
-			Game.getInstance().setEnd(false);
+			
 			ButtonType next = new ButtonType("Next level");
 			ButtonType quit = new ButtonType("Quit");
 			ButtonType retry = new ButtonType("Retry");
@@ -64,20 +65,22 @@ public class GameView extends BaseView {
 				public void run(){
 					Alert alert = new Alert(AlertType.INFORMATION);
 					
+					
 					//alert.setHeaderText("Change");
 					if(Game.getInstance().getLoose()){
 						alert.getButtonTypes().setAll(retry);
 						alert.setTitle("You loose");
 						alert.setHeaderText(null);
-						alert.setContentText("You loose");
+						alert.setContentText("You loose width score : "+game.getScore());
 					}else{
 						alert.getButtonTypes().setAll(next, quit);
 						alert.setTitle("Win");
 						alert.setHeaderText(null);
-						alert.setContentText("You win");
+						alert.setContentText("You win width score : "+game.getScore());
 					}
+					
 					Optional<ButtonType> b = alert.showAndWait();
-						if (b != null){
+						if (!b.equals(ButtonData.OK_DONE)){
 							if (b.get().equals(next)){
 								alert.close();
 							}

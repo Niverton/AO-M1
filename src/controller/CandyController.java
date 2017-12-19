@@ -44,7 +44,7 @@ public class CandyController implements IController, Observer {
 	public synchronized void update(Observable gc, Object arg) {
 		
 		
-		if (candyTimer.getStatus() == Animation.Status.STOPPED) {
+		if (candyTimer.getStatus() == Animation.Status.STOPPED && !Game.getInstance().isEnd()) {
 			setTimer();
 		}
 		
@@ -59,7 +59,7 @@ public class CandyController implements IController, Observer {
 		        Duration.seconds(timer),
 		        ae -> { //Les lambdas c'est délicieux
 		        	candies.add();
-		        	GameController.getInstance().change();
+		        	
 		        }));
 		candyTimer.play();
 	}

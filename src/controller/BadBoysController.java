@@ -3,55 +3,36 @@ package controller;
 import java.util.Observable;
 import java.util.Observer;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import model.Game;
 import view.BadBoysView;
 
 public class BadBoysController  implements IController, Observer{
 
-	private BadBoysView v;
-	private GameController gameController; 
+	private BadBoysView v; 
 	private Game game;
-	private ScheduledService<Void> service;
+	private Timeline move; 
 	/**
 	 * 
 	 * @param gameController l'unique instance de Game controller.
 	 */
-	public BadBoysController( GameController gameController){
+	public BadBoysController(){
 
 		this.game = Game.getInstance();
-		this.gameController = gameController;
-
-		service = new ScheduledService<Void>() { 
-
-			@Override 
-			protected Task<Void> createTask() { 
-				return new Task<Void>() { 
-
-					@Override 
-					protected Void call() throws Exception { 
-						// Faire le traitement ici. 
-						game.moveBadBoys();
-						gameController.change();
-						try {
-							Thread.sleep(120);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						if(game.isEnd()){
-							System.out.println("stop");
-							this.cancel(true);
-						}
-							
-						Thread.yield();
-						return null; 
-					}                             
-				}; 
-			}                     
-		};
+		this.move = new Timeline(new KeyFrame(
+		        Duration.seconds(0.1),
+		        ae -> { //Les lambdas c'est dÃ©licieux
+		        	game.moveBadBoys(); 
+		        	
+		        })); 
+		this.move.setCycleCount(Timeline.INDEFINITE); // on répête a l'infini cela s'arrêtera dans le update.
+		
+		
 	}
 	/**
 	 * 
@@ -59,7 +40,8 @@ public class BadBoysController  implements IController, Observer{
 	 */
 	public void start(Pane pane){
 		v = new BadBoysView(pane);
-		service.start();
+		//service.start();
+		this.move.play(); 
 		v.view();
 	}
 
@@ -69,6 +51,9 @@ public class BadBoysController  implements IController, Observer{
 	 */
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		if(Game.getInstance().isEnd()){
+			this.move.stop(); 
+		}
 		
 		v.update();
 	}

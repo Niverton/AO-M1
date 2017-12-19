@@ -13,17 +13,14 @@ import view.PlayerView;
 
 public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 	
-	private PlayerView v;
-	private GameController gameController; 
+	private PlayerView v; 
 	private Game game;
 	/**
 	 * 
 	 * @param game l'unique instance de Game controller.
 	 */
-	public PlayerController( GameController gameController){
-	
+	public PlayerController(){
 		this.game = Game.getInstance();
-		this.gameController = gameController;
 	}
 	/**
 	 * 
@@ -43,22 +40,22 @@ public class PlayerController  implements EventHandler<KeyEvent>, Observer {
 		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
 			game.movePlayer(Directions.West);
 			
-			this.gameController.change();
+			
 		}
 		else if(arg0.getCode()== KeyCode.DOWN || arg0.getCode()== KeyCode.S){
 			game.movePlayer(Directions.South);
 			
-			this.gameController.change();
+			
 		}
 		else if(arg0.getCode()== KeyCode.RIGHT || arg0.getCode()== KeyCode.D){
 			game.movePlayer(Directions.East);
 			
-			this.gameController.change();
+			
 		}
 		else if(arg0.getCode()== KeyCode.UP || arg0.getCode()== KeyCode.Z){
 			game.movePlayer(Directions.North);
 			
-			this.gameController.change();
+			
 		}
 	}
 
