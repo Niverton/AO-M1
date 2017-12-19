@@ -54,6 +54,9 @@ public class BadBoysController  implements IController, Observer{
 		if(Game.getInstance().isEnd()){
 			this.move.stop(); 
 		}
+		else{
+			this.move.play(); 
+		}
 		
 		v.update();
 	}

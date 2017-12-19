@@ -11,9 +11,10 @@ import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
 import model.graph.Vertex;
+import model.interfaces.IGame;
 
 
-public class Game  extends Observable{
+public class Game  extends Observable implements IGame{
 	private  Labyrinth labyrinth; 
 	private Player player; 
 	private BadBoys badBoys; 
@@ -30,7 +31,7 @@ public class Game  extends Observable{
 
 		player = new Player(4);
 		
-		int nbBadBoys = 3;
+		int nbBadBoys = 0;
 		badBoys = new BadBoys(nbBadBoys);
 		Random r = new Random();
 		List<Point2D> lp = new ArrayList<Point2D>();
@@ -42,8 +43,8 @@ public class Game  extends Observable{
 	
 		listObject = new ListObject();
 		candies = new Candies(); 
-		
-		door = new Door("door", this.labyrinth.getSize()-1, this.labyrinth.getSize()-1);
+		Point2D p = labyrinth.getfurther(new Vertex(player.getPosX(), player.getPosY(), 0));
+		door = new Door("door", p);
 		end = false;
 		loose = false;
 		score =0 ;
@@ -52,7 +53,7 @@ public class Game  extends Observable{
 	 * 
 	 * @return l'unique instance du jeux.
 	 */
-	public synchronized static Game getInstance(){
+	public static Game getInstance(){
 		if(instance == null)
 			instance = new Game(); 
 		return instance;
@@ -91,7 +92,7 @@ public class Game  extends Observable{
 	 * Pour le moment le déplacement est aléatoire :
 	 * TODO - Améliorer ça avec l'algorithme de Manhattan
 	 */
-	public synchronized void moveBadBoys() {
+	public void moveBadBoys() {
 		// On traite chaque BadBoy séparément
 		for (BadBoy bb : badBoys.getList()) {
 			Vertex source = new Vertex(bb.getPosX(), bb.getPosY(),0);
@@ -179,5 +180,19 @@ public class Game  extends Observable{
 	
 	public boolean getLoose(){
 		return this.loose;
+	}
+	public void retry() {
+		// TODO Auto-generated method stub
+		this.player.setLife(5);
+		for(BadBoy bb : badBoys.getList()){
+			Random r = new Random(); 
+	    	bb.setPosition(new Point2D(r.nextInt(this.labyrinth.getSize()),r.nextInt(this.labyrinth.getSize())));
+		}
+		candies = new Candies();
+		end = false;
+		loose = false;
+		score =0 ;
+		this.setChanged();
+		this.notifyObservers();
 	}
 }

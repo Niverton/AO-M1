@@ -6,6 +6,8 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.Vector;
 
+import org.jgrapht.traverse.BreadthFirstIterator;
+
 import javafx.geometry.Point2D;
 import model.graph.Edge;
 import model.graph.Edge.Type;
@@ -193,20 +195,17 @@ public class Labyrinth {
 	}
 	public Point2D getfurther(Vertex source){
 		 source = graph.getRefVertex(source);
+		 this.launchManathan(source, source);
+		 BreadthFirstIterator<Vertex, Edge> it = new BreadthFirstIterator<>(this.graph);
 		 Point2D pos = new Point2D(0,0);
-		 int temp =0;
-		for(Vertex target : graph.vertexSet() ){
-			this.launchManathan(source, target);
-			for(Vertex vertex : graph.vertexSet()){
-				if(temp < vertex.getNbr()){
-					temp = vertex.getNbr(); 
-					pos = new Point2D(target.getX(), target.getY());
-				}
-				//System.out.println(vertex.toString() + " /  " + vertex.getNbr()) ;
+		 int nb =0;
+		while(it.hasNext()){
+			Vertex v= it.next();
+			if(nb < v.getNbr()){
+				pos = v.getPosition();
 			}
 		}
 		return pos;
-		
 	}
 
 

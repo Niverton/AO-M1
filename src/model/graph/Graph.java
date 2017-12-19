@@ -98,6 +98,7 @@ public class Graph extends SimpleGraph<Vertex, Edge> implements JGraph{
 		Edge e1 = this.getEdge(source, target); 
 		return (e1 != null &&( e1.getType() == Edge.Type.OPENED_DOOR));
 	}
+	
 
 
 }

@@ -1,5 +1,6 @@
 package model.graph;
 
+import javafx.geometry.Point2D;
 import model.Directions;
 
 /**
@@ -53,6 +54,13 @@ public class Vertex   implements Comparable<Vertex>{
 	public int  getY(){
 		return y; 
 	}
+	public Point2D getPosition(){
+		return new Point2D(x,y);
+	}
+	/**
+	 * 
+	 * @return
+	 */
 	public int getNbr(){
 		return this.nbr;
 	}

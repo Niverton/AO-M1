@@ -24,6 +24,10 @@ public class GameView extends BaseView {
 	private Stage stage; 
 	private Game game;
 	protected static final Paint SCENECOLOR = Color.web("ecffff"); 
+	/**
+	 * 
+	 * @param stage la fenêtre principal.
+	 */
 	public GameView(Stage stage){
 		pane = new Pane();
 		game = Game.getInstance();
@@ -84,8 +88,10 @@ public class GameView extends BaseView {
 							if (b.get().equals(next)){
 								alert.close();
 							}
-							if(b.get().equals(retry))
-								System.exit(1);
+							if(b.get().equals(retry)){
+								game.retry();
+							}
+								
 							
 						
 							if(b.get().equals(quit))

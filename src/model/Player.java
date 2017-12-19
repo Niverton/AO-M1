@@ -31,6 +31,14 @@ public class Player extends Personnage {
 		// TODO Auto-generated method stub
 		return this.life;
 	}
+	/**
+	 * 
+	 * @param i le nombre de vies. 
+	 */
+	public void setLife(int i) {
+		// TODO Auto-generated method stub
+		this.life = i;
+	}
 
 
 	
