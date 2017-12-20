@@ -31,7 +31,7 @@ public class Game  extends Observable implements IGame{
 
 		player = new Player(4);
 		
-		int nbBadBoys = 0;
+		int nbBadBoys = 3;
 		badBoys = new BadBoys(nbBadBoys);
 		Random r = new Random();
 		List<Point2D> lp = new ArrayList<Point2D>();
