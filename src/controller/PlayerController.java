@@ -12,7 +12,7 @@ import model.Game;
 import view.PlayerView;
 
 /**
- * Controleur 
+ * Controleur
  */
 public class PlayerController implements IController, EventHandler<KeyEvent>, Observer {
 

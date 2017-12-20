@@ -67,7 +67,7 @@ public class GameView extends BaseView {
                         alert.setHeaderText(null);
                         alert.setContentText("You loose width score : " + game.getScore());
                     } else {
-                        alert.getButtonTypes().setAll(next, quit);
+                        alert.getButtonTypes().setAll(retry, quit);
                         alert.setTitle("Win");
                         alert.setHeaderText(null);
                         alert.setContentText("You win width score : " + game.getScore());

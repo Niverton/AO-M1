@@ -72,7 +72,9 @@ public class Graph extends SimpleGraph<Vertex, Edge> implements JGraph {
 
     /**
      * Trouve le sommet correspondant dans le graphe
-     * @param vertex le sommet a trouver
+     * 
+     * @param vertex
+     *            le sommet a trouver
      * @return le sommet trouve ou null
      */
     public Vertex getRefVertex(Vertex vertex) {

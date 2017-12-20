@@ -2,6 +2,7 @@ package model;
 
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
+import view.CandyType;
 
 /**
  * Le modele d'un bonbon.
@@ -23,6 +24,7 @@ public class Candy extends ObjectGame {
 
     /**
      * Enregistre le timer d'expiration du bonbon et le démarre.
+     * 
      * @param t
      */
     public void setTimeout(Timeline t) {

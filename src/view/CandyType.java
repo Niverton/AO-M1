@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import javafx.scene.image.Image;
 
@@ -6,6 +6,10 @@ import javafx.scene.image.Image;
  * Les différents types de bonbons
  */
 public enum CandyType {
+    /**
+     * Cette enum est dans le paquet view parce qu'elle a besoin des resources
+     */
+
     //@formatter:off
     Candy1("Candy1", "ressource/candy1.png", 100),
     Candy2("Candy2", "ressource/candy2.png", 200),

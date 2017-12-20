@@ -79,16 +79,19 @@ public class Vertex implements Comparable<Vertex> {
 
     @Override
     public boolean equals(Object other) {
-        if (this == other) return true;
-        if (!(other instanceof Vertex)) return false;
+        if (this == other)
+            return true;
+        if (!(other instanceof Vertex))
+            return false;
         Vertex o = (Vertex) other;
         return (x == o.x) && (y == o.y);
     }
-    
+
     @Override
     public int compareTo(Vertex other) {
         int dx = x - other.x;
-        if (dx != 0) return dx;
+        if (dx != 0)
+            return dx;
         return y - other.y;
     }
 

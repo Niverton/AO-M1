@@ -25,7 +25,7 @@ public class BadBoysController implements IController, Observer {
      */
     public BadBoysController() {
         this.game = Game.getInstance();
-        this.move = new Timeline(new KeyFrame(Duration.seconds(0.1), ae -> {
+        this.move = new Timeline(new KeyFrame(Duration.seconds(0.7), ae -> {
             game.moveBadBoys();
         }));
         this.move.setCycleCount(Timeline.INDEFINITE); // A arrêter dans update.

@@ -8,6 +8,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.util.Duration;
+import view.CandyType;
 
 /**
  * La liste des bonbons
