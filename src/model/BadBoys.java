@@ -63,7 +63,8 @@ public class BadBoys {
 	 * @param p liste de positions des mechants a l'�tat initial. 
 	 */
 	public void setAllInitialPos(List<Point2D> p ){
-		assert(  (p.size() != this.getNumber())) : "probleme set all position liste non conforme";
+		if(  p.size() != this.getNumber() ) return; // probleme set all position : liste non conforme
+		// On ne retourne pas d'Exception : Le programmeur fait ce qu'il veut.
 
 		int i =0;
 		for(Point2D pos : p){
@@ -75,7 +76,7 @@ public class BadBoys {
 	 * 
 	 * @return le nombre de m�chants.
 	 */
-	private int getNumber() {
+	public int getNumber() {
 		return this.lBadBoys.size();
 	}
 	/**

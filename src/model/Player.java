@@ -5,10 +5,10 @@ package model;
  *
  */
 public class Player extends Personnage {
-	private int life; 
+	private int lives; 
 	public Player (int nb){
 		super(); 
-		this.life = nb;
+		this.lives = nb;
 	}
 	
 	/**
@@ -21,23 +21,26 @@ public class Player extends Personnage {
 		super( posX, posY); 
 	}
 	/**
-	 * decremente la vie de notre player. 
+	 * decremente le nombre de vies de notre joueur. 
 	 */
-	public void looseLife(){
-		life --; 
+	public void loseLife(){
+		lives --; 
 	}
 
-	public int getLife() {
+	/**
+	 * @return le nombre de vies actuel du joueur.
+	 */
+	public int getLives() {
 		// TODO Auto-generated method stub
-		return this.life;
+		return this.lives;
 	}
 	/**
 	 * 
-	 * @param i le nombre de vies. 
+	 * @param i le nombre de vies a donner au joueur. 
 	 */
-	public void setLife(int i) {
+	public void setLives(int i) {
 		// TODO Auto-generated method stub
-		this.life = i;
+		this.lives = i;
 	}
 
 

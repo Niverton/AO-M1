@@ -114,8 +114,8 @@ public class Game  extends Observable implements IGame{
 					        }));
 					t.play();
 					
-					player.looseLife(); 
-					if(player.getLife() <= 0){
+					player.loseLife(); 
+					if(player.getLives() <= 0){
 						this.end = true;
 						loose = true;
 					}
@@ -183,7 +183,7 @@ public class Game  extends Observable implements IGame{
 	}
 	public void retry() {
 		// TODO Auto-generated method stub
-		this.player.setLife(5);
+		this.player.setLives(5);
 		for(BadBoy bb : badBoys.getList()){
 			Random r = new Random(); 
 	    	bb.setPosition(new Point2D(r.nextInt(this.labyrinth.getSize()),r.nextInt(this.labyrinth.getSize())));
