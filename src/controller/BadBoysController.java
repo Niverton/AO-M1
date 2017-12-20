@@ -25,7 +25,7 @@ public class BadBoysController  implements IController, Observer{
 
 		this.game = Game.getInstance();
 		this.move = new Timeline(new KeyFrame(
-		        Duration.seconds(0.1),
+		        Duration.seconds(0.7),
 		        ae -> { //Les lambdas c'est délicieux
 		        	game.moveBadBoys(); 
 		        	
