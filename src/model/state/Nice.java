@@ -1,29 +1,24 @@
 package model.state;
 
 import model.BadBoy;
+
 /**
- * 
  * @author laurent
- *
  */
 public class Nice implements State {
 
-	@Override
-	public void moreIrritate(BadBoy bad) {
-		// TODO Auto-generated method stub
-		bad.setState(new MediumIrritate());
-	}
+    @Override
+    public void moreIrritate(BadBoy bad) {
+        bad.setState(new MediumIrritate());
+    }
 
-	@Override
-	public void lowerIrritate(BadBoy bad) {
-		// TODO Auto-generated method stub
+    @Override
+    public void lowerIrritate(BadBoy bad) {
+    }
 
-	}
-	/**
-	 * @return l'état courant.
-	 */
-	public String toString(){
-		return "nice";
-	}
+    @Override
+    public String toString() {
+        return "Nice";
+    }
 
 }

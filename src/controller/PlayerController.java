@@ -11,67 +11,59 @@ import model.Directions;
 import model.Game;
 import view.PlayerView;
 
-public class PlayerController  implements EventHandler<KeyEvent>, Observer {
-	
-	private PlayerView v; 
-	private Game game;
-	/**
-	 * 
-	 * @param game l'unique instance de Game controller.
-	 */
-	public PlayerController(){
-		this.game = Game.getInstance();
-	}
-	/**
-	 * 
-	 * @param pane Le pane du jeu.
-	 */
-	public void start(Pane pane){
-		v = new PlayerView(pane);
-		v.view();
-		v.setKeyPressed(this);
-	}
+/**
+ * Controleur 
+ */
+public class PlayerController implements IController, EventHandler<KeyEvent>, Observer {
 
-	/**
-	 * @param arg0 l'�v�nement clavier capturer. 
-	 */
-	public void handle(KeyEvent arg0) {
-		
-		if(arg0.getCode()== KeyCode.LEFT || arg0.getCode()== KeyCode.Q){
-			game.movePlayer(Directions.West);
-			
-			
-		}
-		else if(arg0.getCode()== KeyCode.DOWN || arg0.getCode()== KeyCode.S){
-			game.movePlayer(Directions.South);
-			
-			
-		}
-		else if(arg0.getCode()== KeyCode.RIGHT || arg0.getCode()== KeyCode.D){
-			game.movePlayer(Directions.East);
-			
-			
-		}
-		else if(arg0.getCode()== KeyCode.UP || arg0.getCode()== KeyCode.Z){
-			game.movePlayer(Directions.North);
-			
-			
-		}
-	}
+    private PlayerView v;
+    private Game       game;
 
-	/**
-	 * @param o l'observable appelant
-	 * @param arg les arguments pass�s par l'observable.
-	 */
-	public void update(Observable o, Object arg) {
-		v.update();
-	}
+    /**
+     * @param game
+     *            l'unique instance de Game controller.
+     */
+    public PlayerController() {
+        this.game = Game.getInstance();
+    }
 
-	
+    @Override
+    public void start(Pane pane) {
+        v = new PlayerView(pane);
+        v.view();
+        v.setKeyPressed(this);
+    }
 
-	
+    /**
+     * @param event
+     *            l'evenement clavier capturer.
+     */
+    @Override
+    public void handle(KeyEvent event) {
+        if (event.getCode() == KeyCode.LEFT || event.getCode() == KeyCode.Q) {
+            game.movePlayer(Directions.West);
 
-	
+        } else if (event.getCode() == KeyCode.DOWN || event.getCode() == KeyCode.S) {
+            game.movePlayer(Directions.South);
 
-	
+        } else if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.D) {
+            game.movePlayer(Directions.East);
+
+        } else if (event.getCode() == KeyCode.UP || event.getCode() == KeyCode.Z) {
+            game.movePlayer(Directions.North);
+
+        }
+    }
+
+    /**
+     * @param o
+     *            l'observable appelant
+     * @param arg
+     *            les arguments passes par l'observable.
+     */
+    @Override
+    public void update(Observable o, Object arg) {
+        v.update();
+    }
+
 }

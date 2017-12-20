@@ -1,6 +1,5 @@
 package model;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -13,186 +12,169 @@ import javafx.util.Duration;
 import model.graph.Vertex;
 import model.interfaces.IGame;
 
+/**
+ * Le modele du jeu. Possede tout les sous-modeles de logique de jeu.
+ * C'est un singleton.
+ */
+public class Game extends Observable implements IGame {
+    private static Game instance;
 
-public class Game  extends Observable implements IGame{
-	private  Labyrinth labyrinth; 
-	private Player player; 
-	private BadBoys badBoys; 
-	private   static Game instance; 
-	private ListObject listObject;
-	private Candies candies; 
-	private boolean end;
-	private boolean loose;
-	private int score; 
-	private  Door door;
-	
-	private Game(){
-		labyrinth = new Labyrinth(16); 
+    private Labyrinth labyrinth;
+    private Player    player;
+    private BadBoys   badBoys;
+    private Candies   candies;
+    private Door      door;
 
-		player = new Player(4);
-		
-		int nbBadBoys = 3;
-		badBoys = new BadBoys(nbBadBoys);
-		Random r = new Random();
-		List<Point2D> lp = new ArrayList<Point2D>();
-		for (int i = 0 ; i < nbBadBoys ; i++) {
-			Point2D p = new Point2D(r.nextInt(this.labyrinth.getSize()), r.nextInt(this.labyrinth.getSize()));
-			lp.add(p);
-		}
-		badBoys.setAllInitialPos(lp);
-	
-		listObject = new ListObject();
-		candies = new Candies(); 
-		Point2D p = labyrinth.getfurther(new Vertex(player.getPosX(), player.getPosY(), 0));
-		door = new Door("door", p);
-		end = false;
-		loose = false;
-		score =0 ;
-	}
-	/**
-	 * 
-	 * @return l'unique instance du jeux.
-	 */
-	public static Game getInstance(){
-		if(instance == null)
-			instance = new Game(); 
-		return instance;
-	}
-	/**
-	 * 
-	 * @return l labyrinth
-	 */
-	public Labyrinth getLabyrinth() {
-		return labyrinth;
-	}
-	/**
-	 * 
-	 * @param dir la direction dans lequel deplacer le joueur.
-	 */
-	public void movePlayer(Directions dir) {
-		Vertex v = new Vertex(player.getPosX(), player.getPosY(),0);
-		
-		if(!labyrinth.isWall(v, dir) && !this.end){
-			player.move(dir);
-			this.setChanged(); 
-			this.notifyObservers();
-			if(player.getPosition().equals(door.getPosition())) {
-				end = true;
-				
-			}
-			Point2D p_pos = player.getPosition();
-			score += candies.maybeEaten(p_pos);
-		}
-			
-		
-	}
-	/**
-	 * 
-	 * @param dir la direction dans lequel deplacer le joueur.
-	 * Pour le moment le dÈplacement est alÈatoire :
-	 * TODO - AmÈliorer Áa avec l'algorithme de Manhattan
-	 */
-	public void moveBadBoys() {
-		// On traite chaque BadBoy sÈparÈment
-		for (BadBoy bb : badBoys.getList()) {
-			Vertex source = new Vertex(bb.getPosX(), bb.getPosY(),0);
-			Vertex target = new Vertex(player.getPosX(), player.getPosY(), 0 );
-			
-			Directions dir = this.labyrinth.getNextDir(source, target); 
-			
-			if(dir != null && !this.end){
-				bb.move(dir);
-				
-				if(player.getPosition().equals(bb.getPosition())){
-					// on replace le mÈchants a une position alÈatoire. 
-					Timeline t = new Timeline(new KeyFrame(
-					        Duration.seconds(1),
-					        ae -> { //Les lambdas c'est d√©licieux
-					        	Random r = new Random(); 
-					        	bb.setPosition(new Point2D(r.nextInt(this.labyrinth.getSize()),r.nextInt(this.labyrinth.getSize())));
-					        	
-					        }));
-					t.play();
-					
-					player.loseLife(); 
-					if(player.getLives() <= 0){
-						this.end = true;
-						loose = true;
-					}
-				}
-			}
-			
-		}
-		this.setChanged();
-		this.notifyObservers();
-	}
-	/**
-	 * 
-	 * @return les mechants 
-	 */
-	public BadBoys getBadBoys(){
-		return badBoys;
-	}
-	/**
-	 * 
-	 * @return le joueur.
-	 */
-	public Player getPlayer() {
-		return player;
-	}
-	/**
-	 * 
-	 * @return les objets non mobile du jeux
-	 */
-	public ListObject getListObject(){
-		return listObject;
-	}
-	/**
-	 * 
-	 * @return la liste des bonbons 
-	 */
-	public Candies getCandies(){
-		return this.candies;
-	}
+    private ListObject listObject;
+    private boolean    end;
+    private boolean    lose;
+    private int        score;
 
-	/**
-	 * 
-	 * @return le score de la partie.
-	 */
-	public int getScore(){
-		return this.score;
-	}
-	
-	public void setScore(int s) {
-		this.score = s;
-	}
-	public Door getDoor() {
-		// TODO Auto-generated method stub
-		return this.door;
-	}
-	/**
-	 * 
-	 * @return si le jeu est terminÈ
-	 */
-	public boolean isEnd(){
-		return this.end;
-	}
-	
-	public boolean getLoose(){
-		return this.loose;
-	}
-	public void retry() {
-		// TODO Auto-generated method stub
-		this.player.setLives(5);
-		for(BadBoy bb : badBoys.getList()){
-			Random r = new Random(); 
-	    	bb.setPosition(new Point2D(r.nextInt(this.labyrinth.getSize()),r.nextInt(this.labyrinth.getSize())));
-		}
-		candies = new Candies();
-		end = false;
-		loose = false;
-		score =0 ;
-		this.setChanged();
-		this.notifyObservers();
-	}
+    private Game() {
+        labyrinth = new Labyrinth(16);
+
+        player = new Player(4);
+
+        int nbBadBoys = 3;
+        badBoys = new BadBoys(nbBadBoys);
+        Random r = new Random();
+        List<Point2D> lp = new ArrayList<Point2D>();
+        for (int i = 0; i < nbBadBoys; i++) {
+            Point2D p = new Point2D(r.nextInt(this.labyrinth.getSize()), r.nextInt(this.labyrinth.getSize()));
+            lp.add(p);
+        }
+        badBoys.setAllInitialPos(lp);
+
+        listObject = new ListObject();
+        candies = new Candies();
+        Point2D p = labyrinth.getFurther(new Vertex(player.getPosX(), player.getPosY(), 0));
+        door = new Door("door", p);
+        end = false;
+        lose = false;
+        score = 0;
+    }
+
+    public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
+        }
+        return instance;
+    }
+
+    public Labyrinth getLabyrinth() {
+        return labyrinth;
+    }
+
+    public void movePlayer(Directions dir) {
+        Vertex v = new Vertex(player.getPosX(), player.getPosY(), 0);
+
+        if (!labyrinth.isWall(v, dir) && !this.end) {
+            player.move(dir);
+            this.setChanged();
+            this.notifyObservers();
+            if (player.getPosition().equals(door.getPosition())) {
+                end = true;
+            }
+            Point2D p_pos = player.getPosition();
+
+            score += candies.maybeEaten(p_pos);
+        }
+
+    }
+
+    /**
+     * Deplace les mechants.
+     * TODO
+     * Pour l'instant la direction est aleatoire, a ameliorer en utilisant
+     * l'algorithme de manhattan
+     */
+    public void moveBadBoys() {
+        for (BadBoy bb : badBoys.getList()) {
+            Vertex source = new Vertex(bb.getPosX(), bb.getPosY(), 0);
+            Vertex target = new Vertex(player.getPosX(), player.getPosY(), 0);
+
+            Directions dir = this.labyrinth.getNextDir(source, target);
+
+            if (dir != null && !this.end) {
+                bb.move(dir);
+
+                if (player.getPosition().equals(bb.getPosition())) {
+                    // on replace le mechants a une position aleatoire.
+                    Timeline t = new Timeline(new KeyFrame(Duration.seconds(1), ae -> {
+                        Random r = new Random();
+                        bb.setPosition(
+                                new Point2D(r.nextInt(this.labyrinth.getSize()), r.nextInt(this.labyrinth.getSize())));
+                    }));
+                    t.play();
+
+                    player.loseLife();
+                    if (player.getLives() <= 0) {
+                        this.end = true;
+                        lose = true;
+                    }
+                }
+            }
+        }
+        this.setChanged();
+        this.notifyObservers();
+    }
+
+    public BadBoys getBadBoys() {
+        return badBoys;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public ListObject getListObject() {
+        return listObject;
+    }
+
+    public Candies getCandies() {
+        return this.candies;
+    }
+
+    public int getScore() {
+        return this.score;
+    }
+
+    public void setScore(int s) {
+        this.score = s;
+    }
+
+    public Door getDoor() {
+        return this.door;
+    }
+
+    /**
+     * @return si le jeu est termine
+     */
+    public boolean isEnd() {
+        return this.end;
+    }
+
+    /**
+     * Est-ce que le joueur a perdu ?
+     */
+    public boolean getLose() {
+        return this.lose;
+    }
+
+    /**
+     * Remet la partie a 0
+     */
+    public void retry() {
+        this.player.setLives(5);
+        for (BadBoy bb : badBoys.getList()) {
+            Random r = new Random();
+            bb.setPosition(new Point2D(r.nextInt(this.labyrinth.getSize()), r.nextInt(this.labyrinth.getSize())));
+        }
+        candies = new Candies();
+        end = false;
+        lose = false;
+        score = 0;
+        this.setChanged();
+        this.notifyObservers();
+    }
 }

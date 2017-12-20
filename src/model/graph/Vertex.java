@@ -4,85 +4,95 @@ import javafx.geometry.Point2D;
 import model.Directions;
 
 /**
- * 
- * @author laurent
- *
+ * Sommet du graphe.
  */
-public class Vertex   implements Comparable<Vertex>{
-	private int x; 
-	private int y; 
-	private int nbr;
-	/**
-	 * 
-	 * @param x position x
-	 * @param y position y
-	 */
-	public Vertex(int x, int y, int nbr){
-		this.x = x; 
-		this.y = y; 
-		this.nbr = nbr;
+public class Vertex implements Comparable<Vertex> {
+    private int x;
+    private int y;
+    private int nbr;
 
-	}
-	/**
-	 * 
-	 * @param min position minimum 
-	 * @param max position maximum 
-	 * @param dir la direction a tester 
-	 * @return si le sommet est bien entre min et max selon la direction donn�e.
-	 */
-	public boolean inBorders(int min, int max, Directions dir){
-		switch (dir){
-		case North: return this.getY() > min;
-		case West: return this.getX() > min;
-		case South: return this.getY() < max-1;
-		case East: return this.getX() < max-1;
+    /**
+     * @param x
+     *            position x
+     * @param y
+     *            position y
+     */
+    public Vertex(int x, int y, int nbr) {
+        this.x = x;
+        this.y = y;
+        this.nbr = nbr;
+    }
 
-		}
-		return false;
-	}
-	/**
-	 * 
-	 * @return la position x
-	 */
-	public int getX(){
-		return x; 
-	}
-	/**
-	 * 
-	 * @return la position y 
-	 */
-	public int  getY(){
-		return y; 
-	}
-	public Point2D getPosition(){
-		return new Point2D(x,y);
-	}
-	/**
-	 * 
-	 * @return
-	 */
-	public int getNbr(){
-		return this.nbr;
-	}
-	/**
-	 * affichage des coordon�es de notre objet Point2D
-	 */
-	public String toString(){
-		return x+ " ->" + y;
-	}
-	/**
-	 * @param arg0 le sommet � comparer.
-	 */
-	public int compareTo(Vertex arg0) {
-		// TODO Auto-generated method stub
-		if(this.getX() == arg0.getX() && this.getY() == arg0.getY())
-			return 0;
+    /**
+     * @param min
+     *            position minimum
+     * @param max
+     *            position maximum
+     * @param dir
+     *            la direction a tester
+     * @return si le sommet est bien entre min et max selon la direction donnee.
+     */
+    public boolean inBorders(int min, int max, Directions dir) {
+        switch (dir) {
+            case North:
+                return this.getY() > min;
+            case West:
+                return this.getX() > min;
+            case South:
+                return this.getY() < max - 1;
+            case East:
+                return this.getX() < max - 1;
 
-		return 1;
-	}
-	public void setNbr(int i) {
-		// TODO Auto-generated method stub
-		this.nbr = i;
-	}
+        }
+        return false;
+    }
 
+    /**
+     * @return la position x
+     */
+    public int getX() {
+        return x;
+    }
+
+    /**
+     * @return la position y
+     */
+    public int getY() {
+        return y;
+    }
+
+    public Point2D getPosition() {
+        return new Point2D(x, y);
+    }
+
+    /**
+     * @return
+     */
+    public int getNbr() {
+        return this.nbr;
+    }
+
+    @Override
+    public String toString() {
+        return "Vertex (" + x + "; " + y + ")";
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        if (!(other instanceof Vertex)) return false;
+        Vertex o = (Vertex) other;
+        return (x == o.x) && (y == o.y);
+    }
+    
+    @Override
+    public int compareTo(Vertex other) {
+        int dx = x - other.x;
+        if (dx != 0) return dx;
+        return y - other.y;
+    }
+
+    public void setNbr(int i) {
+        this.nbr = i;
+    }
 }
