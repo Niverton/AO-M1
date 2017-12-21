@@ -170,7 +170,7 @@ public class Game extends Observable implements IGame {
             Random r = new Random();
             bb.setPosition(new Point2D(r.nextInt(this.labyrinth.getSize()), r.nextInt(this.labyrinth.getSize())));
         }
-        candies = new Candies();
+        player.setPosition(new Point2D(0,0));
         end = false;
         lose = false;
         score = 0;
