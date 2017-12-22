@@ -86,6 +86,7 @@ public class Candies {
             if (c.getPosition().equals(p_pos)) {
                 int s = c.getValue();
                 list.remove(i);
+                System.out.println(c + " mangé pour " + s + " points.");
                 return s;
             }
         }
