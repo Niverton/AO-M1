@@ -104,6 +104,8 @@ public class ViewLabyrinth extends BaseView {
      *            abscisse destination
      * @param yt
      *            ordnnees destination
+     * @param isDoor
+     *            Est ce qu'il s'agit d'une porte ou non 
      */
     public void drawWall(int xs, int ys, int xt, int yt, boolean isDoor) {
         float x = 0, y = 0;

@@ -194,8 +194,8 @@ public class Labyrinth {
     /**
      * TODO
      * 
-     * @param source
-     * @return
+     * @param source La position que l'on doit trouver le plus éloigné. 
+     * @return la position la plus éloigné de source
      */
     public Point2D getFurther(Vertex source) {
         source = graph.getRefVertex(source);

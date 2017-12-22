@@ -16,6 +16,8 @@ public class Vertex implements Comparable<Vertex> {
      *            position x
      * @param y
      *            position y
+     * @param nbr 
+     * 			Le numéro du vertex. 
      */
     public Vertex(int x, int y, int nbr) {
         this.x = x;
@@ -66,7 +68,7 @@ public class Vertex implements Comparable<Vertex> {
     }
 
     /**
-     * @return
+     * @return le numero du vertex 
      */
     public int getNbr() {
         return this.nbr;

@@ -33,8 +33,8 @@ public class ListObject implements IList<NonMoveableObject> {
     }
 
     /**
-     * @param sle
-     *            nom de lobjet que l'on souhaite recuperer
+     * @param s
+     *           le nom de lobjet que l'on souhaite recuperer
      * @return l'objet associe a l'objet.
      */
     public NonMoveableObject getByNameObject(String s) {

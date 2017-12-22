@@ -19,10 +19,7 @@ public class PlayerController implements IController, EventHandler<KeyEvent>, Ob
     private PlayerView v;
     private Game       game;
 
-    /**
-     * @param game
-     *            l'unique instance de Game controller.
-     */
+   
     public PlayerController() {
         this.game = Game.getInstance();
     }

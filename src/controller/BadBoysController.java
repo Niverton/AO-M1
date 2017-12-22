@@ -19,10 +19,7 @@ public class BadBoysController implements IController, Observer {
     private Game        game;
     private Timeline    move;
 
-    /**
-     * @param gameController
-     *            l'unique instance de Game controller.
-     */
+   
     public BadBoysController() {
         this.game = Game.getInstance();
         this.move = new Timeline(new KeyFrame(Duration.seconds(0.7), ae -> {
