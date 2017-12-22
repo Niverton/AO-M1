@@ -41,6 +41,7 @@ public class Game extends Observable implements IGame {
         List<Point2D> lp = new ArrayList<Point2D>();
         for (int i = 0; i < nbBadBoys; i++) {
             Point2D p = new Point2D(r.nextInt(this.labyrinth.getSize()), r.nextInt(this.labyrinth.getSize()));
+           
             lp.add(p);
         }
         badBoys.setAllInitialPos(lp);
@@ -92,18 +93,20 @@ public class Game extends Observable implements IGame {
         for (BadBoy bb : badBoys.getList()) {
             Vertex source = new Vertex(bb.getPosX(), bb.getPosY(), 0);
             Vertex target = new Vertex(player.getPosX(), player.getPosY(), 0);
-
+           
             Directions dir = this.labyrinth.getNextDir(source, target);
-
-            if (dir != null && !this.end) {
+            
+           
+            if (dir != null && !this.end  && !labyrinth.isWall(source, dir)) {
                 bb.move(dir);
 
                 if (player.getPosition().equals(bb.getPosition())) {
                     // on replace le mechants a une position aleatoire.
-                    Timeline t = new Timeline(new KeyFrame(Duration.seconds(1), ae -> {
+                    Timeline t = new Timeline(new KeyFrame(Duration.seconds(0.2), ae -> {
                         Random r = new Random();
-                        bb.setPosition(
-                                new Point2D(r.nextInt(this.labyrinth.getSize()), r.nextInt(this.labyrinth.getSize())));
+                      
+                        Point2D p = new Point2D(this.labyrinth.getSize() - player.getPosX()-1,this.labyrinth.getSize()-1 - player.getPosY() );// labyrinth.getFurther(new Vertex(player.getPosX(), player.getPosY(), 0));
+                        bb.setPosition(p);
                     }));
                     t.play();
 

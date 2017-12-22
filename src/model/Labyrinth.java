@@ -183,8 +183,12 @@ public class Labyrinth {
         this.launchManhattan(sourceReal, targetReal);
 
         for (Directions dir : Directions.values()) {
-            Vertex v = graph.getTarget(sourceReal, dir);
-            if (v != null && v.getNbr() == sourceReal.getNbr() - 1) {
+        
+        	Vertex v = null; 
+        	
+        		v = graph.getTarget(sourceReal, dir);
+        	
+            if (v != null && v.getNbr() == sourceReal.getNbr() - 1 && !this.isWall(sourceReal, dir)) {
                 return dir;
             }
         }
